@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AdvMapTreasureShared ObjectRecordID="7">
+	<Model href="/Maps/SingleMissions/TrialsOfSarElam/Characters/Heroes/SarIssus/Narxes.xdb#xpointer(/Model)"/>
+	<AnimSet href="/Maps/SingleMissions/TrialsOfSarElam/Characters/Heroes/SarIssus/Narxes-arena.xdb#xpointer(/AnimSet)"/>
+	<blockedTiles/>
+	<holeTiles/>
+	<activeTiles>
+		<Item>
+			<x>0</x>
+			<y>0</y>
+		</Item>
+	</activeTiles>
+	<passableTiles/>
+	<PossessionMarkerTile>
+		<x>0</x>
+		<y>0</y>
+	</PossessionMarkerTile>
+	<Effect href="/Effects/_(Effect)/ResoursesAndChests/FPP2/Crystal.xdb#xpointer(/Effect)"/>
+	<EffectWhenOwned/>
+	<messagesFileRef>
+		<Item href="/Maps/SingleMissions/TrialsOfSarElam/NameSarIssus.txt"/>
+		<Item href="/Maps/SingleMissions/TrialsOfSarElam/DescriptionSarIssus.txt"/>
+	</messagesFileRef>
+	<WaterBased>false</WaterBased>
+	<ApplyHeroTrace>false</ApplyHeroTrace>
+	<SoundEffect/>
+	<flybyMessageFileRef href=""/>
+	<ObjectTypeFileRef href="/Maps/SingleMissions/TrialsOfSarElam/NPC.txt"/>
+	<TerrainAligned>false</TerrainAligned>
+	<FlyPassable>true</FlyPassable>
+	<AdventureSoundEffect/>
+	<RazedStatic/>
+	<Icon128/>
+	<Type>TREASURE_GEMS</Type>
+	<MinResource>2</MinResource>
+	<MaxResource>4</MaxResource>
+</AdvMapTreasureShared>

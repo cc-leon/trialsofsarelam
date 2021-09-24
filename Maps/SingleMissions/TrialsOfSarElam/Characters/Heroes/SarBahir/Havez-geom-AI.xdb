@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AIGeometry>
+	<SrcName href="/models/Creatures/Academy/ArchMagi.mb"/>
+	<RootMesh>AI</RootMesh>
+	<RootJoint/>
+	<Volume>0</Volume>
+	<SolidPart>0</SolidPart>
+	<AABBCenter>
+		<x>0</x>
+		<y>-0.00406459</y>
+		<z>0.945681</z>
+	</AABBCenter>
+	<AABBHalfSize>
+		<x>0.542645</x>
+		<y>0.303947</y>
+		<z>0.938468</z>
+	</AABBHalfSize>
+	<uid>760C7096-A60A-44DD-9A55-032BB492B764</uid>
+</AIGeometry>

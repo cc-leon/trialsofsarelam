@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Character>
+	<Model href="Faiz.xdb#xpointer(/Model)"/>
+	<ArenaAnimSet href="Faiz-arena.xdb#xpointer(/AnimSet)"/>
+	<AdvMapAnimSet href="Faiz-arena.xdb#xpointer(/AdvMapAnimSet)"/>
+	<ColourModels>
+		<Item href="Faiz_White.xdb#xpointer(/Model)"/>
+		<Item href="Faiz.xdb#xpointer(/Model)"/>
+		<Item href="Faiz_Blue.xdb#xpointer(/Model)"/>
+		<Item href="Faiz_Green.xdb#xpointer(/Model)"/>
+		<Item href="Faiz_Yellow.xdb#xpointer(/Model)"/>
+		<Item href="Faiz_Orange.xdb#xpointer(/Model)"/>
+		<Item href="Faiz_Teal.xdb#xpointer(/Model)"/>
+		<Item href="Faiz_Purple.xdb#xpointer(/Model)"/>
+		<Item href="Faiz_Tan.xdb#xpointer(/Model)"/>
+	</ColourModels>
+</Character>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Character ObjectRecordID="210">
+	<Model href="Isher.(Model).xdb#xpointer(/Model)"/>
+	<ArenaAnimSet href="Isher-arena.(AnimSet).xdb#xpointer(/AnimSet)"/>
+	<AdvMapAnimSet href="Isher-arena.(AnimSet).xdb#xpointer(/AnimSet)"/>
+	<ColourModels>
+		<Item href="Isher_White.xdb#xpointer(/Model)"/>
+		<Item href="Isher_Red.xdb#xpointer(/Model)"/>
+		<Item href="Isher_Blue.xdb#xpointer(/Model)"/>
+		<Item href="Isher_Green.xdb#xpointer(/Model)"/>
+		<Item href="Isher.(Model).xdb#xpointer(/Model)"/>
+		<Item href="Isher_Orange.xdb#xpointer(/Model)"/>
+		<Item href="Isher_Teal.xdb#xpointer(/Model)"/>
+		<Item href="Isher_Purple.xdb#xpointer(/Model)"/>
+		<Item href="Isher_Tan.xdb#xpointer(/Model)"/>
+	</ColourModels>
+</Character>

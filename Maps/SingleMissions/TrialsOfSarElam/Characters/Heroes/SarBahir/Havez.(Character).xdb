@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Character ObjectRecordID="210">
+	<Model href="Havez.(Model).xdb#xpointer(/Model)"/>
+	<ArenaAnimSet href="Havez-arena.(AnimSet).xdb#xpointer(/AnimSet)"/>
+	<AdvMapAnimSet href="Havez-arena.(AnimSet).xdb#xpointer(/AnimSet)"/>
+	<ColourModels>
+		<Item href="Havez.(Model).xdb#xpointer(/Model)"/>
+		<Item href="Havez_Red.xdb#xpointer(/Model)"/>
+		<Item href="Havez_Blue.xdb#xpointer(/Model)"/>
+		<Item href="Havez_Green.xdb#xpointer(/Model)"/>
+		<Item href="Havez_Yellow.xdb#xpointer(/Model)"/>
+		<Item href="Havez_Orange.xdb#xpointer(/Model)"/>
+		<Item href="Havez_Teal.xdb#xpointer(/Model)"/>
+		<Item href="Havez_Purple.xdb#xpointer(/Model)"/>
+		<Item href="Havez_Tan.xdb#xpointer(/Model)"/>
+		<Item href="Havez_Yellow.xdb#xpointer(/Model)"/>
+	</ColourModels>
+</Character>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AdvMapTreasureShared ObjectRecordID="12">
+	<Model href="/_(Model)/Creatures/Preserve/Dendroid_LOD.(Model).xdb#xpointer(/Model)"/>
+	<AnimSet href="/_(AnimSet)/Creatures/Preserve/Dendroid_LOD-adv.(AnimSet).xdb#xpointer(/AnimSet)"/>
+	<blockedTiles/>
+	<holeTiles/>
+	<activeTiles>
+		<Item>
+			<x>0</x>
+			<y>0</y>
+		</Item>
+	</activeTiles>
+	<passableTiles/>
+	<PossessionMarkerTile>
+		<x>0</x>
+		<y>0</y>
+	</PossessionMarkerTile>
+	<Effect/>
+	<EffectWhenOwned/>
+	<messagesFileRef>
+		<Item/>
+		<Item href="/Maps/SingleMissions/TrialsOfSarElam/DescriptionTreant.txt"/>
+	</messagesFileRef>
+	<WaterBased>false</WaterBased>
+	<ApplyHeroTrace>false</ApplyHeroTrace>
+	<SoundEffect/>
+	<flybyMessageFileRef href="/Text/Game/Treasures/Campfire/Flyby______3166.txt"/>
+	<ObjectTypeFileRef href="/Text/Visibility_Types/Treasures.txt"/>
+	<TerrainAligned>false</TerrainAligned>
+	<FlyPassable>true</FlyPassable>
+	<AdventureSoundEffect/>
+	<RazedStatic/>
+	<Icon128/>
+	<Type>TREASURE_CAMPFIRE</Type>
+	<MinResource>24</MinResource>
+	<MaxResource>36</MaxResource>
+</AdvMapTreasureShared>

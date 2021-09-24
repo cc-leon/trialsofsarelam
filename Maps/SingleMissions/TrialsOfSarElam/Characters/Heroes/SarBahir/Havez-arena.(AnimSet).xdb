@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AnimSet ObjectRecordID="303">
+	<animations>
+		<Item>
+			<Kind>cast</Kind>
+			<Anim href="/_(AnimSet)/Creatures/Academy/ArchMagi-arena-cast.xdb#xpointer(/BasicSkelAnim)"/>
+		</Item>
+		<Item>
+			<Kind>death</Kind>
+			<Anim href="/_(AnimSet)/Creatures/Academy/ArchMagi-arena-death.xdb#xpointer(/BasicSkelAnim)"/>
+		</Item>
+		<Item>
+			<Kind>hit</Kind>
+			<Anim href="/_(AnimSet)/Creatures/Academy/ArchMagi-arena-hit.xdb#xpointer(/BasicSkelAnim)"/>
+		</Item>
+		<Item>
+			<Kind>idle00</Kind>
+			<Anim href="/_(AnimSet)/Creatures/Academy/ArchMagi-arena-idle00.xdb#xpointer(/BasicSkelAnim)"/>
+		</Item>
+		<Item>
+			<Kind>move</Kind>
+			<Anim href="Havez-arena-move.xdb#xpointer(/BasicSkelAnim)"/>
+		</Item>
+		<Item>
+			<Kind>attack00</Kind>
+			<Anim href="/_(AnimSet)/Creatures/Academy/ArchMagi-arena-attack00.xdb#xpointer(/BasicSkelAnim)"/>
+		</Item>
+		<Item>
+			<Kind>rangeattack</Kind>
+			<Anim href="/_(AnimSet)/Creatures/Academy/ArchMagi-arena-rangeattack.xdb#xpointer(/BasicSkelAnim)"/>
+		</Item>
+		<Item>
+			<Kind>stir00</Kind>
+			<Anim href="/_(AnimSet)/Creatures/Academy/ArchMagi-arena-stir00.xdb#xpointer(/BasicSkelAnim)"/>
+		</Item>
+	</animations>
+	<ExpSrcScene href="/models/Creatures/Academy/ArchMagi.mb"/>
+	<ExpSrcClipFolder href="/Animations/Creatures/ACADEMY/ArchMagi/Clip/"/>
+	<ExpRootTransform>Global</ExpRootTransform>
+</AnimSet>
