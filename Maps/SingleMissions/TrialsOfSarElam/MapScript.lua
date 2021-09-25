@@ -147,6 +147,8 @@ g_tabCallbackParams = {}
 
 -- Quest flags
 _alienQuestHero = nil
+_panickyInfernoRazed = nil
+_dwellingsRazed = 0
 
 function _GetHeroRace(heroName)
     -- Return the race id of a hero
@@ -714,6 +716,16 @@ function NPCYanshenCallback()
     end
 end
 
+function NPCAShaCallback()
+    BlockGame()
+    local phx, phy, phl = GetObjectPos("UnknownPhoenix")
+    MoveCamera(phx, phy, phl, 20, 0.99, 0)
+    OpenCircleFog(phx, phy, phl, 10, 1)
+    sleep(20)
+    UnblockGame()
+    SetObjectiveState("CountPhoenixes", OBJECTIVE_ACTIVE)
+end
+
 function NPCSecondBroCallback()
     SetObjectiveState("HarvestPoltergeists", OBJECTIVE_ACTIVE)
     RemoveObject("SecondBroAura")
@@ -791,7 +803,66 @@ function NPCWindBellKLCallback(pNum, cNum)
     end
 end
 
+function NPCMasterTieruCallback()
+    SetObjectiveState("AnswerAllSphinxRiddles", OBJECTIVE_ACTIVE)
+    for i = 0, 7 do
+        Trigger(OBJECT_TOUCH_TRIGGER, "Sphinx"..i, nil)
+        SetObjectEnabled("Sphinx"..i, true)
+    end
+end
+
+function InfernoDwellingCaptureTrigger(oldOwner, newOwner, heroName, dwellingName)
+    Trigger(OBJECT_CAPTURE_TRIGGER, dwellingName, nil)
+    if newOwner == 1 then
+        local dwx, dwy, dwl = GetObjectPosition(dwellingName)
+        Play2DSound("/Maps/Scenario/A2C2M1/Siege_WallCrash02sound.xdb#xpointer(/Sound)" )
+        PlayVisualEffect("/Effects/_(Effect)/Buildings/Capture/Start_dust_S.xdb#xpointer(/Effect)", "","tag1", dwx, dwy, 0, 90, dwl)
+        PlayVisualEffect("/Effects/_(Effect)/Characters/Heroes/DemonLord/Path/Level_2b.xdb#xpointer(/Effect)","","tag2", dwx, dwy, 0, 90, dwl)
+        RazeBuilding(dwellingName)
+        _dwellingsRazed = _dwellingsRazed + 1
+    end
+end
+
+function InfernoTownCaptureTrigger(oldOwner, newOwner, heroName, townName)
+    if newOwner == 1 then
+        RazeTown("PanickyInferno")
+        _panickyInfernoRazed = true
+    end
+end
+
+function InfernoRegionTrigger(heroName, regionName)
+    BlockGame()
+    local townx, towny, townl = GetObjectPos("PanickyInferno")
+    towny = towny - 2
+    sleep(10)
+    MoveCamera(townx, towny, townl, 70, 0.55, 0)
+    OpenCircleFog(townx, towny, townl, 30, 1)
+    sleep(10)
+    for i = 0, 7 do
+        for j = 1, 4 do
+            SetObjectOwner("Dwelling"..i..j, PLAYER_4)
+            Trigger(OBJECT_CAPTURE_TRIGGER, "Dwelling"..i..j, "InfernoDwellingCaptureTrigger")
+        end
+        sleep(2)
+    end
+    Trigger(OBJECT_CAPTURE_TRIGGER, "PanickyInferno", "InfernoTownCaptureTrigger")
+    Trigger(REGION_ENTER_AND_STOP_TRIGGER, "InfernoRegion", nil)
+    SetPlayerResource(PLAYER_4, WOOD, 1000)
+    SetPlayerResource(PLAYER_4, ORE, 1000)
+    SetPlayerResource(PLAYER_4, MERCURY, 1000)
+    SetPlayerResource(PLAYER_4, CRYSTAL, 1000)
+    SetPlayerResource(PLAYER_4, SULFUR, 1000)
+    SetPlayerResource(PLAYER_4, GEM, 1000)
+    SetPlayerResource(PLAYER_4, GOLD, 1000000)
+    UnblockGame()
+    MessageBox(g_sPath.."Phoenix52InfernoAlert.txt")
+end
+
 function NPCPhoenix52Callback()
+    Trigger(OBJECT_TOUCH_TRIGGER, "InfernoPortal", nil)
+    SetObjectEnabled("InfernoPortal", true)
+    SetObjectiveState("DestroyInfernoOutpost", OBJECTIVE_ACTIVE)
+    Trigger(REGION_ENTER_AND_STOP_TRIGGER, "InfernoRegion", "InfernoRegionTrigger")
 end
 
 function NPClh4122StartQuestCallback()
@@ -927,7 +998,25 @@ function NPCVisitsTrigger(heroName, npcName)
         end
 
     elseif npcName == "ASha" then
-        print("TODO")
+        local objState = GetObjectiveState("CountPhoenixes")
+        if objState < OBJECTIVE_ACTIVE then
+            MessageBox(g_sPath.."CountPhoenixesDescription2.txt")
+            QuestionBox(g_sPath.."NPCConfirm.txt", "NPCAShaCallback", "")
+        elseif objState == OBJECTIVE_ACTIVE then
+            local rightAmount = GetObjectCreatures("UnknownPhoenix", CREATURE_PHOENIX)
+            local currAmount = _GetCreatureCount(heroName)
+            if rightAmount == currAmount then
+                MessageBox({g_sPath.."AShaRightAmount.txt"; n_creature = rightAmount})
+                GiveArtefact(heroName, ARTIFACT_BOOTS_OF_SPEED)
+                SetObjectiveState("CountPhoenixes", OBJECTIVE_COMPLETED)
+                SetObjectiveVisible("CountPhoenixes", nil)
+            else
+                MessageBox(g_sPath.."AShaNotRightAmount.txt")
+            end
+        elseif ojbState == OBJECTIVE_COMPLETED then
+            MessageBox(g_sPath.."AShaFinished.txt")
+        end
+
     elseif npcName == "Aldens" then
         print("TODO")
     elseif npcName == "SecondBro" then
@@ -1010,10 +1099,56 @@ function NPCVisitsTrigger(heroName, npcName)
             g_sPath.."WindBellKLOption3.txt")
 
     elseif npcName == "MasterTieru" then
-        print("TODO")
+        local objState = GetObjectiveState("AnswerAllSphinxRiddles")
+        if objState < OBJECTIVE_ACTIVE then
+            MessageBox(g_sPath.."AnswerAllSphinxRiddlesDescription2.txt")
+            QuestionBox(g_sPath.."NPCConfirm.txt", "NPCMasterTieruCallback", "")
+        elseif objState == OBJECTIVE_ACTIVE then
+            local collected = 0
+            for i = ARTIFACT_DRAGON_SCALE_ARMOR, ARTIFACT_DRAGON_FLAME_TONGUE do
+                if HasArtefact(heroName, i) then collected = collected + 1 end
+            end
+            if collected < 8 then
+                MessageBox({g_sPath.."MasterTieruNotFound.txt"; n_artifact = collected})
+            else
+                MessageBox(g_sPath.."MasterTieruFound.txt")
+                TeachHeroSpell(heroName, SPELL_ARMAGEDDON)
+                TeachHeroSpell(heroName, SPELL_UNHOLY_WORD)
+                TeachHeroSpell(heroName, SPELL_HOLY_WORD)
+                SetObjectiveState("AnswerAllSphinxRiddles", OBJECITVE_COMPLETED)
+                SetObjectiveVisible("AnswerAllSphinxRiddles", nil)
+            end
+        elseif objState == OBJECTIVE_COMPLETED then
+            MessageBox(g_sPath.."MasterTieruFinished.txt")
+        end
 
     elseif npcName == "Phoenix52" then
-        print("TODO")
+        local objState = GetObjectiveState("DestroyInfernoOutpost")
+        if objState < OBJECTIVE_ACTIVE then
+            MessageBox(g_sPath.."DestroyInfernoOutpostDescription2.txt")
+            QuestionBox(g_sPath.."NPCConfirm.txt", "NPCPhoenix52Callback" , "")
+        elseif objState == OBJECTIVE_ACTIVE then
+            if _dwellingsRazed < 32 then
+                MessageBox({g_sPath.."Phoenix52DwellingNotEnough.txt"; n_dwelling = _dwellingsRazed})
+            else
+                MessageBox(g_sPath.."Phoenix52DwellingEnough.txt")
+            end
+            if _panickyInfernoRazed then
+                MessageBox(g_sPath.."Phoenix52TownDone.txt")
+            else
+                MessageBox(g_sPath.."Phoenix52TownNotDone.txt")
+            end
+            if _dwellingsRazed == 32 and _panickyInfernoRazed then
+                MessageBox(g_sPath.."Phoenix52BothDone.txt")
+                GiveArtefact(heroName, ARTIFACT_JINXING_BAND)
+                GiveArtefact(heroName, ARTIFACT_JINXING_BAND)
+                SetObjectiveState("DestroyInfernoOutpost", OBJECTIVE_COMPLETED)
+                SetObjectiveVisible("DestroyInfernoOutpost", nil)
+                RemoveObject("Orlando")
+            end
+        elseif objState == OBJECTIVE_COMPLETED then
+            MessageBox(g_sPath.."Phoenix52Finished.txt")
+        end
 
     elseif npcName == "lh4122" then
         local objState = GetObjectiveState("AssassinateAlien")
@@ -1135,7 +1270,42 @@ function NonHostileMonsterTrigger(heroName, monsterName)
 end
 
 function RegionEnterTrigger(heroName, regionName)
-    print("Region name ", heroName, " ", regionName)
+    if regionName == "VeyerRegion" then
+        local objState = GetObjectiveState("ScareAwayVeyer")
+        if HasHeroSkill(heroName, RANGER_FEAT_DISGUISE_AND_RECKON) then
+            MessageBox(g_sPath.."VeyerDefeat.txt")
+            BlockGame()
+            local vx, vy, vl = GetObjectPos("Veyer")
+            RemoveObject("Veyer")
+            sleep(1)
+            CreateArtifact("", ARTIFACT_RING_OF_HASTE, vx, vy, vl)
+            if objState < OBJECTIVE_ACTIVE then
+                SetObjectiveState("ScareAwayVeyer", OBJECTIVE_ACTIVE)
+                sleep(1)
+            end
+            SetObjectiveState("ScareAwayVeyer", OBJECTIVE_COMPLETED)
+            SetObjectiveVisible("ScareAwayVeyer", nil)
+            Trigger(REGION_ENTER_AND_STOP_TRIGGER, "VeyerRegion", nil)
+            UnblockGame()
+        else
+            MessageBox({g_sPath.."ScareAwayVeyerDescription.txt"; n_army = _GetCreatureCount(heroName)})
+            if objState < OBJECTIVE_ACTIVE then SetObjectiveState("ScareAwayVeyer", OBJECTIVE_ACTIVE) end
+        end
+        SetObjectPos(heroName, 33, 28, 0)
+
+    elseif regionName == "WulfstanRegion" then
+        MessageBox(g_sPath.."WulfstanIntro.txt")
+        SetObjectPos(heroName, 53, 36, 0)
+        Trigger(REGION_ENTER_AND_STOP_TRIGGER, "WulfstanRegion", nil)
+        SetObjectEnabled("Wulfstan", true)
+    end
+end
+
+function PrisonVisitTrigger(heroName, prisonName)
+    if prisonName == "PrisonGottai" then
+    elseif prisonName == "PrisonRuneProdigy" then
+    elseif prisonName == "PrisonRolf" then
+    end
 end
 
 function NewDayTrigger()
@@ -1154,6 +1324,10 @@ end
 
 function PortalDenyTrigger(heroName, portalName)
     MessageBox(g_sPath.."PortalDenied.txt")
+end
+
+function SphinxDenyTrigger(heroName, portalName)
+    MessageBox(g_sPath.."SphinxDenied.txt")
 end
 
 function SetupScene()
@@ -1235,6 +1409,12 @@ function SetupQuestObjects()
         Trigger(OBJECT_TOUCH_TRIGGER, npcName, "NPCVisitsTrigger")
     end
 
+    -- Setup Sphinxes
+    for i = 0, 7 do
+        SetObjectEnabled("Sphinx"..i, nil)
+        Trigger(OBJECT_TOUCH_TRIGGER, "Sphinx"..i, "SphinxDenyTrigger")
+    end
+
     -- Setup Neutral Hero
     SetObjectOwner("ufo", 8)
     SetObjectOwner("Berein", 8)
@@ -1242,6 +1422,18 @@ function SetupQuestObjects()
     SetObjectEnabled("Wulfstan", nil)
     SetObjectOwner("Veyer", 8)
     SetObjectEnabled("Veyer", nil)
+    AddHeroCreatures("Veyer", CREATURE_ARCHDEVIL, 9999998)
+    AddHeroCreatures("Veyer", CREATURE_ARCH_DEMON, 9999999)
+    AddHeroCreatures("Veyer", CREATURE_CYCLOP_UNTAMED, 9999999)
+    AddHeroCreatures("Veyer", CREATURE_CYCLOP_BLOODEYED, 9999999)
+    AddHeroCreatures("Veyer", CREATURE_RED_DRAGON, 9999999)
+    AddHeroCreatures("Veyer", CREATURE_SHADOW_DRAGON, 9999999)
+    AddHeroCreatures("Veyer", CREATURE_HORROR_DRAGON, 9999999)
+
+    -- Setup Prison Triggers
+    Trigger(OBJECT_TOUCH_TRIGGER, "PrisonGottai", "PrisonVisitTrigger")
+    Trigger(OBJECT_TOUCH_TRIGGER, "PrisonRuneProdigy", "PrisonVisitTrigger")
+    Trigger(OBJECT_TOUCH_TRIGGER, "PrisonRolf", "PrisonVisitTrigger")
 
     -- Setup Region triggers
     Trigger(REGION_ENTER_AND_STOP_TRIGGER, "VeyerRegion", "RegionEnterTrigger")
