@@ -11322,7 +11322,7 @@
 				</Pos>
 				<Rot>3.14159</Rot>
 				<Floor>0</Floor>
-				<Name/>
+				<Name>LargeAmountPhoenixes</Name>
 				<CombatScript/>
 				<pointLights/>
 				<Shared href="/MapObjects/Neutral/Phoenix.(AdvMapMonsterShared).xdb#xpointer(/AdvMapMonsterShared)"/>
@@ -11436,7 +11436,7 @@
 				</Pos>
 				<Rot>1.57079</Rot>
 				<Floor>0</Floor>
-				<Name/>
+				<Name>LargeAmountTitans</Name>
 				<CombatScript/>
 				<pointLights/>
 				<Shared href="/MapObjects/Academy/Titan.xdb#xpointer(/AdvMapMonsterShared)"/>
@@ -11478,7 +11478,7 @@
 				</Pos>
 				<Rot>0</Rot>
 				<Floor>0</Floor>
-				<Name/>
+				<Name>LargeAmountBlackDragons</Name>
 				<CombatScript/>
 				<pointLights/>
 				<Shared href="/MapObjects/Dungeon/Black_Dragon.(AdvMapMonsterShared).xdb#xpointer(/AdvMapMonsterShared)"/>
@@ -11520,7 +11520,7 @@
 				</Pos>
 				<Rot>0</Rot>
 				<Floor>0</Floor>
-				<Name/>
+				<Name>LargeAmountMagmas</Name>
 				<CombatScript/>
 				<pointLights/>
 				<Shared href="/MapObjects/Dwarf/Magma_Dragon.(AdvMapMonsterShared).xdb#xpointer(/AdvMapMonsterShared)"/>
@@ -12623,7 +12623,7 @@
 				</Pos>
 				<Rot>1.5708</Rot>
 				<Floor>0</Floor>
-				<Name/>
+				<Name>TestGolems</Name>
 				<CombatScript/>
 				<pointLights/>
 				<Shared href="/MapObjects/Academy/Obsidian_Golem.(AdvMapMonsterShared).xdb#xpointer(/AdvMapMonsterShared)"/>
@@ -13208,7 +13208,7 @@
 				</Pos>
 				<Rot>4.71239</Rot>
 				<Floor>0</Floor>
-				<Name/>
+				<Name>LandlordsMine1</Name>
 				<CombatScript/>
 				<pointLights/>
 				<Shared href="/MapObjects/Alchemist_Lab_Snow.(AdvMapMineShared).xdb#xpointer(/AdvMapMineShared)"/>
@@ -13231,7 +13231,7 @@
 				</Pos>
 				<Rot>6.28318</Rot>
 				<Floor>0</Floor>
-				<Name/>
+				<Name>LandlordsMine4</Name>
 				<CombatScript/>
 				<pointLights/>
 				<Shared href="/MapObjects/Gold_Mine_Snow.(AdvMapMineShared).xdb#xpointer(/AdvMapMineShared)"/>
@@ -13254,7 +13254,7 @@
 				</Pos>
 				<Rot>4.71238</Rot>
 				<Floor>0</Floor>
-				<Name/>
+				<Name>LandlordsMine3</Name>
 				<CombatScript/>
 				<pointLights/>
 				<Shared href="/MapObjects/Ore_Pit_Snow.(AdvMapMineShared).xdb#xpointer(/AdvMapMineShared)"/>
@@ -13350,7 +13350,7 @@
 				</Pos>
 				<Rot>1.57079</Rot>
 				<Floor>0</Floor>
-				<Name/>
+				<Name>LandlordsMine2</Name>
 				<CombatScript/>
 				<pointLights/>
 				<Shared href="/MapObjects/Sawmill_Snow.(AdvMapMineShared).xdb#xpointer(/AdvMapMineShared)"/>
@@ -13551,7 +13551,7 @@
 					<y>39</y>
 					<z>0</z>
 				</Pos>
-				<Rot>0</Rot>
+				<Rot>6.28318</Rot>
 				<Floor>0</Floor>
 				<Name>Vegetable</Name>
 				<CombatScript/>
@@ -13629,24 +13629,6 @@
 				<CombatScript/>
 				<pointLights/>
 				<Shared href="MapObjects/NPCs/lh4122.(AdvMapTreasureShared).xdb#xpointer(/AdvMapTreasureShared)"/>
-				<IsCustom>false</IsCustom>
-				<Amount>0</Amount>
-				<MessageFileRef href=""/>
-			</AdvMapTreasure>
-		</Item>
-		<Item href="#n:inline(AdvMapTreasure)" id="item_0C70D18B-038B-427C-9C68-AF23B485A267">
-			<AdvMapTreasure>
-				<Pos>
-					<x>24</x>
-					<y>33</y>
-					<z>0</z>
-				</Pos>
-				<Rot>3.1416</Rot>
-				<Floor>0</Floor>
-				<Name>MarkalNPC</Name>
-				<CombatScript/>
-				<pointLights/>
-				<Shared href="MapObjects/NPCs/MarkalNPC.(AdvMapTreasureShared).xdb#xpointer(/AdvMapTreasureShared)"/>
 				<IsCustom>false</IsCustom>
 				<Amount>0</Amount>
 				<MessageFileRef href=""/>
@@ -13887,15 +13869,15 @@
 				<Rot>3.14159</Rot>
 				<Floor>0</Floor>
 				<Name>DangerousWolves</Name>
-				<CombatScript/>
+				<CombatScript href="CombatWolves.(Script).xdb#xpointer(/Script)"/>
 				<pointLights/>
 				<Shared href="/MapObjects/Neutral/Wolf.(AdvMapMonsterShared).xdb#xpointer(/AdvMapMonsterShared)"/>
-				<Custom>false</Custom>
-				<Amount>0</Amount>
-				<Amount2>0</Amount2>
+				<Custom>true</Custom>
+				<Amount>2000</Amount>
+				<Amount2>2000</Amount2>
 				<AttackType>ATTACK_ANY</AttackType>
 				<MoveType>MOVE_ANY</MoveType>
-				<DoesNotGrow>false</DoesNotGrow>
+				<DoesNotGrow>true</DoesNotGrow>
 				<MessageFileRef href=""/>
 				<Script/>
 				<Resources>
@@ -13908,10 +13890,10 @@
 					<Gold>0</Gold>
 				</Resources>
 				<ArtifactID>ARTIFACT_NONE</ArtifactID>
-				<Mood>MONSTER_MOOD_AGGRESSIVE</Mood>
+				<Mood>MONSTER_MOOD_WILD</Mood>
 				<Courage>MONSTER_COURAGE_CAN_FLEE_JOIN</Courage>
-				<AllowQuickCombat>true</AllowQuickCombat>
-				<DoesNotDependOnDifficulty>false</DoesNotDependOnDifficulty>
+				<AllowQuickCombat>false</AllowQuickCombat>
+				<DoesNotDependOnDifficulty>true</DoesNotDependOnDifficulty>
 				<AdditionalStacks/>
 				<SingleMonsterNameFileRef href=""/>
 				<MultipleMonstersNameFileRef href=""/>
@@ -14566,7 +14548,7 @@
 				<ArtifactID>ARTIFACT_NONE</ArtifactID>
 				<Mood>MONSTER_MOOD_AGGRESSIVE</Mood>
 				<Courage>MONSTER_COURAGE_ALWAYS_JOIN</Courage>
-				<AllowQuickCombat>true</AllowQuickCombat>
+				<AllowQuickCombat>false</AllowQuickCombat>
 				<DoesNotDependOnDifficulty>true</DoesNotDependOnDifficulty>
 				<AdditionalStacks/>
 				<SingleMonsterNameFileRef href=""/>
@@ -14582,7 +14564,7 @@
 					<y>33</y>
 					<z>0</z>
 				</Pos>
-				<Rot>1.57079</Rot>
+				<Rot>6.28318</Rot>
 				<Floor>0</Floor>
 				<Name>WraithHostile</Name>
 				<CombatScript/>
@@ -14607,8 +14589,8 @@
 				</Resources>
 				<ArtifactID>ARTIFACT_NONE</ArtifactID>
 				<Mood>MONSTER_MOOD_AGGRESSIVE</Mood>
-				<Courage>MONSTER_COURAGE_ALWAYS_FIGHT</Courage>
-				<AllowQuickCombat>true</AllowQuickCombat>
+				<Courage>MONSTER_COURAGE_ALWAYS_JOIN</Courage>
+				<AllowQuickCombat>false</AllowQuickCombat>
 				<DoesNotDependOnDifficulty>true</DoesNotDependOnDifficulty>
 				<AdditionalStacks/>
 				<SingleMonsterNameFileRef href=""/>
@@ -15858,7 +15840,7 @@
 						<FunctionName/>
 					</Action>
 				</LossTrigger>
-				<AllowQuickCombat>true</AllowQuickCombat>
+				<AllowQuickCombat>false</AllowQuickCombat>
 				<Textures>
 					<Icon128x128/>
 					<Icon64x64/>
@@ -42928,8 +42910,8 @@
 		<Item href="#n:inline(AdvMapHero)" id="item_34B1DCFE-D5C9-4B40-991A-8C56E164C4A2">
 			<AdvMapHero>
 				<Pos>
-					<x>67</x>
-					<y>33</y>
+					<x>66</x>
+					<y>27</y>
 					<z>0</z>
 				</Pos>
 				<Rot>1.5708</Rot>
@@ -42939,35 +42921,51 @@
 				<pointLights/>
 				<Shared href="/MapObjects/Academy/Nur.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
 				<PlayerID>PLAYER_1</PlayerID>
-				<Experience>1</Experience>
+				<Experience>99999</Experience>
 				<armySlots>
 					<Item>
-						<Creature>CREATURE_WOOD_ELF</Creature>
-						<Count>123</Count>
+						<Creature>CREATURE_ARCHDEVIL</Creature>
+						<Count>80</Count>
 					</Item>
 					<Item>
-						<Creature>CREATURE_GREMLIN</Creature>
-						<Count>321</Count>
+						<Creature>CREATURE_ARCHANGEL</Creature>
+						<Count>80</Count>
 					</Item>
 					<Item>
-						<Creature>CREATURE_ANGEL</Creature>
-						<Count>45</Count>
+						<Creature>CREATURE_TITAN</Creature>
+						<Count>80</Count>
 					</Item>
 					<Item>
-						<Creature>CREATURE_POLTERGEIST</Creature>
-						<Count>54</Count>
+						<Creature>CREATURE_GOLD_DRAGON</Creature>
+						<Count>80</Count>
 					</Item>
 					<Item>
-						<Creature>CREATURE_CAVALIER</Creature>
-						<Count>76</Count>
+						<Creature>CREATURE_BLACK_DRAGON</Creature>
+						<Count>80</Count>
 					</Item>
 					<Item>
-						<Creature>CREATURE_PHOENIX</Creature>
-						<Count>890</Count>
+						<Creature>CREATURE_CYCLOP_UNTAMED</Creature>
+						<Count>80</Count>
+					</Item>
+					<Item>
+						<Creature>CREATURE_MAGMA_DRAGON</Creature>
+						<Count>999</Count>
 					</Item>
 				</armySlots>
-				<artifactIDs/>
-				<isUntransferable/>
+				<artifactIDs>
+					<Item>ARTIFACT_SANDALS_OF_THE_SAINT</Item>
+					<Item>ARTIFACT_VALORIOUS_ARMOR</Item>
+					<Item>LION_HIDE_CAPE</Item>
+					<Item>ARTIFACT_CROWN_OF_LEADER</Item>
+					<Item>GOLDEN_HORSESHOE</Item>
+				</artifactIDs>
+				<isUntransferable>
+					<Item>0</Item>
+					<Item>0</Item>
+					<Item>0</Item>
+					<Item>0</Item>
+					<Item>0</Item>
+				</isUntransferable>
 				<Editable>
 					<NameFileRef href=""/>
 					<BiographyFileRef href=""/>
@@ -42975,8 +42973,18 @@
 					<Defence>0</Defence>
 					<Spellpower>0</Spellpower>
 					<Knowledge>10</Knowledge>
-					<skills/>
+					<skills>
+						<Item>
+							<Mastery>MASTERY_EXPERT</Mastery>
+							<SkillID>HERO_SKILL_LUCK</SkillID>
+						</Item>
+						<Item>
+							<Mastery>MASTERY_EXPERT</Mastery>
+							<SkillID>HERO_SKILL_LEADERSHIP</SkillID>
+						</Item>
+					</skills>
 					<perkIDs>
+						<Item>HERO_SKILL_DIPLOMACY</Item>
 						<Item>HERO_SKILL_MASTER_OF_FIRE</Item>
 						<Item>HERO_SKILL_ABSOLUTE_WIZARDY</Item>
 					</perkIDs>
@@ -43023,24 +43031,6 @@
 				<RandomRiddle>true</RandomRiddle>
 			</AdvMapSphinx>
 		</Item>
-		<Item href="#n:inline(AdvMapStatic)" id="item_23202AC3-C037-4EAA-9A60-11362E95C3B8">
-			<AdvMapStatic>
-				<Pos>
-					<x>24</x>
-					<y>33</y>
-					<z>0</z>
-				</Pos>
-				<Rot>0</Rot>
-				<Floor>0</Floor>
-				<Name/>
-				<CombatScript/>
-				<pointLights/>
-				<Shared href="MapObjects/Auras/NecropolisB.xdb#xpointer(/AdvMapStaticShared)"/>
-				<IsRemovable>true</IsRemovable>
-				<TerrainAligned>false</TerrainAligned>
-				<ScalePercent>100</ScalePercent>
-			</AdvMapStatic>
-		</Item>
 		<Item href="#n:inline(AdvMapStatic)" id="item_FB33398D-2B98-4DF7-8AA5-F44963DC1143">
 			<AdvMapStatic>
 				<Pos>
@@ -43058,66 +43048,6 @@
 				<TerrainAligned>false</TerrainAligned>
 				<ScalePercent>100</ScalePercent>
 			</AdvMapStatic>
-		</Item>
-		<Item href="#n:inline(AdvMapHero)" id="item_5AE291A7-15B2-4930-98E0-52D99EF9C28F">
-			<AdvMapHero>
-				<Pos>
-					<x>23</x>
-					<y>8</y>
-					<z>0</z>
-				</Pos>
-				<Rot>4.71239</Rot>
-				<Floor>1</Floor>
-				<Name/>
-				<CombatScript/>
-				<pointLights/>
-				<Shared href="/MapObjects/Necropolis/Berein.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
-				<PlayerID>PLAYER_5</PlayerID>
-				<Experience>0</Experience>
-				<armySlots>
-					<Item>
-						<Creature>CREATURE_SKELETON</Creature>
-						<Count>1</Count>
-					</Item>
-				</armySlots>
-				<artifactIDs/>
-				<isUntransferable/>
-				<Editable>
-					<NameFileRef href=""/>
-					<BiographyFileRef href=""/>
-					<Offence>0</Offence>
-					<Defence>0</Defence>
-					<Spellpower>0</Spellpower>
-					<Knowledge>0</Knowledge>
-					<skills/>
-					<perkIDs>
-						<Item>HERO_SKILL_DIPLOMACY</Item>
-					</perkIDs>
-					<spellIDs/>
-					<Ballista>false</Ballista>
-					<FirstAidTent>false</FirstAidTent>
-					<AmmoCart>false</AmmoCart>
-					<FavoriteEnemies/>
-					<TalismanLevel>0</TalismanLevel>
-				</Editable>
-				<OverrideMask>0</OverrideMask>
-				<PrimarySkillMastery>MASTERY_BASIC</PrimarySkillMastery>
-				<LossTrigger>
-					<Action>
-						<FunctionName/>
-					</Action>
-				</LossTrigger>
-				<AllowQuickCombat>true</AllowQuickCombat>
-				<Textures>
-					<Icon128x128/>
-					<Icon64x64/>
-					<RoundedFace/>
-					<LeftFace/>
-					<RightFace/>
-				</Textures>
-				<PresetPrice>0</PresetPrice>
-				<BannedRaces/>
-			</AdvMapHero>
 		</Item>
 		<Item href="#n:inline(AdvMapStatic)" id="item_84BD567C-1077-4D23-A46B-D8EEC6CF1795">
 			<AdvMapStatic>
@@ -43362,8 +43292,8 @@
 		<Item href="#n:inline(AdvMapHero)" id="item_B48E7319-B152-4BEF-A7D1-34FAF18503A0">
 			<AdvMapHero>
 				<Pos>
-					<x>39</x>
-					<y>31</y>
+					<x>40</x>
+					<y>40</y>
 					<z>0</z>
 				</Pos>
 				<Rot>0</Rot>
@@ -44033,6 +43963,379 @@
 				<relationsOverrides/>
 			</AdvMapMonster>
 		</Item>
+		<Item href="#n:inline(AdvMapStatic)" id="item_BEEEF704-C883-4A2D-824A-F17FDCA5AAC5">
+			<AdvMapStatic>
+				<Pos>
+					<x>71</x>
+					<y>25</y>
+					<z>0</z>
+				</Pos>
+				<Rot>0</Rot>
+				<Floor>0</Floor>
+				<Name/>
+				<CombatScript/>
+				<pointLights/>
+				<Shared href="MapObjects/Auras/NecropolisS.xdb#xpointer(/AdvMapStaticShared)"/>
+				<IsRemovable>true</IsRemovable>
+				<TerrainAligned>false</TerrainAligned>
+				<ScalePercent>100</ScalePercent>
+			</AdvMapStatic>
+		</Item>
+		<Item href="#n:inline(AdvMapStatic)" id="item_BA4EA831-F436-44C2-B347-061D4082815E">
+			<AdvMapStatic>
+				<Pos>
+					<x>33</x>
+					<y>25</y>
+					<z>0</z>
+				</Pos>
+				<Rot>0</Rot>
+				<Floor>0</Floor>
+				<Name>EvilPAura</Name>
+				<CombatScript/>
+				<pointLights/>
+				<Shared href="MapObjects/Auras/AcademyS.xdb#xpointer(/AdvMapStaticShared)"/>
+				<IsRemovable>true</IsRemovable>
+				<TerrainAligned>false</TerrainAligned>
+				<ScalePercent>100</ScalePercent>
+			</AdvMapStatic>
+		</Item>
+		<Item href="#n:inline(AdvMapStatic)" id="item_36BC8192-1BFA-4675-9948-B5227FE49C9C">
+			<AdvMapStatic>
+				<Pos>
+					<x>30</x>
+					<y>25</y>
+					<z>0</z>
+				</Pos>
+				<Rot>0</Rot>
+				<Floor>0</Floor>
+				<Name/>
+				<CombatScript/>
+				<pointLights/>
+				<Shared href="/MapObjects/Sand/Sand_Bushes/Bush_01.xdb#xpointer(/AdvMapStaticShared)"/>
+				<IsRemovable>false</IsRemovable>
+				<TerrainAligned>false</TerrainAligned>
+				<ScalePercent>100</ScalePercent>
+			</AdvMapStatic>
+		</Item>
+		<Item href="#n:inline(AdvMapStatic)" id="item_07AC3235-0939-4264-AD9E-3C4B81D47061">
+			<AdvMapStatic>
+				<Pos>
+					<x>31</x>
+					<y>26</y>
+					<z>0</z>
+				</Pos>
+				<Rot>0</Rot>
+				<Floor>0</Floor>
+				<Name/>
+				<CombatScript/>
+				<pointLights/>
+				<Shared href="/MapObjects/Sand/Sand_Bushes/Bush_01.xdb#xpointer(/AdvMapStaticShared)"/>
+				<IsRemovable>false</IsRemovable>
+				<TerrainAligned>false</TerrainAligned>
+				<ScalePercent>100</ScalePercent>
+			</AdvMapStatic>
+		</Item>
+		<Item href="#n:inline(AdvMapStatic)" id="item_7826A3D9-ECCD-4F56-87A8-6D3D8D491943">
+			<AdvMapStatic>
+				<Pos>
+					<x>32</x>
+					<y>25</y>
+					<z>0</z>
+				</Pos>
+				<Rot>0</Rot>
+				<Floor>0</Floor>
+				<Name/>
+				<CombatScript/>
+				<pointLights/>
+				<Shared href="/MapObjects/Sand/Sand_Bushes/Bush_02.xdb#xpointer(/AdvMapStaticShared)"/>
+				<IsRemovable>false</IsRemovable>
+				<TerrainAligned>false</TerrainAligned>
+				<ScalePercent>100</ScalePercent>
+			</AdvMapStatic>
+		</Item>
+		<Item href="#n:inline(AdvMapStatic)" id="item_0E4C5B2B-9ABD-4A00-BA9B-BFEF83369BB6">
+			<AdvMapStatic>
+				<Pos>
+					<x>30</x>
+					<y>26</y>
+					<z>0</z>
+				</Pos>
+				<Rot>0</Rot>
+				<Floor>0</Floor>
+				<Name/>
+				<CombatScript/>
+				<pointLights/>
+				<Shared href="/MapObjects/Sand/Cactus/Cactus_07.xdb#xpointer(/AdvMapStaticShared)"/>
+				<IsRemovable>false</IsRemovable>
+				<TerrainAligned>false</TerrainAligned>
+				<ScalePercent>100</ScalePercent>
+			</AdvMapStatic>
+		</Item>
+		<Item href="#n:inline(AdvMapStatic)" id="item_7D32B065-A578-4507-8DA0-669C2CACA266">
+			<AdvMapStatic>
+				<Pos>
+					<x>30</x>
+					<y>24</y>
+					<z>0</z>
+				</Pos>
+				<Rot>1.5708</Rot>
+				<Floor>0</Floor>
+				<Name/>
+				<CombatScript/>
+				<pointLights/>
+				<Shared href="/MapObjects/Sand/Cactus/Cactus_07.xdb#xpointer(/AdvMapStaticShared)"/>
+				<IsRemovable>false</IsRemovable>
+				<TerrainAligned>false</TerrainAligned>
+				<ScalePercent>100</ScalePercent>
+			</AdvMapStatic>
+		</Item>
+		<Item href="#n:inline(AdvMapStatic)" id="item_DA5F9F20-77D1-4257-9EA5-06713EF9180D">
+			<AdvMapStatic>
+				<Pos>
+					<x>25</x>
+					<y>25</y>
+					<z>0</z>
+				</Pos>
+				<Rot>0</Rot>
+				<Floor>0</Floor>
+				<Name/>
+				<CombatScript/>
+				<pointLights/>
+				<Shared href="/MapObjects/Dirt/Rocks/DStone1x1_1.(AdvMapStaticShared).xdb#xpointer(/AdvMapStaticShared)"/>
+				<IsRemovable>false</IsRemovable>
+				<TerrainAligned>false</TerrainAligned>
+				<ScalePercent>100</ScalePercent>
+			</AdvMapStatic>
+		</Item>
+		<Item href="#n:inline(AdvMapStatic)" id="item_E8F1D781-CA89-46DE-A1FA-C5D7D0774A98">
+			<AdvMapStatic>
+				<Pos>
+					<x>23</x>
+					<y>24</y>
+					<z>0</z>
+				</Pos>
+				<Rot>0</Rot>
+				<Floor>0</Floor>
+				<Name/>
+				<CombatScript/>
+				<pointLights/>
+				<Shared href="/MapObjects/Snow/Stones/SmallStone01.xdb#xpointer(/AdvMapStaticShared)"/>
+				<IsRemovable>false</IsRemovable>
+				<TerrainAligned>false</TerrainAligned>
+				<ScalePercent>100</ScalePercent>
+			</AdvMapStatic>
+		</Item>
+		<Item href="#n:inline(AdvMapStatic)" id="item_37F6D276-F7EB-4334-BDC2-6BA813CB518B">
+			<AdvMapStatic>
+				<Pos>
+					<x>22</x>
+					<y>26</y>
+					<z>0</z>
+				</Pos>
+				<Rot>0</Rot>
+				<Floor>0</Floor>
+				<Name/>
+				<CombatScript/>
+				<pointLights/>
+				<Shared href="/MapObjects/Subterra/Mushrooms/Mushroom1x1_3.(AdvMapStaticShared).xdb#xpointer(/AdvMapStaticShared)"/>
+				<IsRemovable>false</IsRemovable>
+				<TerrainAligned>false</TerrainAligned>
+				<ScalePercent>100</ScalePercent>
+			</AdvMapStatic>
+		</Item>
+		<Item href="#n:inline(AdvMapStatic)" id="item_D08DB058-F194-43EB-B223-30BFC3654AF5">
+			<AdvMapStatic>
+				<Pos>
+					<x>37</x>
+					<y>39</y>
+					<z>0</z>
+				</Pos>
+				<Rot>0</Rot>
+				<Floor>0</Floor>
+				<Name>VegetableAura</Name>
+				<CombatScript/>
+				<pointLights/>
+				<Shared href="MapObjects/Auras/HavenS.xdb#xpointer(/AdvMapStaticShared)"/>
+				<IsRemovable>true</IsRemovable>
+				<TerrainAligned>false</TerrainAligned>
+				<ScalePercent>100</ScalePercent>
+			</AdvMapStatic>
+		</Item>
+		<Item href="#n:inline(AdvMapHero)" id="item_CA9381F8-AE6C-4768-84D8-ED9A79A16CD6">
+			<AdvMapHero>
+				<Pos>
+					<x>24</x>
+					<y>33</y>
+					<z>0</z>
+				</Pos>
+				<Rot>2.35002</Rot>
+				<Floor>0</Floor>
+				<Name/>
+				<CombatScript/>
+				<pointLights/>
+				<Shared href="/MapObjects/Necropolis/Berein.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+				<PlayerID>PLAYER_5</PlayerID>
+				<Experience>0</Experience>
+				<armySlots>
+					<Item>
+						<Creature>CREATURE_SKELETON</Creature>
+						<Count>1</Count>
+					</Item>
+				</armySlots>
+				<artifactIDs/>
+				<isUntransferable/>
+				<Editable>
+					<NameFileRef href=""/>
+					<BiographyFileRef href=""/>
+					<Offence>0</Offence>
+					<Defence>0</Defence>
+					<Spellpower>0</Spellpower>
+					<Knowledge>0</Knowledge>
+					<skills/>
+					<perkIDs>
+						<Item>HERO_SKILL_DIPLOMACY</Item>
+					</perkIDs>
+					<spellIDs/>
+					<Ballista>false</Ballista>
+					<FirstAidTent>false</FirstAidTent>
+					<AmmoCart>false</AmmoCart>
+					<FavoriteEnemies/>
+					<TalismanLevel>0</TalismanLevel>
+				</Editable>
+				<OverrideMask>0</OverrideMask>
+				<PrimarySkillMastery>MASTERY_BASIC</PrimarySkillMastery>
+				<LossTrigger>
+					<Action>
+						<FunctionName/>
+					</Action>
+				</LossTrigger>
+				<AllowQuickCombat>true</AllowQuickCombat>
+				<Textures>
+					<Icon128x128/>
+					<Icon64x64/>
+					<RoundedFace/>
+					<LeftFace/>
+					<RightFace/>
+				</Textures>
+				<PresetPrice>0</PresetPrice>
+				<BannedRaces/>
+			</AdvMapHero>
+		</Item>
+		<Item href="#n:inline(AdvMapStatic)" id="item_FF7277C7-9C1B-470F-81EC-D89FBBCCD55D">
+			<AdvMapStatic>
+				<Pos>
+					<x>22</x>
+					<y>32</y>
+					<z>0</z>
+				</Pos>
+				<Rot>3.1416</Rot>
+				<Floor>0</Floor>
+				<Name/>
+				<CombatScript/>
+				<pointLights/>
+				<Shared href="/MapObjects/Grass/Misc/Fence_04.(AdvMapStaticShared).xdb#xpointer(/AdvMapStaticShared)"/>
+				<IsRemovable>false</IsRemovable>
+				<TerrainAligned>false</TerrainAligned>
+				<ScalePercent>100</ScalePercent>
+			</AdvMapStatic>
+		</Item>
+		<Item href="#n:inline(AdvMapStatic)" id="item_8B53C756-0946-4085-93E2-4C9C9195D5C7">
+			<AdvMapStatic>
+				<Pos>
+					<x>22</x>
+					<y>30</y>
+					<z>0</z>
+				</Pos>
+				<Rot>3.1416</Rot>
+				<Floor>0</Floor>
+				<Name/>
+				<CombatScript/>
+				<pointLights/>
+				<Shared href="/MapObjects/Grass/Misc/Fence_04.(AdvMapStaticShared).xdb#xpointer(/AdvMapStaticShared)"/>
+				<IsRemovable>false</IsRemovable>
+				<TerrainAligned>false</TerrainAligned>
+				<ScalePercent>100</ScalePercent>
+			</AdvMapStatic>
+		</Item>
+		<Item href="#n:inline(AdvMapHero)" id="item_7F08ABD7-7ADB-4B49-B05E-EDADCC4E61AE">
+			<AdvMapHero>
+				<Pos>
+					<x>39</x>
+					<y>39</y>
+					<z>0</z>
+				</Pos>
+				<Rot>0</Rot>
+				<Floor>0</Floor>
+				<Name/>
+				<CombatScript/>
+				<pointLights/>
+				<Shared href="/MapObjects/Necropolis/Nemor.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+				<PlayerID>PLAYER_1</PlayerID>
+				<Experience>0</Experience>
+				<armySlots/>
+				<artifactIDs/>
+				<isUntransferable/>
+				<Editable>
+					<NameFileRef href=""/>
+					<BiographyFileRef href=""/>
+					<Offence>0</Offence>
+					<Defence>0</Defence>
+					<Spellpower>0</Spellpower>
+					<Knowledge>0</Knowledge>
+					<skills>
+						<Item>
+							<Mastery>MASTERY_BASIC</Mastery>
+							<SkillID>HERO_SKILL_SUMMONING_MAGIC</SkillID>
+						</Item>
+					</skills>
+					<perkIDs>
+						<Item>HERO_SKILL_HAUNT_MINE</Item>
+						<Item>HERO_SKILL_DEATH_SCREAM</Item>
+					</perkIDs>
+					<spellIDs/>
+					<Ballista>false</Ballista>
+					<FirstAidTent>false</FirstAidTent>
+					<AmmoCart>false</AmmoCart>
+					<FavoriteEnemies/>
+					<TalismanLevel>0</TalismanLevel>
+				</Editable>
+				<OverrideMask>0</OverrideMask>
+				<PrimarySkillMastery>MASTERY_BASIC</PrimarySkillMastery>
+				<LossTrigger>
+					<Action>
+						<FunctionName/>
+					</Action>
+				</LossTrigger>
+				<AllowQuickCombat>true</AllowQuickCombat>
+				<Textures>
+					<Icon128x128/>
+					<Icon64x64/>
+					<RoundedFace/>
+					<LeftFace/>
+					<RightFace/>
+				</Textures>
+				<PresetPrice>0</PresetPrice>
+				<BannedRaces/>
+			</AdvMapHero>
+		</Item>
+		<Item href="#n:inline(AdvMapStatic)" id="item_42FD6731-11B0-4209-9107-C7BFC9270817">
+			<AdvMapStatic>
+				<Pos>
+					<x>67</x>
+					<y>25</y>
+					<z>0</z>
+				</Pos>
+				<Rot>0</Rot>
+				<Floor>0</Floor>
+				<Name>RealyashiroAura</Name>
+				<CombatScript/>
+				<pointLights/>
+				<Shared href="MapObjects/Auras/StrongholdS.xdb#xpointer(/AdvMapStaticShared)"/>
+				<IsRemovable>true</IsRemovable>
+				<TerrainAligned>false</TerrainAligned>
+				<ScalePercent>100</ScalePercent>
+			</AdvMapStatic>
+		</Item>
 	</objects>
 	<Resources>
 		<PointLights/>
@@ -44240,6 +44543,34 @@
 			<Item>
 				<Name>DescriptionRoundSweetPie</Name>
 				<SaveFilenameFileRef href="DescriptionRoundSweetPie.txt"/>
+			</Item>
+			<Item>
+				<Name>RoundSweetPieAskReady</Name>
+				<SaveFilenameFileRef href="RoundSweetPieAskReady.txt"/>
+			</Item>
+			<Item>
+				<Name>RoundSweetPiePhoenixesDone</Name>
+				<SaveFilenameFileRef href="RoundSweetPiePhoenixesDone.txt"/>
+			</Item>
+			<Item>
+				<Name>RoundSweetPieTitansDone</Name>
+				<SaveFilenameFileRef href="RoundSweetPieTitansDone.txt"/>
+			</Item>
+			<Item>
+				<Name>RoundSweetPieMagmasDone</Name>
+				<SaveFilenameFileRef href="RoundSweetPieMagmasDone.txt"/>
+			</Item>
+			<Item>
+				<Name>RoundSweetPieBlackDragonsDone</Name>
+				<SaveFilenameFileRef href="RoundSweetPieBlackDragonsDone.txt"/>
+			</Item>
+			<Item>
+				<Name>RoundSweetPieFinished</Name>
+				<SaveFilenameFileRef href="RoundSweetPieFinished.txt"/>
+			</Item>
+			<Item>
+				<Name>RoundSweetPieNothing</Name>
+				<SaveFilenameFileRef href="RoundSweetPieNothing.txt"/>
 			</Item>
 			<Item>
 				<Name>NamePia</Name>
@@ -44522,6 +44853,14 @@
 				<SaveFilenameFileRef href="DescriptionVegetable.txt"/>
 			</Item>
 			<Item>
+				<Name>VegetableFailed</Name>
+				<SaveFilenameFileRef href="VegetableFailed.txt"/>
+			</Item>
+			<Item>
+				<Name>VegetableRunAway</Name>
+				<SaveFilenameFileRef href="VegetableRunAway.txt"/>
+			</Item>
+			<Item>
 				<Name>NameEvilP</Name>
 				<SaveFilenameFileRef href="NameEvilP.txt"/>
 			</Item>
@@ -44532,6 +44871,14 @@
 			<Item>
 				<Name>DescriptionWaterKing</Name>
 				<SaveFilenameFileRef href="DescriptionWaterKing.txt"/>
+			</Item>
+			<Item>
+				<Name>MarkalNPCFinished</Name>
+				<SaveFilenameFileRef href="MarkalNPCFinished.txt"/>
+			</Item>
+			<Item>
+				<Name>MarkalNPCError</Name>
+				<SaveFilenameFileRef href="MarkalNPCError.txt"/>
 			</Item>
 			<Item>
 				<Name>NPCConfirm</Name>
@@ -44596,6 +44943,7 @@
 		<Item href="/MapObjects/_(AdvMapTile)/Lava/Dead_Land_2.xdb#xpointer(/AdvMapTile)"/>
 		<Item href="/MapObjects/_(AdvMapTile)/Lava/Dead_Land_4.xdb#xpointer(/AdvMapTile)"/>
 		<Item href="/MapObjects/_(AdvMapTile)/Sand/Sand_Wet.xdb#xpointer(/AdvMapTile)"/>
+		<Item href="/MapObjects/_(AdvMapTile)/Sand/Sand_Cracked.xdb#xpointer(/AdvMapTile)"/>
 		<Item href="/MapObjects/_(AdvMapTile)/Grass/Grass.xdb#xpointer(/AdvMapTile)"/>
 		<Item href="/MapObjects/_(AdvMapTile)/Dirt/DarkGround.xdb#xpointer(/AdvMapTile)"/>
 		<Item href="/MapObjects/_(AdvMapTile)/Lava/Lava.xdb#xpointer(/AdvMapTile)"/>
@@ -44607,6 +44955,7 @@
 		<Item href="/MapObjects/_(AdvMapTile)/Grass/Dark_Grass.xdb#xpointer(/AdvMapTile)"/>
 		<Item href="/MapObjects/_(AdvMapTile)/SubTerrain/SubTerrain_(3).xdb#xpointer(/AdvMapTile)"/>
 		<Item href="/MapObjects/_(AdvMapTile)/SubTerrain/Dwarf_Floor_Raised.xdb#xpointer(/AdvMapTile)"/>
+		<Item href="/MapObjects/_(AdvMapTile)/Sand/Scatter_Stones_Sand.xdb#xpointer(/AdvMapTile)"/>
 		<Item href="/MapObjects/_(AdvMapTile)/Lava/LavaRoad.xdb#xpointer(/AdvMapTile)"/>
 		<Item href="/MapObjects/_(AdvMapTile)/Conquest/Dirt.xdb#xpointer(/AdvMapTile)"/>
 		<Item href="/MapObjects/_(AdvMapTile)/Grass/StoneRoad.xdb#xpointer(/AdvMapTile)"/>
@@ -44730,6 +45079,36 @@
 				<y2>110</y2>
 			</Rect>
 			<Name>InfernoRegion</Name>
+			<Color>
+				<x>1</x>
+				<y>1</y>
+				<z>1</z>
+			</Color>
+			<EnterAndStopTrigger>
+				<Action>
+					<FunctionName/>
+				</Action>
+			</EnterAndStopTrigger>
+			<EnterWithoutStopTrigger>
+				<Action>
+					<FunctionName/>
+				</Action>
+			</EnterWithoutStopTrigger>
+			<ExitTrigger>
+				<Action>
+					<FunctionName/>
+				</Action>
+			</ExitTrigger>
+		</Item>
+		<Item>
+			<Floor>0</Floor>
+			<Rect>
+				<x1>24</x1>
+				<y1>34</y1>
+				<x2>25</x2>
+				<y2>35</y2>
+			</Rect>
+			<Name>MarkalRegion</Name>
 			<Color>
 				<x>1</x>
 				<y>1</y>

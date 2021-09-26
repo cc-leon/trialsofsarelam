@@ -113,7 +113,7 @@ CREATURE_TEXTS = {
 
 -- Mapping for iteration of Central Area NPCs
 INDEX2NPC = {"MapMaker", "Piao", "Tang", "RoundSweetPie", "Pia", "TinY", "Yanshen", "ASha", "Aldens", "SecondBro", "ThirdBro",
-             "WindBellKL", "MasterTieru", "Phoenix52", "lh4122", "Caesarfox", "Realyashiro", "Vegetable", "EvilP", "MarkalNPC"}
+             "WindBellKL", "MasterTieru", "Phoenix52", "lh4122", "Caesarfox", "Realyashiro", "Vegetable", "EvilP"}
 -- NPC2INDEX = {["MapMaker"] = 1, ["Piao"] = 2, ["Tang"] = 3, ["RoundSweetPie"] = 4, ["Pia"] = 5, ["TinY"] = 6, ["YanShen"] = 7,
             -- ["ASha"] = 8, ["Aldens"] = 9, ["SecondBro"] = 10, ["ThirdBro"] = 11, ["WindBellKL"] = 12, ["MasterTieru"] = 13,}
 
@@ -271,6 +271,27 @@ function _GetCreatureSlots(objName)
     return result
 end
 
+function _MergeCreatureSlots(objName, creatureID)
+    local creatureAmount = GetObjectCreatures(objName, creatureID)
+    if creatureAmount > 0 then
+        local temp = _GetCreatureSlots(objName)
+        local firstFound = nil
+        for i, slot in temp do
+            if slot[1] == creatureID then
+                if not firstFound then
+                    slot[2] = creatureAmount
+                    firstFound = true
+                else
+                    slot[1] = 0
+                    slot[2] = 0
+                end
+            end
+        end
+        _SetCreatureSlots(objName, temp)
+        sleep(2)
+    end
+end
+
 function _ConfiscateWarMachines(heroName)
     RemoveHeroWarMachine(heroName, WAR_MACHINE_BALLISTA)
     RemoveHeroWarMachine(heroName, WAR_MACHINE_FIRST_AID_TENT)
@@ -313,9 +334,6 @@ function _CheckAllWarCries(heroName)
     end
 
     return result
-end
-
-function _CheckAllSphinxes(heroName)
 end
 
 function _GetHeroInfo(heroName) 
@@ -665,6 +683,20 @@ function NPCMapMakerCallback(pNum, cNum)
     end
 end
 
+function NPCRoundSweetPieCallback()
+    local mobs = {"Phoenixes", "Titans", "Magmas", "BlackDragons"}
+    for i, mob in mobs do
+        MessageBox(g_sPath.."Kill"..mob.."Description2.txt")
+        SetObjectiveState("Kill"..mob, OBJECTIVE_ACTIVE)
+    end
+    CreateStatic("SecondBroAura",
+                 "/Maps/SingleMissions/TrialsOfSarElam/MapObjects/Auras/DungeonS.xdb#xpointer(/AdvMapStaticShared)",
+                 26, 27, 0)
+    SetObjectPos("RoundSweetPie", 26, 27, 0)
+    SetObjectRotation("RoundSweetPie", -45)
+    RemoveObject("RoundSweetPieAura")
+end
+
 function ValeriaHavenCaptureTrigger()
     Trigger(OBJECT_CAPTURE_TRIGGER, "ValeriasHaven", nil)
     SetObjectiveState("AssassinateValeria", OBJECTIVE_FAILED)
@@ -878,6 +910,14 @@ function NPCCaesarfoxStartQuestCallback()
     SetObjectiveState("FindMarkalSkull", OBJECTIVE_ACTIVE)
 end
 
+function NPCVegetabgleCallback()
+    SetObjectiveState("ScareAwayLandlord", OBJECTIVE_ACTIVE)
+    for i = 1, 4 do
+        Trigger(OBJECT_CAPTURE_TRIGGER, "LandlordsMine"..i, "LandlordsMineCaptureTrigger")
+        SetObjectEnabled("LandlordsMine"..i, true)
+    end
+end
+
 function NPCVisitsTrigger(heroName, npcName)
     print("Visited an NPC! ", heroName, " ", npcName)
 
@@ -913,7 +953,47 @@ function NPCVisitsTrigger(heroName, npcName)
     elseif npcName == "Tang" then
         print("TODO")
     elseif npcName == "RoundSweetPie" then
-        print("TODO")
+        if GetObjectiveState("KillPhoenixes") < OBJECTIVE_ACTIVE then
+            QuestionBox(g_sPath.."RoundSweetPieAskReady.txt", "NPCRoundSweetPieCallback", "")
+        else
+            local nothingHappened = true
+            local defeats = 0
+            local mobs = {"Phoenixes", "Titans", "Magmas", "BlackDragons"}
+            for i, mob in mobs do
+                if GetObjectiveState("Kill"..mob) == OBJECTIVE_ACTIVE then
+                    if not IsObjectExists("LargeAmount"..mob) then
+                        nothingHappened = nil
+                        MessageBox(g_sPath.."RoundSweetPie"..mob.."Done.txt")
+                        SetObjectiveState("Kill"..mob, OBJECTIVE_COMPLETED)
+                        SetObjectiveVisible("Kill"..mob, nil)
+                        if mob == "Phoenixes" then
+                            TeachHeroSpell(heroName, SPELL_SUMMON_ELEMENTALS)
+                            TeachHeroSpell(heroName, SPELL_CONJURE_PHOENIX)
+                            TeachHeroSpell(heroName, SPELL_SUMMON_HIVE)
+                        elseif mob == "Titans" then
+                            TeachHeroSpell(heroName, SPELL_BERSERK)
+                            TeachHeroSpell(heroName, SPELL_BLIND)
+                            TeachHeroSpell(heroName, SPELL_HYPNOTIZE)
+                        elseif mob == "Magmas" then
+                            TeachHeroSpell(heroName, SPELL_VAMPIRISM)
+                        else
+                            GiveArtefact(heroName, ARTIFACT_NECROMANCER_PENDANT)
+                            GiveArtefact(heroName, ARTIFACT_RING_OF_DEATH)
+                            GiveArtefact(heroName, ARTIFACT_STAFF_OF_VEXINGS)
+                            GiveArtefact(heroName, ARTIFACT_CLOAK_OF_MOURNING)
+                        end
+                    end
+                elseif GetObjectiveState("Kill"..mob) == OBJECTIVE_COMPLETED then
+                    defeats = defeats + 1
+                end
+            end
+            if defeats == 4 then
+                MessageBox(g_sPath.."RoundSweetPieFinished.txt")
+            elseif nothingHappened then
+                MessageBox(g_sPath.."RoundSweetPieNothing.txt")
+            end
+        end
+
     elseif npcName == "Pia" then
         local objState = GetObjectiveState("AssassinateValeria")
         if objState < OBJECTIVE_ACTIVE then
@@ -1007,7 +1087,7 @@ function NPCVisitsTrigger(heroName, npcName)
             local currAmount = _GetCreatureCount(heroName)
             if rightAmount == currAmount then
                 MessageBox({g_sPath.."AShaRightAmount.txt"; n_creature = rightAmount})
-                GiveArtefact(heroName, ARTIFACT_BOOTS_OF_SPEED)
+                GiveArtefact(heroName, ARTIFACT_BOOTS_OF_SWIFTNESS)
                 SetObjectiveState("CountPhoenixes", OBJECTIVE_COMPLETED)
                 SetObjectiveVisible("CountPhoenixes", nil)
             else
@@ -1025,30 +1105,25 @@ function NPCVisitsTrigger(heroName, npcName)
             MessageBox(g_sPath.."HarvestPoltergeistsDescription2.txt")
             QuestionBox(g_sPath.."NPCConfirm.txt", "NPCSecondBroCallback", "")
         elseif objState == OBJECTIVE_ACTIVE then
-            local polAmt = 0
-            local temp = _GetCreatureSlots(heroName)
-            for i, slot in temp do
-                if slot[1] == CREATURE_POLTERGEIST then polAmt = polAmt + slot[2] end
-            end
+            local polAmt = GetObjectCreatures(heroName, CREATURE_POLTERGEIST)
             if polAmt < 800 then
                 MessageBox({g_sPath.."SecondBroNotEnough.txt"; n_creature = polAmt})
             else
                 MessageBox(g_sPath.."SecondBroEnough.txt")
-                polAmt = 800
-                for i = 0, 6 do
-                    if polAmt == 0 then break end
-                    if temp[i][1] == CREATURE_POLTERGEIST then
-                        if polAmt < temp[i][2] then
-                            temp[i][2] = temp[i][2] - polAmt
-                            polAmt = 0
-                        else
-                            polAmt = polAmt - temp[i][2]
-                            temp[i][1] = 0
-                            temp[i][2] = 0
-                        end
+                BlockGame()
+                _MergeCreatureSlots(heroName, CREATURE_POLTERGEIST)
+                local temp = _GetCreatureSlots(heroName)
+                if _GetCreatureCount(heroName) == polAmt then
+                    polAmt = polAmt - 1
+                end
+                for i, slot in temp do
+                    if slot[1] == CREATURE_POLTERGEIST then
+                        slot[2] = slot[2] - polAmt
+                        if slot[2] == 0 then slot[1] = 0 end
                     end
                 end
                 _SetCreatureSlots(heroName, temp)
+                UnblockGame()
                 GiveArtefact(heroName, ARTIFACT_WEREWOLF_CLAW_NECKLACE)
                 SetObjectiveState("HarvestPoltergeists", OBJECTIVE_COMPLETED)
                 SetObjectiveVisible("HarvestPoltergeists", nil)
@@ -1216,11 +1291,20 @@ function NPCVisitsTrigger(heroName, npcName)
     elseif npcName == "Realyashiro" then
         print("TODO")
     elseif npcName == "Vegetable" then
-        print("TODO")
+        local objState = GetObjectiveState("ScareAwayLandlord")
+        if objState < OBJECTIVE_ACTIVE then
+            MessageBox(g_sPath.."ScareAwayLandlordDescription.txt")
+            MessageBox(g_sPath.."ScareAwayLandlordDescription2.txt")
+            QuestionBox(g_sPath.."NPCConfirm.txt", "NPCVegetabgleCallback", "")
+        end
+
     elseif npcName == "EvilP" then
-        print("TODO")
-    elseif npcName == "MarkalNPC" then
-        print("TODO")
+        local objState = GetObjectiveState("KillMagneticGolems")
+        if objState < OBJECITVE_ACTIVE then
+        elseif objState == OBJECTIVE_ACTIVE then
+        elseif objState == OBJECTIVE_COMPLETED then
+        elseif objState == OBJECTIVE_COMPLETED then
+        end
     else
         print("Run into error in NPCVisitsTrigger! ", heroName, " ", npcName)
     end
@@ -1269,6 +1353,42 @@ function NonHostileMonsterTrigger(heroName, monsterName)
     end
 end
 
+function RecruiteWraithsThread()
+    while true do
+        local objState = GetObjectiveState("RecruiteWraiths")
+        if objState == OBJECTIVE_ACTIVE then
+            if GetObjectCreatures("Berein", CREATURE_WRAITH) >= 400 then
+                MessageBox(g_sPath.."MarkalNPCFinished.txt")
+                BlockGame()
+                local mx, my, ml = GetObjectPos("Berein")
+                MoveCamera(mx, my, ml, 20, 0.99, 0)
+                sleep(10)
+                SetObjectOwner("Berein", 8)
+                sleep(2)
+                SetObjectPos("Berein", 23, 8, 1)
+                sleep(5)
+                RemoveObject("Berein")
+                CreateArtifact("", ARTIFACT_SHAWL_OF_GREAT_LICH, mx, my, ml)
+                UnblockGame()
+                SetObjectiveState("RecruiteWraiths", OBJECTIVE_COMPLETED)
+                SetObjectiveVisible("RecruiteWraiths", nil)
+            end
+            sleep(10)
+        else
+            sleep(10000)
+        end
+    end
+end
+
+function RecruiteWraithsCallback()
+    Trigger(REGION_ENTER_AND_STOP_TRIGGER, "MarkalRegion", nil)
+    SetObjectiveState("RecruiteWraiths", OBJECTIVE_ACTIVE)
+    SetObjectEnabled("Berein", true)
+    SetObjectOwner("Berein", 1)
+    sleep(1)
+    startThread(RecruiteWraithsThread)
+end
+
 function RegionEnterTrigger(heroName, regionName)
     if regionName == "VeyerRegion" then
         local objState = GetObjectiveState("ScareAwayVeyer")
@@ -1298,6 +1418,18 @@ function RegionEnterTrigger(heroName, regionName)
         SetObjectPos(heroName, 53, 36, 0)
         Trigger(REGION_ENTER_AND_STOP_TRIGGER, "WulfstanRegion", nil)
         SetObjectEnabled("Wulfstan", true)
+
+    elseif regionName == "MarkalRegion" then
+        MessageBox(g_sPath.."RecruiteWraithsDescription.txt")
+        MessageBox(g_sPath.."RecruiteWraithsDescription2.txt")
+        if length(GetPlayerHeroes(1)) < 8 then
+            QuestionBox(g_sPath.."NPCConfirm.txt", "RecruiteWraithsCallback", "")
+        else
+            MessageBox(g_sPath.."MarkalNPCError.txt")
+        end
+        SetObjectPos(heroName, 26, 35)
+    else
+        print("Error in RegionEnterTrigger, ", heroName, "\t", regionName)
     end
 end
 
@@ -1328,6 +1460,37 @@ end
 
 function SphinxDenyTrigger(heroName, portalName)
     MessageBox(g_sPath.."SphinxDenied.txt")
+end
+
+function LandlordsMineCaptureTrigger(oldOwner, newOwner, heroName, dwellingName)
+    if newOwner == 1 then
+        if _GetCreatureCount(dwellingName) == 0 then
+            SetObjectOwner(dwellingName, PLAYER_2)
+            MessageBox(g_sPath.."VegetableFailed.txt")
+        else
+            local counts = 0
+            for i = 1, 4 do
+                if GetObjectOwner("LandlordsMine"..i) ==  1 then counts = counts + 1 end
+            end
+            if counts == 4 then
+                MessageBox(g_sPath.."VegetableRunAway.txt")
+                BlockGame()
+                local vx, vy, vl = GetObjectPos("Vegetable")
+                MoveCamera(vx, vy, vl, 20, 0.99, 0)
+                sleep(20)
+                RemoveObject("Vegetable")
+                RemoveObject("VegetableAura")
+                CreateArtifact("", ARTIFACT_NIGHTMARISH_RING, vx, vy, vl)
+                CreateArtifact("", ARTIFACT_NIGHTMARISH_RING, vx, vy, vl)
+                UnblockGame()
+                SetObjectiveState("ScareAwayLandlord", OBJECTIVE_COMPLETED)
+                SetObjectiveVisible("ScareAwayLandlord", nil)
+                for i = 1, 4 do
+                    Trigger(OBJECT_CAPTURE_TRIGGER, "LandlordsMine"..i, nil)
+                end
+            end
+        end
+    end
 end
 
 function SetupScene()
@@ -1418,6 +1581,7 @@ function SetupQuestObjects()
     -- Setup Neutral Hero
     SetObjectOwner("ufo", 8)
     SetObjectOwner("Berein", 8)
+    SetObjectEnabled("Berein", nil)
     SetObjectOwner("Wulfstan", 8)
     SetObjectEnabled("Wulfstan", nil)
     SetObjectOwner("Veyer", 8)
@@ -1430,6 +1594,11 @@ function SetupQuestObjects()
     AddHeroCreatures("Veyer", CREATURE_SHADOW_DRAGON, 9999999)
     AddHeroCreatures("Veyer", CREATURE_HORROR_DRAGON, 9999999)
 
+    -- Setup Mine Triggers
+    for i = 1, 4 do
+        SetObjectEnabled("LandlordsMine"..i, nil)
+    end
+
     -- Setup Prison Triggers
     Trigger(OBJECT_TOUCH_TRIGGER, "PrisonGottai", "PrisonVisitTrigger")
     Trigger(OBJECT_TOUCH_TRIGGER, "PrisonRuneProdigy", "PrisonVisitTrigger")
@@ -1438,13 +1607,18 @@ function SetupQuestObjects()
     -- Setup Region triggers
     Trigger(REGION_ENTER_AND_STOP_TRIGGER, "VeyerRegion", "RegionEnterTrigger")
     Trigger(REGION_ENTER_AND_STOP_TRIGGER, "WulfstanRegion", "RegionEnterTrigger")
+    Trigger(REGION_ENTER_AND_STOP_TRIGGER, "MarkalRegion", "RegionEnterTrigger")
 
     -- Setup Misc quest triggers
     SetObjectEnabled("EnlightenedWitch", nil)
     Trigger(OBJECT_TOUCH_TRIGGER, "EnlightenedWitch", "WitchHutTrainingTrigger")
 
+    -- Setup Monster Triggers
     SetObjectEnabled("UndyingPeasant", nil)
     Trigger(OBJECT_TOUCH_TRIGGER, "UndyingPeasant", "NonHostileMonsterTrigger")
+    Trigger(OBJECT_TOUCH_TRIGGER, "DangerousWolves", "NonHostileMonsterTrigger")
+    SetObjectEnabled("TestGolems", nil)
+    Trigger(OBJECT_TOUCH_TRIGGER, "TestGolems", "NonHostileMonsterTrigger")
 
     -- Setup Storage crystals trigger
     for i = 1, 10 do
