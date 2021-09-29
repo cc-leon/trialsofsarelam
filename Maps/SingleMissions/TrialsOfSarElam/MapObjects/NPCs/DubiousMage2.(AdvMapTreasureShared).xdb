@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<AdvMapTreasureShared ObjectRecordID="2">
-	<Model href="/Characters/Heroes/DS/Wolfstan_DS_U.xdb#xpointer(/Model)"/>
-	<AnimSet href="/Characters/Heroes/DS/Wolfstan_DS_U-arena.xdb#xpointer(/AnimSet)"/>
+<AdvMapTreasureShared ObjectRecordID="5">
+	<Model href="/Characters/Creatures/Academy/Alternative Upgrade/T4_Combat_Mage.xdb#xpointer(/Model)"/>
+	<AnimSet href="/Characters/Creatures/Academy/Alternative Upgrade/T4_Combat_Mage-arena.xdb#xpointer(/AnimSet)"/>
 	<blockedTiles/>
 	<holeTiles/>
 	<activeTiles>
@@ -18,7 +18,7 @@
 	<Effect href="/Effects/_(Effect)/Buildings/MagicWell.xdb#xpointer(/Effect)"/>
 	<EffectWhenOwned/>
 	<messagesFileRef>
-		<Item href="/Maps/SingleMissions/TrialsOfSarElam/Namelh4122.txt"/>
+		<Item href="/Maps/SingleMissions/TrialsOfSarElam/NameDubiousMage2.txt"/>
 		<Item href="/Maps/SingleMissions/TrialsOfSarElam/DescriptionPia.txt"/>
 	</messagesFileRef>
 	<WaterBased>false</WaterBased>
@@ -31,7 +31,7 @@
 	<AdventureSoundEffect/>
 	<RazedStatic/>
 	<Icon128/>
-	<Type>TREASURE_ORE</Type>
+	<Type>TREASURE_WOOD</Type>
 	<MinResource>4</MinResource>
 	<MaxResource>7</MaxResource>
 </AdvMapTreasureShared>

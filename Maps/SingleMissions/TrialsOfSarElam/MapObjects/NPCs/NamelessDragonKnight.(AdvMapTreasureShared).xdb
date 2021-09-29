@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<AdvMapTreasureShared ObjectRecordID="5">
-	<Model href="/_(Model)/Creatures/Academy/Magi_LOD.(Model).xdb#xpointer(/Model)"/>
-	<AnimSet href="/_(AnimSet)/Creatures/Academy/Magi_LOD-arena.(AnimSet).xdb#xpointer(/AnimSet)"/>
+<AdvMapTreasureShared ObjectRecordID="4">
+	<Model href="/Characters/Heroes/DS/Alaric_DS_U.xdb#xpointer(/Model)"/>
+	<AnimSet href="/Characters/Heroes/DS/Alaric_DS_U-adv.xdb#xpointer(/AnimSet)"/>
 	<blockedTiles/>
 	<holeTiles/>
 	<activeTiles>
@@ -18,7 +18,7 @@
 	<Effect href="/Effects/_(Effect)/Buildings/MagicWell.xdb#xpointer(/Effect)"/>
 	<EffectWhenOwned/>
 	<messagesFileRef>
-		<Item href="/Maps/SingleMissions/TrialsOfSarElam/NameThirdBro.txt"/>
+		<Item href="/Maps/SingleMissions/TrialsOfSarElam/NameNamelessDragonKnight.txt"/>
 		<Item href="/Maps/SingleMissions/TrialsOfSarElam/DescriptionPia.txt"/>
 	</messagesFileRef>
 	<WaterBased>false</WaterBased>
@@ -31,7 +31,7 @@
 	<AdventureSoundEffect/>
 	<RazedStatic/>
 	<Icon128/>
-	<Type>TREASURE_WOOD</Type>
-	<MinResource>4</MinResource>
-	<MaxResource>7</MaxResource>
+	<Type>TREASURE_SULFUR</Type>
+	<MinResource>2</MinResource>
+	<MaxResource>4</MaxResource>
 </AdvMapTreasureShared>

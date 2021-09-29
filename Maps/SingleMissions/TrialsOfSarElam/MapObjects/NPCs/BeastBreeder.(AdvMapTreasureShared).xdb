@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <AdvMapTreasureShared ObjectRecordID="1">
-	<Model href="/Characters/Heroes/DS/Isabel_Renegade_DS_U.xdb#xpointer(/Model)"/>
-	<AnimSet href="/Characters/Heroes/DS/Isabel_Renegade_DS_U-arena.xdb#xpointer(/AnimSet)"/>
+	<Model href="/Characters/Heroes/H5A2/OrnellaHaven_Unmounted.xdb#xpointer(/Model)"/>
+	<AnimSet href="/Characters/Heroes/H5A2/OrnellaHaven_Unmounted-arena.xdb#xpointer(/AnimSet)"/>
 	<blockedTiles/>
 	<holeTiles/>
 	<activeTiles>
@@ -18,8 +18,8 @@
 	<Effect href="/Effects/_(Effect)/Buildings/MagicWell.xdb#xpointer(/Effect)"/>
 	<EffectWhenOwned/>
 	<messagesFileRef>
-		<Item href="/Maps/SingleMissions/TrialsOfSarElam/NameVegetable.txt"/>
-		<Item href="/Maps/SingleMissions/TrialsOfSarElam/DescriptionVegetable.txt"/>
+		<Item href="/Text/Game/Treasures/Crystals/Name.txt"/>
+		<Item href="/Text/Game/Treasures/Crystals/Description.txt"/>
 	</messagesFileRef>
 	<WaterBased>false</WaterBased>
 	<ApplyHeroTrace>false</ApplyHeroTrace>

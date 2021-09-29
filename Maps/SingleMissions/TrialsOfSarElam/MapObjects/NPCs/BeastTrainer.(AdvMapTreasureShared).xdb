@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<AdvMapTreasureShared ObjectRecordID="3">
-	<Model href="/Characters/Heroes/DS/Freyda_DS_U.xdb#xpointer(/Model)"/>
-	<AnimSet href="/Characters/Heroes/DS/Freyda_DS_U-arena.xdb#xpointer(/AnimSet)"/>
+<AdvMapTreasureShared ObjectRecordID="6">
+	<Model href="/Characters/Heroes/H5A2/Gotay_Unmounted.xdb#xpointer(/Model)"/>
+	<AnimSet href="/Characters/Heroes/H5A2/Gotay_Unmounted-arena.xdb#xpointer(/AnimSet)"/>
 	<blockedTiles/>
 	<holeTiles/>
 	<activeTiles>
@@ -18,12 +18,12 @@
 	<Effect href="/Effects/_(Effect)/Buildings/MagicWell.xdb#xpointer(/Effect)"/>
 	<EffectWhenOwned/>
 	<messagesFileRef>
-		<Item href="/Maps/SingleMissions/TrialsOfSarElam/NameCaesarfox.txt"/>
+		<Item href="/Maps/SingleMissions/TrialsOfSarElam/NameBeastTrainer.txt"/>
 		<Item href="/Maps/SingleMissions/TrialsOfSarElam/DescriptionPia.txt"/>
 	</messagesFileRef>
 	<WaterBased>false</WaterBased>
 	<ApplyHeroTrace>false</ApplyHeroTrace>
-	<SoundEffect href="/Sounds/_(Sound)/Interface/Events/Get_artf_res02.xdb#xpointer(/Sound)"/>
+	<SoundEffect href="/Sounds/_(Sound)/Interface/Events/Get_artf_res03.xdb#xpointer(/Sound)"/>
 	<flybyMessageFileRef href=""/>
 	<ObjectTypeFileRef href="/Text/Visibility_Types/Treasures.txt"/>
 	<TerrainAligned>false</TerrainAligned>
@@ -31,7 +31,7 @@
 	<AdventureSoundEffect/>
 	<RazedStatic/>
 	<Icon128/>
-	<Type>TREASURE_MERCURY</Type>
-	<MinResource>2</MinResource>
-	<MaxResource>4</MaxResource>
+	<Type>TREASURE_GOLD</Type>
+	<MinResource>5</MinResource>
+	<MaxResource>10</MaxResource>
 </AdvMapTreasureShared>

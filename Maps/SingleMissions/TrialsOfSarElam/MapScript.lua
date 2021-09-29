@@ -26,6 +26,9 @@ PORT_STRONGHOLD = "/GameMechanics/RefTables/GhostMode/face_Spook.(Texture).xdb#x
 RACE2NAME = {
     [0] = "Haven", [1] = "Preserve", [2] = "Academy", [3] = "Dungeon",
     [4] = "Necropolis", [5] = "Inferno", [6] = "Dwarves", [7] = "Stronghold"}
+NAME2RACE = {
+    ["Haven"] = 0, ["Preserve"] = 1, ["Academy"] = 2, ["Dungeon"] = 3,
+    ["Necropolis"] = 4, ["Inferno"] = 5, ["Dwarves"] = 6, ["Stronghold"] = 7}
 
 RACE2TOWN = {
     [0] = "HavenVillage", [1] = "SylvanVillage", [2] = "AcademyVillage", [3] = "DungeonVillage",
@@ -45,6 +48,16 @@ RACE2GARRISON = {
 GARRISON2RACE = {
     ["HavenGarrison"] = 0, ["SylvanGarrison"] = 1, ["AcademyGarrison"] = 2, ["DungeonGarrison"] = 3, 
     ["NecropolisGarrison"] = 4, ["InfernoGarrison"] = 5, ["FortressGarrison"] = 6, ["StrongholdGarrison"] = 7}
+
+RACE2AURA =
+    {[0] = "/Maps/SingleMissions/TrialsOfSarElam/MapObjects/Auras/HavenS.xdb#xpointer(/AdvMapStaticShared)",
+     [1] = "/Maps/SingleMissions/TrialsOfSarElam/MapObjects/Auras/SylvanS.xdb#xpointer(/AdvMapStaticShared)",
+     [2] = "/Maps/SingleMissions/TrialsOfSarElam/MapObjects/Auras/AcademyS.xdb#xpointer(/AdvMapStaticShared)",
+     [3] = "/Maps/SingleMissions/TrialsOfSarElam/MapObjects/Auras/DungeonS.xdb#xpointer(/AdvMapStaticShared)",
+     [4] = "/Maps/SingleMissions/TrialsOfSarElam/MapObjects/Auras/NecropolisS.xdb#xpointer(/AdvMapStaticShared)",
+     [5] = "/Maps/SingleMissions/TrialsOfSarElam/MapObjects/Auras/InfernoS.xdb#xpointer(/AdvMapStaticShared)",
+     [6] = "/Maps/SingleMissions/TrialsOfSarElam/MapObjects/Auras/FortressS.xdb#xpointer(/AdvMapStaticShared)",
+     [7] = "/Maps/SingleMissions/TrialsOfSarElam/MapObjects/Auras/StrongholdS.xdb#xpointer(/AdvMapStaticShared)"}
 
 -- Console id for creatures, mapped to each race id
 CREATURE_IDS_BY_RACE = {[0] = {1, 3, 5, 7, 9, 11, 13}, [1] = {43, 45, 47, 49, 51, 53, 55},
@@ -71,13 +84,13 @@ SAR2SLOTS = {
                       [1] = {0, 0}, [2] = {0, 0}, [3] = {0, 0}, [4] = {0, 0}, [5] = {0, 0}, [6] = {0, 0}},
     ["SarAntor"] = {[0] = {CREATURE_CYCLOP, 1}, [1] = {CREATURE_GOBLIN_DEFILER, 60},
                     [2] = {0, 0}, [3] = {0, 0}, [4] = {0, 0}, [5] = {0, 0}, [6] = {0, 0}},
-    ["SarBahir"] = {[0] = {CREATURE_LONGBOWMAN, 100}, [1] = {CREATURE_SWORDSMAN, 6},
+    ["SarBahir"] = {[0] = {CREATURE_SKELETON_WARRIOR, 80}, [1] = {CREATURE_SKELETON, 6},
                     [2] = {0, 0}, [3] = {0, 0}, [4] = {0, 0}, [5] = {0, 0}, [6] = {0, 0}},
-    ["SarTigon"] = {[0] = {CREATURE_LONGBOWMAN, 50}, [1] = {CREATURE_VINDICATOR, 50},
+    ["SarTigon"] = {[0] = {CREATURE_SHARP_SHOOTER, 30}, [1] = {CREATURE_PIXIE, 6},
                     [2] = {0, 0}, [3] = {0, 0}, [4] = {0, 0}, [5] = {0, 0}, [6] = {0, 0}},
-    ["SarBadon"] = {[0] = {CREATURE_SKELETON, 6},
-                    [1] = {0, 0}, [2] = {0, 0}, [3] = {0, 0}, [4] = {0, 0}, [5] = {0, 0}, [6] = {0, 0}},
-    ["SarShazzar"] = {[0] = {CREATURE_SKELETON, 40},
+    ["SarBadon"] = {[0] = {CREATURE_SKELETON_ARCHER, 150}, [1] = {CREATURE_SKELETON, 6},
+                    [2] = {0, 0}, [3] = {0, 0}, [4] = {0, 0}, [5] = {0, 0}, [6] = {0, 0}},
+    ["SarShazzar"] = {[0] = {CREATURE_LONGBOWMAN, 50},
                       [1] = {0, 0}, [2] = {0, 0}, [3] = {0, 0}, [4] = {0, 0}, [5] = {0, 0}, [6] = {0, 0}}}
 
 -- Combat script for Sar family
@@ -109,13 +122,18 @@ CREATURE_TEXTS = {
     [CREATURE_LONGBOWMAN] = "Text/Game/Creatures/Haven/Longbowman.txt",
     [CREATURE_SWORDSMAN] = "Text/Game/Creatures/Haven/Swordsman.txt",
     [CREATURE_VINDICATOR] = "Text/Game/Creatures/Haven/Vindicator.txt",
-    [CREATURE_SKELETON] = "Text/Game/Creatures/Necropolis/Skeleton.txt"}
+    [CREATURE_SKELETON] = "Text/Game/Creatures/Necropolis/Skeleton.txt",
+    [CREATURE_SKELETON_ARCHER] = "Text/Game/Creatures/Necropolis/Skeleton_Archer.txt",
+    [CREATURE_SHARP_SHOOTER] = "Text/Game/Creatures/Preserve/3rd/SharpShooter_Name.txt"}
+
+INDEX2GUARDIAN = {"Dark"}
 
 -- Mapping for iteration of Central Area NPCs
-INDEX2NPC = {"MapMaker", "Piao", "Tang", "RoundSweetPie", "Pia", "TinY", "Yanshen", "ASha", "Aldens", "SecondBro", "ThirdBro",
-             "WindBellKL", "MasterTieru", "Phoenix52", "lh4122", "Caesarfox", "Realyashiro", "Vegetable", "EvilP"}
+INDEX2NPC = {"MapMaker", "Piao", "Tang", "RoundSweetPie", "Pia", "TinY", "Yanshen", "ASha", "Aldens", "DubiousMage1", "DubiousMage2",
+             "WindBellKL", "MasterTieru", "NamelessDragonKnight", "ThirdBro", "SecondBro", "BeastTrainer", "Merchant", "ExoticMage", 
+             "BeastBreeder"}
 -- NPC2INDEX = {["MapMaker"] = 1, ["Piao"] = 2, ["Tang"] = 3, ["RoundSweetPie"] = 4, ["Pia"] = 5, ["TinY"] = 6, ["YanShen"] = 7,
-            -- ["ASha"] = 8, ["Aldens"] = 9, ["SecondBro"] = 10, ["ThirdBro"] = 11, ["WindBellKL"] = 12, ["MasterTieru"] = 13,}
+            -- ["ASha"] = 8, ["Aldens"] = 9, ["DubiousMage1"] = 10, ["DubiousMage2"] = 11, ["WindBellKL"] = 12, ["MasterTieru"] = 13,}
 
 
 -- Hero Bank Locations
@@ -149,6 +167,7 @@ g_tabCallbackParams = {}
 _alienQuestHero = nil
 _panickyInfernoRazed = nil
 _dwellingsRazed = 0
+_golemFightResult = 0
 
 function _GetHeroRace(heroName)
     -- Return the race id of a hero
@@ -298,6 +317,9 @@ function _ConfiscateWarMachines(heroName)
     RemoveHeroWarMachine(heroName, WAR_MACHINE_AMMO_CART)
 end
 
+function _ConfiscateCreatures(heroName, creatureID, creatureAmount)
+end
+
 function _CheckAllSpells(heroName)
     noSpell = {[16] = true, [22] = true, [27] = true, [30] = true, [33] = true, [36] = true, [37] = true} -- 1 ~ 43
     yesSpell = {48, 234, 235, 236, 237, 277, 278, 279, 280, 281, 283}
@@ -368,33 +390,30 @@ function GarrisonCapturedTrigger(oldOwner, newOwner, heroName, garrisonName)
     BlockGame()
     SetObjectPos(heroName, 46, 39, 0)
     SetObjectRotation(heroName, 0)
-    MoveCamera(46, 39, 0, 80, 3.14/3, 0, 1, 1)
-    sleep(1)
+    --MoveCamera(46, 39, 0, 80, 3.14/3, 0)
+    --sleep(1)
     local origPosX, origPosY = GetObjectPos("SarIssus")
     SetObjectPos("SarIssus", 46, 38)
     SetObjectRotation("SarIssus", 180)
-    MoveCamera(45, 38, 0, 80, 3.14/3, 0, 1, 1)
-    sleep(1)
+    --MoveCamera(45, 38, 0, 80, 3.14/3, 0)
+    --sleep(1)
     UnblockGame()
 
     MessageBox(g_sPath.."SarIssusGreeting.txt")
     BlockGame()
     SetObjectPos("SarIssus", origPosX, origPosY)
     SetObjectRotation("SarIssus", 90)
-    sleep(1)
+    --sleep(1)
 
-    SetObjectPos("ResBonusWood", 45, 37, 0)
-    SetObjectPos("ResBonusOre", 46, 37, 0)
-    SetObjectPos("ResBonusMercury", 47, 37, 0)
-    SetObjectPos("ResBonusCrystal", 45, 36, 0)
-    SetObjectPos("ResBonusSulfur", 46, 36, 0)
-    SetObjectPos("ResBonusGem", 47, 36, 0)
-    SetObjectPos("ResBonusGold", 45, 35, 0)
-    SetObjectPos("ArtBonusSarStaff", 46, 35, 0)
-    SetObjectPos("ArtBonusSarCrown", 47, 35, 0)
-    SetObjectPos("ArtBonusSarRing", 45, 34, 0)
-    SetObjectPos("ArtBonusSarRobe", 46, 34, 0)
-    SetObjectPos("ArtBonusDarkRitualScroll", 47, 34, 0)
+    SetObjectPos("ArtBonusSarStaff", 45, 37, 0)
+    SetObjectPos("ArtBonusSarCrown", 46, 37, 0)
+    SetObjectPos("ArtBonusSarRing", 47, 37, 0)
+    SetObjectPos("ArtBonusSarRobe", 45, 36, 0)
+    SetObjectPos("ArtBonusDarkRitualScroll1", 46, 36, 0)
+    SetObjectPos("ArtBonusDarkRitualScroll2", 47, 36, 0)
+    SetObjectPos("ArtBonusDarkRitualScroll3", 45, 35, 0)
+    SetObjectPos("ArtBonusDarkRitualScroll4", 46, 35, 0)
+    SetObjectPos("ArtBonusDarkRitualScroll5", 47, 35, 0)
     UnblockGame()
     MessageBox(g_sPath.."SarIssusBonus.txt")
 
@@ -403,7 +422,7 @@ function GarrisonCapturedTrigger(oldOwner, newOwner, heroName, garrisonName)
 end
 
 function SarFamilyAutoComplete(heroName)
-    local expReward = {1980, 1610, 1980, 2000, 15792, 3120, 12000}
+    local expReward = {1980, 1610, 1980, 2277, 4080, 640, 1320}
 
     for i = 1, 7 do
         local sarName = INDEX2SAR[i]
@@ -449,19 +468,25 @@ end
 function SarFinishedCallback(heroName, isWin)
     sarName = GetGameVar("SarChallenge")
     if isWin then
-        local fufilled = true
+        local fulfilled = true
 
+        local creatureID, creatureAmount = 0, 0
         if sarName == "SarIssus" then
-            fufilled = (GetObjectCreatures(heroName, CREATURE_SKELETON_WARRIOR) >= 200)
+            creatureID, creatureAmount = CREATURE_SKELETON_WARRIOR, 200
         elseif sarName == "SarAntor" then
-            fufilled = (GetObjectCreatures(heroName, CREATURE_CYCLOP) >= 1)
-        elseif sarName == "SarBahir" then
-            fufilled = (GetObjectCreatures(heroName, CREATURE_LONGBOWMAN) >= 100)
+            creatureID, creatureAmount = CREATURE_CYCLOP, 1
         elseif sarName == "SarTigon" then
-            fufilled = (GetObjectCreatures(heroName, CREATURE_LONGBOWMAN) >= 50)
+            creatureID, creatureAmount = CREATURE_SHARP_SHOOTER, 30
+        elseif sarName == "SarBadon" then
+            creatureID, creatureAmount = CREATURE_SKELETON_ARCHER, 150
+        elseif sarName == "SarBahir" then
+            creatureID, creatureAmount = CREATURE_SKELETON_WARRIOR, 80
+        elseif sarName == "SarShazzar" then
+            creatureID, creatureAmount = CREATURE_LONGBOWMAN, 40
         end
+        if creatureID ~= 0 then fulfilled = (GetObjectCreatures(heroName, creatureID) >= creatureAmount) end
 
-        if fufilled then
+        if fulfilled then
             if sarName == "SarBahir" then
                 MessageBox(g_sPath.."SarFamilyAwardMagic.txt")
             else
@@ -496,7 +521,7 @@ function SarFinishedCallback(heroName, isWin)
             end
 
         else
-            MessageBox({g_sPath.."FailReasonSarFamily.txt"; c_amt = 200, c_name = CREATURE_TEXTS[CREATURE_SKELETON_WARRIOR]})
+            MessageBox({g_sPath.."FailReasonSarFamily.txt"; c_amt = creatureAmount, c_name = CREATURE_TEXTS[creatureID]})
             SetObjectiveState(sarName.."Challenge", OBJECTIVE_FAILED)
         end
 
@@ -532,16 +557,15 @@ function SarFamilyStartFight()
     g_tabCreatureStored = _GetCreatureSlots(heroName)
     _SetCreatureSlots(heroName, SAR2SLOTS[sarName])
 
-    if sarName ~= "SarShazzar" then
-        _ConfiscateWarMachines(heroName)
+    _ConfiscateWarMachines(heroName)
+    if sarName == "SarBadon" then
+        sleep(1)
+        GiveHeroWarMachine(heroName, WAR_MACHINE_AMMO_CART)
+        sleep(1)
     end
 
     ChangeHeroStat(heroName, 8, -INFINITY)
-    if sarName == "SarTigon" then
-        ChangeHeroStat(heroName, 8, 10)
-    elseif sarName == "SarBadon" then
-        ChangeHeroStat(heroName, 8, 70)
-    elseif sarName == "SarShazzar" then
+    if sarName == "SarShazzar" then
         ChangeHeroStat(heroName, 8, INFINITY)
     end
 
@@ -557,18 +581,22 @@ function SarFamilyStartFight()
         StartCombat(heroName, nil, 3,
                     CREATURE_FIREBREATHER_HOUND, 20,CREATURE_FIREBREATHER_HOUND, 20, CREATURE_FIREBREATHER_HOUND, 20,
                     SAR_COMBAT_SCRIPT, "SarFinishedCallback", NOOB1_ARENA)
-    elseif sarName == "SarBahir" then
-        StartCombat(heroName, nil, 2, CREATURE_SHARP_SHOOTER, 80, CREATURE_MILITIAMAN, 1, 
-                    SAR_COMBAT_SCRIPT, "SarFinishedCallback", SAND_ARENA)
     elseif sarName == "SarTigon" then
-        StartCombat(heroName, nil, 1, CREATURE_LONGBOWMAN, 100,
-                    SAR_COMBAT_SCRIPT, "SarFinishedCallback", GRASS_ARENA)
+        StartCombat(heroName, nil, 3,
+                    CREATURE_CERBERI, 23, CREATURE_CERBERI, 23, CREATURE_CERBERI, 23,
+                    SAR_COMBAT_SCRIPT, "SarFinishedCallback", NOOB2_ARENA)
     elseif sarName == "SarBadon" then
-        StartCombat(heroName, nil, 1, CREATURE_MAGMA_DRAGON, 48,
+        StartCombat(heroName, nil, 3,
+                    CREATURE_STEEL_GOLEM, 40, CREATURE_STEEL_GOLEM, 40, CREATURE_STEEL_GOLEM, 40,
+                    SAR_COMBAT_SCRIPT, "SarFinishedCallback", NOOB1_ARENA)
+    elseif sarName == "SarBahir" then
+        StartCombat(heroName, nil, 3,
+                    CREATURE_SPRITE, 20, CREATURE_PEASANT, 1, CREATURE_SPRITE, 20,
                     SAR_COMBAT_SCRIPT, "SarFinishedCallback", NOOB2_ARENA)
     elseif sarName == "SarShazzar" then
-        StartCombat(heroName, nil, 4, CREATURE_BALOR, 20, CREATURE_BALOR, 20, CREATURE_BALOR, 20, CREATURE_BALOR, 20,
-                    SAR_COMBAT_SCRIPT, "SarFinishedCallback", NOOB1_ARENA)
+        StartCombat(heroName, nil, 3,
+                    CREATURE_CENTAUR, 40, CREATURE_CENTAUR, 40, CREATURE_CENTAUR, 40,
+                    SAR_COMBAT_SCRIPT, "SarFinishedCallback", SAND_ARENA)
     else
         print("Error! in SarFamilyStartFight! ", heroName, " ", sarName)
     end
@@ -689,8 +717,8 @@ function NPCRoundSweetPieCallback()
         MessageBox(g_sPath.."Kill"..mob.."Description2.txt")
         SetObjectiveState("Kill"..mob, OBJECTIVE_ACTIVE)
     end
-    CreateStatic("SecondBroAura",
-                 "/Maps/SingleMissions/TrialsOfSarElam/MapObjects/Auras/DungeonS.xdb#xpointer(/AdvMapStaticShared)",
+    CreateStatic("RoundSweetPieAura",
+                 RACE2AURA[NAME2RACE["Academy"]],
                  26, 27, 0)
     SetObjectPos("RoundSweetPie", 26, 27, 0)
     SetObjectRotation("RoundSweetPie", -45)
@@ -718,6 +746,7 @@ end
 function StorageCrystalCallback()
     local crystalName = g_tabCallbackParams[1]
     local heroName = g_tabHeroesBanked[CRYSTAL2INDEX[crystalName]]
+    RemoveObject("CrystalAura"..CRYSTAL2INDEX[crystalName])
     SetObjectPos(heroName, 27, 34, 0)
     SetObjectEnabled(heroName, true)
     SetObjectOwner(heroName, 1)
@@ -737,6 +766,9 @@ function NPCYanshenCallback()
     for i = 1, 10 do
         if not g_tabHeroesBanked[i] then
             g_tabHeroesBanked[i] = g_tabCallbackParams[1]
+            CreateStatic("CrystalAura"..i,
+                         RACE2AURA[_GetHeroRace(g_tabCallbackParams[1])],
+                         BANKLOCATIONS[i][1], BANKLOCATIONS[i][2], 0)
             SetObjectPos("StorageCrystal"..i, BANKLOCATIONS[i][1], BANKLOCATIONS[i][2], 0)
             SetObjectOwner(g_tabCallbackParams[1], 8)
             SetObjectPos(g_tabCallbackParams[1], HERO_DUMP_POS[1], HERO_DUMP_POS[2], 1)
@@ -758,17 +790,17 @@ function NPCAShaCallback()
     SetObjectiveState("CountPhoenixes", OBJECTIVE_ACTIVE)
 end
 
-function NPCSecondBroCallback()
+function NPCDubiousMage1Callback()
     SetObjectiveState("HarvestPoltergeists", OBJECTIVE_ACTIVE)
-    RemoveObject("SecondBroAura")
-    CreateStatic("SecondBroAura",
-                 "/Maps/SingleMissions/TrialsOfSarElam/MapObjects/Auras/AcademyS.xdb#xpointer(/AdvMapStaticShared)",
+    RemoveObject("DubiousMage1Aura")
+    CreateStatic("DubiousMage1Aura",
+                 RACE2AURA[NAME2RACE["Dungeon"]],
                  43, 25, 0)
-    SetObjectPos("SecondBro", 43, 25, 0)
-    SetObjectRotation("SecondBro", 0)
+    SetObjectPos("DubiousMage1", 43, 25, 0)
+    SetObjectRotation("DubiousMage1", 0)
 end
 
-function NPCThirdBroCallback()
+function NPCDubiousMage2Callback()
     SetObjectiveState("FindPrincesses", OBJECTIVE_ACTIVE)
 end
 
@@ -887,35 +919,52 @@ function InfernoRegionTrigger(heroName, regionName)
     SetPlayerResource(PLAYER_4, GEM, 1000)
     SetPlayerResource(PLAYER_4, GOLD, 1000000)
     UnblockGame()
-    MessageBox(g_sPath.."Phoenix52InfernoAlert.txt")
+    MessageBox(g_sPath.."NamelessDragonKnightInfernoAlert.txt")
 end
 
-function NPCPhoenix52Callback()
+function NPCNamelessDragonKnightCallback()
     Trigger(OBJECT_TOUCH_TRIGGER, "InfernoPortal", nil)
     SetObjectEnabled("InfernoPortal", true)
     SetObjectiveState("DestroyInfernoOutpost", OBJECTIVE_ACTIVE)
     Trigger(REGION_ENTER_AND_STOP_TRIGGER, "InfernoRegion", "InfernoRegionTrigger")
 end
 
-function NPClh4122StartQuestCallback()
+function NPCThirdBroStartQuestCallback()
     _alienQuestHero = g_tabCallbackParams[1]
     Trigger(OBJECT_TOUCH_TRIGGER, "AlienPortal", nil)
     SetObjectEnabled("AlienPortal", true)
     SetObjectiveState("AssassinateAlien", OBJECTIVE_ACTIVE)
-    MessageBox(g_sPath.."lh4122OpenPortal.txt")
+    MessageBox(g_sPath.."ThirdBroOpenPortal.txt")
 end
 
-function NPCCaesarfoxStartQuestCallback()
+function NPCSecondBroStartQuestCallback()
     SetObjectiveState("FindBeginnerWand", OBJECTIVE_ACTIVE)
     SetObjectiveState("FindMarkalSkull", OBJECTIVE_ACTIVE)
 end
 
-function NPCVegetabgleCallback()
+function NPCBeastTrainerCallback()
+    SetObjectiveState("ScareAwayWolves", OBJECTIVE_ACTIVE)
+    SetObjectPos("BeastTrainer", 66, 24, 0)
+    SetObjectRotation("BeastTrainer", 45)
+    RemoveObject("BeastTrainerAura")
+    CreateStatic("BeastTrainerAura", RACE2AURA[NAME2RACE["Stronghold"]], 66, 24, 0)
+    SetGameVar("SarElamTrialWolvesBeaten", "false")
+end
+
+function NPCMerchantCallback()
     SetObjectiveState("ScareAwayLandlord", OBJECTIVE_ACTIVE)
     for i = 1, 4 do
         Trigger(OBJECT_CAPTURE_TRIGGER, "LandlordsMine"..i, "LandlordsMineCaptureTrigger")
         SetObjectEnabled("LandlordsMine"..i, true)
     end
+end
+
+function NPCExoticMageCallback()
+    SetObjectiveState("KillMagneticGolems", OBJECTIVE_ACTIVE)
+    RemoveObject("ExoticMageAura")
+    CreateStatic("ExoticMageAura", RACE2AURA[NAME2RACE["Academy"]], 32, 26, 0)
+    SetObjectPos("ExoticMage", 32, 26, 0)
+    SetObjectRotation("ExoticMage", 0)
 end
 
 function NPCVisitsTrigger(heroName, npcName)
@@ -924,8 +973,7 @@ function NPCVisitsTrigger(heroName, npcName)
     if npcName == "MapMaker" then
         if GetObjectiveState("StartupObjective") == OBJECTIVE_ACTIVE and GetObjectiveProgress("StartupObjective") >= 1 then
             MessageBox(g_sPath.."MapMakerIntro2.txt")
-            GiveArtefact(heroName, ARTIFACT_PLATE_MAIL_OF_STABILITY)
-            GiveArtefact(heroName, ARTIFACT_SANDALS_OF_THE_SAINT)
+
             SetObjectiveState("StartupObjective", OBJECTIVE_COMPLETED)
             SetObjectiveVisible("StartupObjective", nil)
         end
@@ -1099,17 +1147,17 @@ function NPCVisitsTrigger(heroName, npcName)
 
     elseif npcName == "Aldens" then
         print("TODO")
-    elseif npcName == "SecondBro" then
+    elseif npcName == "DubiousMage1" then
         local objState = GetObjectiveState("HarvestPoltergeists")
         if objState < OBJECTIVE_ACTIVE then
             MessageBox(g_sPath.."HarvestPoltergeistsDescription2.txt")
-            QuestionBox(g_sPath.."NPCConfirm.txt", "NPCSecondBroCallback", "")
+            QuestionBox(g_sPath.."NPCConfirm.txt", "NPCDubiousMage1Callback", "")
         elseif objState == OBJECTIVE_ACTIVE then
             local polAmt = GetObjectCreatures(heroName, CREATURE_POLTERGEIST)
             if polAmt < 800 then
-                MessageBox({g_sPath.."SecondBroNotEnough.txt"; n_creature = polAmt})
+                MessageBox({g_sPath.."DubiousMage1NotEnough.txt"; n_creature = polAmt})
             else
-                MessageBox(g_sPath.."SecondBroEnough.txt")
+                MessageBox(g_sPath.."DubiousMage1Enough.txt")
                 BlockGame()
                 _MergeCreatureSlots(heroName, CREATURE_POLTERGEIST)
                 local temp = _GetCreatureSlots(heroName)
@@ -1129,31 +1177,31 @@ function NPCVisitsTrigger(heroName, npcName)
                 SetObjectiveVisible("HarvestPoltergeists", nil)
             end
         elseif objState == OBJECTIVE_COMPLETED then
-            MessageBox(g_sPath.."SecondBroFinished.txt")
+            MessageBox(g_sPath.."DubiousMage1Finished.txt")
         end
 
-    elseif npcName == "ThirdBro" then
+    elseif npcName == "DubiousMage2" then
         local objState = GetObjectiveState("FindPrincesses")
         if objState < OBJECTIVE_ACTIVE then
             MessageBox(g_sPath.."FindPrincessesDescription2.txt")
-            QuestionBox(g_sPath.."NPCConfirm.txt", "NPCThirdBroCallback", "")
+            QuestionBox(g_sPath.."NPCConfirm.txt", "NPCDubiousMage2Callback", "")
         elseif objState == OBJECTIVE_ACTIVE then
             local p1Found, p2Found = 0, 0
             if HasArtefact(heroName, ARTIFACT_FREIDA) then p1Found = 1 end
             if HasArtefact(heroName, ARTIFACT_PRINCESS) then p2Found = 1 end
             if p1Found + p2Found == 0 then
-                MessageBox(g_sPath.."ThirdBro0Found.txt")
+                MessageBox(g_sPath.."DubiousMage20Found.txt")
             elseif p1Found + p2Found == 1 then
-                MessageBox(g_sPath.."ThirdBro1Found.txt")
+                MessageBox(g_sPath.."DubiousMage21Found.txt")
             elseif p1Found + p2Found == 2 then
-                MessageBox(g_sPath.."ThirdBroBothFound.txt")
+                MessageBox(g_sPath.."DubiousMage2BothFound.txt")
                 GiveArtefact(heroName, ARTIFACT_MASK_OF_DOPPELGANGER)
                 GiveArtefact(heroName, ARTIFACT_TWISTING_NEITHER)
                 SetObjectiveState("FindPrincesses", OBJECTIVE_COMPLETED)
                 SetObjectiveVisible("FindPrincesses", nil)
             end
         elseif objState == OBJECTIVE_COMPLETED then
-            MessageBox(g_sPath.."ThirdBroDone.txt")
+            MessageBox(g_sPath.."DubiousMage2Done.txt")
         end
 
     elseif npcName == "WindBellKL" then
@@ -1190,31 +1238,31 @@ function NPCVisitsTrigger(heroName, npcName)
                 TeachHeroSpell(heroName, SPELL_ARMAGEDDON)
                 TeachHeroSpell(heroName, SPELL_UNHOLY_WORD)
                 TeachHeroSpell(heroName, SPELL_HOLY_WORD)
-                SetObjectiveState("AnswerAllSphinxRiddles", OBJECITVE_COMPLETED)
+                SetObjectiveState("AnswerAllSphinxRiddles", OBJECTIVE_COMPLETED)
                 SetObjectiveVisible("AnswerAllSphinxRiddles", nil)
             end
         elseif objState == OBJECTIVE_COMPLETED then
             MessageBox(g_sPath.."MasterTieruFinished.txt")
         end
 
-    elseif npcName == "Phoenix52" then
+    elseif npcName == "NamelessDragonKnight" then
         local objState = GetObjectiveState("DestroyInfernoOutpost")
         if objState < OBJECTIVE_ACTIVE then
             MessageBox(g_sPath.."DestroyInfernoOutpostDescription2.txt")
-            QuestionBox(g_sPath.."NPCConfirm.txt", "NPCPhoenix52Callback" , "")
+            QuestionBox(g_sPath.."NPCConfirm.txt", "NPCNamelessDragonKnightCallback" , "")
         elseif objState == OBJECTIVE_ACTIVE then
             if _dwellingsRazed < 32 then
-                MessageBox({g_sPath.."Phoenix52DwellingNotEnough.txt"; n_dwelling = _dwellingsRazed})
+                MessageBox({g_sPath.."NamelessDragonKnightDwellingNotEnough.txt"; n_dwelling = _dwellingsRazed})
             else
-                MessageBox(g_sPath.."Phoenix52DwellingEnough.txt")
+                MessageBox(g_sPath.."NamelessDragonKnightDwellingEnough.txt")
             end
             if _panickyInfernoRazed then
-                MessageBox(g_sPath.."Phoenix52TownDone.txt")
+                MessageBox(g_sPath.."NamelessDragonKnightTownDone.txt")
             else
-                MessageBox(g_sPath.."Phoenix52TownNotDone.txt")
+                MessageBox(g_sPath.."NamelessDragonKnightTownNotDone.txt")
             end
             if _dwellingsRazed == 32 and _panickyInfernoRazed then
-                MessageBox(g_sPath.."Phoenix52BothDone.txt")
+                MessageBox(g_sPath.."NamelessDragonKnightBothDone.txt")
                 GiveArtefact(heroName, ARTIFACT_JINXING_BAND)
                 GiveArtefact(heroName, ARTIFACT_JINXING_BAND)
                 SetObjectiveState("DestroyInfernoOutpost", OBJECTIVE_COMPLETED)
@@ -1222,21 +1270,21 @@ function NPCVisitsTrigger(heroName, npcName)
                 RemoveObject("Orlando")
             end
         elseif objState == OBJECTIVE_COMPLETED then
-            MessageBox(g_sPath.."Phoenix52Finished.txt")
+            MessageBox(g_sPath.."NamelessDragonKnightFinished.txt")
         end
 
-    elseif npcName == "lh4122" then
+    elseif npcName == "ThirdBro" then
         local objState = GetObjectiveState("AssassinateAlien")
         if objState < OBJECTIVE_ACTIVE then
             MessageBox(g_sPath.."AssassinateAlienDescription2.txt")
             g_tabCallbackParams = {heroName}
-            QuestionBox(g_sPath.."NPCConfirm.txt", "NPClh4122StartQuestCallback" , "")
+            QuestionBox(g_sPath.."NPCConfirm.txt", "NPCThirdBroStartQuestCallback" , "")
         elseif objState == OBJECTIVE_ACTIVE then
             if heroName == _alienQuestHero then
                 if IsHeroAlive("ufo") then
                     MessageBox(g_sPath.."NPCWaiting.txt")
                 else
-                    MessageBox(g_sPath.."lh4122Finished2.txt")
+                    MessageBox(g_sPath.."ThirdBroFinished2.txt")
                     GiveArtefact(heroName, ARTIFACT_RING_OF_CELERITY)
                     GiveArtefact(heroName, ARTIFACT_RING_OF_CELERITY)
                     SetObjectEnabled("AlienPortal", nil)
@@ -1244,29 +1292,29 @@ function NPCVisitsTrigger(heroName, npcName)
                     SetObjectiveVisible("AssassinateAlien", nil)
                 end
             else
-                MessageBox(g_sPath.."lh4122WrongHero.txt")
+                MessageBox(g_sPath.."ThirdBroWrongHero.txt")
             end
         elseif objState == OBJECTIVE_COMPLETED then
-            MessageBox(g_sPath.."lh4122Finished.txt")
+            MessageBox(g_sPath.."ThirdBroFinished.txt")
         end
 
-    elseif npcName == "Caesarfox" then
+    elseif npcName == "SecondBro" then
         local obj1State = GetObjectiveState("FindBeginnerWand")
         local obj2State = GetObjectiveState("FindMarkalSkull")
         if obj1State < OBJECTIVE_ACTIVE then
-            MessageBox(g_sPath.."CaesarfoxIntro.txt")
+            MessageBox(g_sPath.."SecondBroIntro.txt")
             MessageBox(g_sPath.."FindBeginnerWandDescription2.txt")
             MessageBox(g_sPath.."FindMarkalSkullDescription2.txt")
-            QuestionBox(g_sPath.."NPCConfirm.txt", "NPCCaesarfoxStartQuestCallback" , "")
+            QuestionBox(g_sPath.."NPCConfirm.txt", "NPCSecondBroStartQuestCallback" , "")
         else
             if obj1State == OBJECTIVE_ACTIVE then
                 if HasArtefact(heroName, ARTIFACT_BEGINNER_MAGIC_STICK) then
                     SetObjectiveState("FindBeginnerWand", OBJECTIVE_COMPLETED)
                     TeacHeroSpell(heroName, SPELL_ANTI_MAGIC)
                     TeacHeroSpell(heroName, SPELL_RESURRECT)
-                    MessageBox(g_sPath.."CaesarfoxWandDone.txt")
+                    MessageBox(g_sPath.."SecondBroWandDone.txt")
                 else
-                    MessageBox(g_sPath.."CaesarfoxWandNotDone.txt")
+                    MessageBox(g_sPath.."SecondBroWandNotDone.txt")
                 end
             end
 
@@ -1275,12 +1323,12 @@ function NPCVisitsTrigger(heroName, npcName)
                     SetObjectiveState("FindMarkalSkull", OBJECTIVE_COMPLETED)
                     TeacHeroSpell(heroName, SPELL_IMPLOSION)
                     TeacHeroSpell(heroName, SPELL_DEEP_FREEZE)
-                    MessageBox(g_sPath.."CaesarfoxSkullDone.txt")
+                    MessageBox(g_sPath.."SecondBroSkullDone.txt")
                 else
-                    MessageBox(g_sPath.."CaesarfoxSkullNotDone.txt")
+                    MessageBox(g_sPath.."SecondBroSkullNotDone.txt")
                 end
             else
-                MessageBox(g_sPath.."CaesarfoxSkullNotDone.txt")
+                MessageBox(g_sPath.."SecondBroSkullNotDone.txt")
             end
 
             if obj1State > OBJECTIVE_ACTIVE and obj2State > OBJECTIVE_ACTIVE then
@@ -1288,22 +1336,52 @@ function NPCVisitsTrigger(heroName, npcName)
             end
         end
 
-    elseif npcName == "Realyashiro" then
-        print("TODO")
-    elseif npcName == "Vegetable" then
+    elseif npcName == "BeastTrainer" then
+        local objState = GetObjectiveState("ScareAwayWolves")
+        if objState < OBJECTIVE_ACTIVE then
+            MessageBox(g_sPath.."ScareAwayWolvesDescription2.txt")
+            QuestionBox(g_sPath.."NPCConfirm.txt", "NPCBeastTrainerCallback", "")
+        elseif objState == OBJECTIVE_ACTIVE then
+            if IsObjectExists("DangerousWolves") then
+                MessageBox(g_sPath.."NPCWaiting.txt")
+            else
+                if GetGameVar("SarElamTrialWolvesBeaten") == "false" then
+                    MessageBox(g_sPath.."BeastTrainerFinished.txt")
+                    SetObjectiveState("ScareAwayWolves", OBJECTIVE_COMPLETED)
+                    SetObjectiveVisible("ScareAwayWolves", nil)
+                    for i = ARTIFACT_DWARVEN_MITHRAL_CUIRASS, ARTIFACT_DWARVEN_MITHRAL_SHIELD do
+                        GiveArtefact(heroName, i)
+                    end
+                else
+                    MessageBox(g_sPath.."BeastTrainerFailed.txt")
+                    SetObjectiveState("ScareAwayWolves", OBJECTIVE_FAILED)
+                end
+            end
+        elseif objState == OBJECTIVE_COMPLETED then
+            MessageBox(g_sPath.."BeastTrainerDone.txt")
+        elseif objState == OBJECTIVE_FAILED then
+            MessageBox(g_sPath.."BeastTrainerFailed.txt")
+        end
+
+    elseif npcName == "Merchant" then
         local objState = GetObjectiveState("ScareAwayLandlord")
         if objState < OBJECTIVE_ACTIVE then
             MessageBox(g_sPath.."ScareAwayLandlordDescription.txt")
             MessageBox(g_sPath.."ScareAwayLandlordDescription2.txt")
-            QuestionBox(g_sPath.."NPCConfirm.txt", "NPCVegetabgleCallback", "")
+            QuestionBox(g_sPath.."NPCConfirm.txt", "NPCMerchantCallback", "")
         end
 
-    elseif npcName == "EvilP" then
+    elseif npcName == "ExoticMage" then
         local objState = GetObjectiveState("KillMagneticGolems")
-        if objState < OBJECITVE_ACTIVE then
+        if objState < OBJECTIVE_ACTIVE then
+            MessageBox(g_sPath.."KillMagneticGolemsDescription2.txt")
+            QuestionBox(g_sPath.."NPCConfirm.txt", "NPCExoticMageCallback", "")
         elseif objState == OBJECTIVE_ACTIVE then
+            MessageBox(g_sPath.."NPCWaiting.txt")
         elseif objState == OBJECTIVE_COMPLETED then
-        elseif objState == OBJECTIVE_COMPLETED then
+            MessageBox(g_sPath.."ExoticMageGoodGreetings.txt")
+        elseif objState == OBJECTIVE_FAILED then
+            MessageBox(g_sPath.."ExoticMageBadGreetings.txt")
         end
     else
         print("Run into error in NPCVisitsTrigger! ", heroName, " ", npcName)
@@ -1316,8 +1394,8 @@ function WitchHutTrainingCallback()
     Play2DSound("/Sounds/_(Sound)/Buildings/WitchHut.xdb#xpointer(/Sound)")
 end
 
-function WitchHutTrainingTrigger(heroName, trainerName)
-    if trainerName == "EnlightenedWitch" then
+function BuildingTouchTrigger(heroName, buildingName)
+    if buildingName == "EnlightenedWitch" then
         if g_setEnlightened[heroName] then
             MessageBox(g_sPath.."EnlightenedWitchVisited.txt")
             return
@@ -1335,7 +1413,7 @@ function WitchHutTrainingTrigger(heroName, trainerName)
         QuestionBox(g_sPath.."EnlightenedWitchAsking.txt", "WitchHutTrainingCallback", "")
 
     else
-        print("Run into error in WitchHutTrainingTrigger! ", heroName, " ", trainerName)
+        print("Run into error in BuildingTouchTrigger! ", heroName, " ", trainerName)
     end
 end
 
@@ -1345,9 +1423,33 @@ function LandLordAfterFightCallback(heroName, isWin)
     end
 end
 
+function AreTestColemsDefeated(heroName, isWin)
+    if isWin then
+        MessageBox(g_sPath.."ExoticMageFinished.txt")
+        SetObjectiveState("KillMagneticGolems", OBJECTIVE_COMPLETED)
+        SetObjectiveVisible("KillMagneticGolems", nil)
+        GiveArtefact(heroName, ARTIFACT_LION_HIDE_CAPE)
+        GiveArtefact(heroName, ARTIFACT_CROWN_OF_COURAGE)
+        GiveArtefact(heroName, ARTIFACT_NECKLACE_OF_BRAVERY)
+    else
+        MessageBox(g_sPath.."ExoticMageFailed.txt")
+        SetObjectiveState("KillMagneticGolems", OBJECTIVE_FAILED)
+    end
+    RemoveObject("TestGolems")
+    print("Result is, ", _GolemFightResult)
+end
+
 function NonHostileMonsterTrigger(heroName, monsterName)
     if monsterName == "UndyingPeasant" then
         StartCombat(heroName, nil, 1, CREATURE_LANDLORD, 1, nil, "LandLordAfterFightCallback")
+    elseif monsterName == "TestGolems" then
+        if RACE2PROF[_GetHeroRace(heroName)] == "Barbarian" then
+            StartCombat(heroName, nil, 3,
+                CREATURE_OBSIDIAN_GOLEM, 10000, CREATURE_OBSIDIAN_GOLEM, 10000, CREATURE_OBSIDIAN_GOLEM, 10000,
+                nil, "AreTestColemsDefeated")
+        else
+            MessageBox(g_sPath.."ExoticMageError.txt")
+        end
     else
         print("Run into error in NonHostileMonsterTrigger! ", heroName, " ", monsterName)
     end
@@ -1466,20 +1568,21 @@ function LandlordsMineCaptureTrigger(oldOwner, newOwner, heroName, dwellingName)
     if newOwner == 1 then
         if _GetCreatureCount(dwellingName) == 0 then
             SetObjectOwner(dwellingName, PLAYER_2)
-            MessageBox(g_sPath.."VegetableFailed.txt")
+            MessageBox(g_sPath.."MerchantFailed.txt")
         else
             local counts = 0
             for i = 1, 4 do
                 if GetObjectOwner("LandlordsMine"..i) ==  1 then counts = counts + 1 end
             end
             if counts == 4 then
-                MessageBox(g_sPath.."VegetableRunAway.txt")
+                MessageBox(g_sPath.."MerchantRunAway.txt")
                 BlockGame()
-                local vx, vy, vl = GetObjectPos("Vegetable")
+                local vx, vy, vl = GetObjectPos("Merchant")
                 MoveCamera(vx, vy, vl, 20, 0.99, 0)
                 sleep(20)
-                RemoveObject("Vegetable")
-                RemoveObject("VegetableAura")
+                RemoveObject("Merchant")
+                RemoveObject("MerchantAura")
+                sleep(1)
                 CreateArtifact("", ARTIFACT_NIGHTMARISH_RING, vx, vy, vl)
                 CreateArtifact("", ARTIFACT_NIGHTMARISH_RING, vx, vy, vl)
                 UnblockGame()
@@ -1495,9 +1598,7 @@ end
 
 function SetupScene()
     BlockGame()
-    for i = 1, 16 do
-        SetObjectEnabled("Treant"..i, nil)
-    end
+    for i = 1, 15 do SetObjectEnabled("Treant"..i, nil) end
 
     for i = 1, 12 do
         SetObjectEnabled("DeadFootman"..i, nil)
@@ -1609,14 +1710,13 @@ function SetupQuestObjects()
     Trigger(REGION_ENTER_AND_STOP_TRIGGER, "WulfstanRegion", "RegionEnterTrigger")
     Trigger(REGION_ENTER_AND_STOP_TRIGGER, "MarkalRegion", "RegionEnterTrigger")
 
-    -- Setup Misc quest triggers
+    -- Setup Building Visit trigger
     SetObjectEnabled("EnlightenedWitch", nil)
-    Trigger(OBJECT_TOUCH_TRIGGER, "EnlightenedWitch", "WitchHutTrainingTrigger")
+    Trigger(OBJECT_TOUCH_TRIGGER, "EnlightenedWitch", "BuildingTouchTrigger")
 
     -- Setup Monster Triggers
     SetObjectEnabled("UndyingPeasant", nil)
     Trigger(OBJECT_TOUCH_TRIGGER, "UndyingPeasant", "NonHostileMonsterTrigger")
-    Trigger(OBJECT_TOUCH_TRIGGER, "DangerousWolves", "NonHostileMonsterTrigger")
     SetObjectEnabled("TestGolems", nil)
     Trigger(OBJECT_TOUCH_TRIGGER, "TestGolems", "NonHostileMonsterTrigger")
 
@@ -1639,6 +1739,9 @@ function SetupQuestObjects()
 
     -- Make NPC non-lootable
     SetHeroLootable("RedHeavenHero03", nil)
+
+    -- Setup Dragon Guardians
+    --for i, guardian in INDEX2GUARDIAN do SetObjectOwner(guardian.."Guardian", 8) end
 end
 
 function DancingPeasant()

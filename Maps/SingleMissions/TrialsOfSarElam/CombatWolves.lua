@@ -1,3 +1,3 @@
 function Prepare()
-    print("Wolves fight!")
+    SetGameVar("SarElamTrialWolvesBeaten", "true")
 end
