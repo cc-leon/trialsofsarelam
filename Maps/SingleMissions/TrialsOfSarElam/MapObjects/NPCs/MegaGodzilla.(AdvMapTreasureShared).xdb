@@ -1,12 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <AdvMapTreasureShared ObjectRecordID="1">
-	<Model href="/Characters/Heroes/DS/Randall_DS_U.xdb#xpointer(/Model)"/>
-	<AnimSet href="/Characters/Heroes/DS/Randall_DS_U-arena.xdb#xpointer(/AnimSet)"/>
-	<blockedTiles/>
+	<Model href="/Characters/Heroes/H5A2/God_Of_Dwarves.xdb#xpointer(/Model)"/>
+	<AnimSet href="/Characters/Heroes/H5A2/God_Of_Dwarves-arena.xdb#xpointer(/AnimSet)"/>
+	<blockedTiles>
+		<Item>
+			<x>0</x>
+			<y>0</y>
+		</Item>
+	</blockedTiles>
 	<holeTiles/>
 	<activeTiles>
 		<Item>
+			<x>1</x>
+			<y>1</y>
+		</Item>
+		<Item>
+			<x>-1</x>
+			<y>-1</y>
+		</Item>
+		<Item>
+			<x>1</x>
+			<y>-1</y>
+		</Item>
+		<Item>
+			<x>-1</x>
+			<y>1</y>
+		</Item>
+		<Item>
+			<x>1</x>
+			<y>0</y>
+		</Item>
+		<Item>
 			<x>0</x>
+			<y>1</y>
+		</Item>
+		<Item>
+			<x>0</x>
+			<y>-1</y>
+		</Item>
+		<Item>
+			<x>-1</x>
 			<y>0</y>
 		</Item>
 	</activeTiles>
@@ -15,11 +48,11 @@
 		<x>0</x>
 		<y>0</y>
 	</PossessionMarkerTile>
-	<Effect href="/Effects/_(Effect)/Buildings/MagicWell.xdb#xpointer(/Effect)"/>
+	<Effect href="/Effects/_(Effect)/ResoursesAndChests/FPP2/Crystal.xdb#xpointer(/Effect)"/>
 	<EffectWhenOwned/>
 	<messagesFileRef>
-		<Item href="/Maps/SingleMissions/TrialsOfSarElam/NameWaterKing.txt"/>
-		<Item href="/Maps/SingleMissions/TrialsOfSarElam/DescriptionWaterKing.txt"/>
+		<Item href="/Text/Game/Treasures/Crystals/Name.txt"/>
+		<Item href="/Text/Game/Treasures/Crystals/Description.txt"/>
 	</messagesFileRef>
 	<WaterBased>false</WaterBased>
 	<ApplyHeroTrace>false</ApplyHeroTrace>

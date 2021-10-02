@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AdvMapShrineShared ObjectRecordID="2">
+	<Model/>
+	<AnimSet/>
+	<blockedTiles>
+		<Item>
+			<x>-1</x>
+			<y>0</y>
+		</Item>
+		<Item>
+			<x>-1</x>
+			<y>1</y>
+		</Item>
+		<Item>
+			<x>0</x>
+			<y>1</y>
+		</Item>
+	</blockedTiles>
+	<holeTiles/>
+	<activeTiles>
+		<Item>
+			<x>0</x>
+			<y>0</y>
+		</Item>
+	</activeTiles>
+	<passableTiles/>
+	<PossessionMarkerTile>
+		<x>0</x>
+		<y>0</y>
+	</PossessionMarkerTile>
+	<Effect href="/Maps/SingleMissions/TrialsOfSarElam/MapObjects/Buildings/Effects/AdvHallOfMight.(Effect).xdb#xpointer(/Effect)"/>
+	<EffectWhenOwned/>
+	<messagesFileRef>
+		<Item href="/Text/Game/TownBuildings/StrongHold/Special_1/Hall_of_Might_3_Name.txt"/>
+		<Item href="/Text/Game/TownBuildings/StrongHold/Special_1/Hall_of_Might_3_Description.txt"/>
+		<Item href="/Text/Game/TownBuildings/StrongHold/Special_1/Hall_of_Might_3_Description.txt"/>
+	</messagesFileRef>
+	<WaterBased>false</WaterBased>
+	<ApplyHeroTrace>false</ApplyHeroTrace>
+	<SoundEffect href="/Sounds/_(Sound)/Buildings/ShrineOfMagic.xdb#xpointer(/Sound)"/>
+	<flybyMessageFileRef href=""/>
+	<ObjectTypeFileRef href="/Text/Visibility_Types/Buildings.txt"/>
+	<TerrainAligned>false</TerrainAligned>
+	<FlyPassable>true</FlyPassable>
+	<AdventureSoundEffect/>
+	<RazedStatic/>
+	<Icon128/>
+	<Level>3</Level>
+	<RunicMagic>false</RunicMagic>
+	<MaxRunicMagicLevel>0</MaxRunicMagicLevel>
+</AdvMapShrineShared>

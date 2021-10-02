@@ -28,22 +28,22 @@
 	<AdventureSoundEffect/>
 	<RazedStatic/>
 	<Icon128/>
-	<InternalName>Egil</InternalName>
+	<InternalName>RuneProdigy</InternalName>
 	<Class>HERO_CLASS_RUNEMAGE</Class>
-	<Specialization>HERO_SPEC_MAGISTER</Specialization>
+	<Specialization>HERO_SPEC_RESEARCHER</Specialization>
 	<PrimarySkill>
 		<Mastery>MASTERY_BASIC</Mastery>
 		<SkillID>HERO_SKILL_RUNELORE</SkillID>
 	</PrimarySkill>
-	<SpecializationNameFileRef href="/Text/Game/Heroes/Specializations/Fortress/Magister/Name.txt"/>
-	<SpecializationDescFileRef href="/Text/Game/Heroes/Specializations/Fortress/Magister/Description.txt"/>
-	<SpecializationIcon href="/UI/H5A1/Icons/Abilites/Heroes_Abillites/128x128/Magister.(Texture).xdb#xpointer(/Texture)"/>
+	<SpecializationNameFileRef href="/Text/Game/Heroes/Specializations/Fortress/Researcher/Name.txt"/>
+	<SpecializationDescFileRef href="/Text/Game/Heroes/Specializations/Fortress/Researcher/Description.txt"/>
+	<SpecializationIcon href="/UI/H5A1/Icons/Abilites/Heroes_Abillites/128x128/Researcher.(Texture).xdb#xpointer(/Texture)"/>
 	<FaceTexture href="/UI/H5A1/Icons/Heroes/Portrets128x128/Egil.(Texture).xdb#xpointer(/Texture)"/>
 	<FaceTextureSmall/>
 	<HeroCharacterArena href="/Maps/SingleMissions/TrialsOfSarElam/Characters/Heroes/RuneProdigy/RuneMage.(Character).xdb#xpointer(/Character)"/>
 	<HeroCharacterArenaMelee/>
 	<HeroCharacterAdventure href="/Maps/SingleMissions/TrialsOfSarElam/Characters/Heroes/RuneProdigy/RuneMage.(Character).xdb#xpointer(/Character)"/>
-	<HeroIndividualCamera href="/Maps/SingleMissions/TrialsOfSarElam/Characters/Heroes/RuneProdigy/RuneMage.xdb#xpointer(/Camera)"/>
+	<HeroIndividualCamera href="/Cameras/Interface/HireCreatures/Dwarves/RuneMage.xdb#xpointer(/Camera)"/>
 	<CombatVisual href="/GameMechanics/CreatureVisual/Creatures/Dwarf/Rune_Mage.xdb#xpointer(/CreatureVisual)"/>
 	<TownType>TOWN_FORTRESS</TownType>
 	<Editable>
@@ -65,6 +65,7 @@
 		<FirstAidTent>false</FirstAidTent>
 		<AmmoCart>false</AmmoCart>
 		<FavoriteEnemies/>
+		<TalismanLevel>0</TalismanLevel>
 	</Editable>
 	<ArrowButtonState>0</ArrowButtonState>
 	<Decal/>
@@ -75,4 +76,10 @@
 	<ScenarioHero>false</ScenarioHero>
 	<AdventureMusic/>
 	<HideInEditor>false</HideInEditor>
+	<PresetMinimalAttributes>
+		<Offence>2</Offence>
+		<Defence>2</Defence>
+		<Spellpower>2</Spellpower>
+		<Knowledge>2</Knowledge>
+	</PresetMinimalAttributes>
 </AdvMapHeroShared>
