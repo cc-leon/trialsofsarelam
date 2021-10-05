@@ -65,9 +65,9 @@ CREATURE_IDS_BY_RACE = {[0] = {1, 3, 5, 7, 9, 11, 13}, [1] = {43, 45, 47, 49, 51
                         [2] = {57, 59, 61, 63, 65, 67, 69}, [3] = {71, 73,75, 77, 79, 81, 83},
                         [4] = {29, 31, 33, 35,37, 39, 41}, [5] = {15, 17, 19, 21, 23, 25, 27},
                         [6] = {92, 94, 96, 98, 100, 102, 104}, [7] = {117, 119, 121, 123, 125, 127, 129}}
-INIT_CREATURE_COUNT = {[0] = {2080, 1040, 840, 400, 240, 160, 80}, [1] = {1080, 800, 600, 400, 240, 160, 80},
+INIT_CREATURE_COUNT = {[0] = {2080, 1040, 840, 400, 240, 160, 80}, [1] = {1080, 800, 600, 320, 240, 160, 80},
                        [2] = {1720, 1200, 760, 400, 320, 160, 80}, [3] = {680, 480, 520, 320, 240, 160, 80},
-                       [4] = {1960, 1280, 760, 400, 240, 240, 120}, [5] = {1400, 1360, 680, 400, 280, 160, 80},
+                       [4] = {1960, 1280, 760, 400, 240, 160, 120}, [5] = {1400, 1360, 680, 400, 280, 160, 80},
                        [6] = {1560, 1200, 600, 640, 280, 160, 80}, [7] = {2360, 1200, 920, 400, 400, 160, 80}}
 
 -- Mapping for iteration of Sar family NPCs
@@ -156,13 +156,22 @@ SKILL_TEXTS = {
     [HERO_SKILL_DEFEND_US_ALL] = "Text/Game/Skills/Common/Defence/DefendUsAll/Name.txt"}
 
 -- Dragon Guardian Fight
-GUARDIAN2NAME = {"Dark", "Fire"}
+GUARDIAN2NAME = {"Dark", "Fire", "Air", "Earth", "Light", "Water"}
 GUARDIAN2ARMY = {[1] = {[0] = {CREATURE_ASSASSIN, 2000}, [1] = {CREATURE_BLOOD_WITCH, 2975}, [2] = {CREATURE_BLOOD_WITCH_2, 2033}, 
                         [3] = {CREATURE_MATRON, 350}, [4] = {CREATURE_MATRIARCH, 311},
                         [5] = {CREATURE_BLACK_DRAGON, 116}, [6] = {CREATURE_SHAMAN_HAG, 1400}},
                  [2] = {[0] = {CREATURE_FLAME_MAGE, 880}, [1] = {CREATURE_FLAME_KEEPER, 880}, [2] = {CREATURE_WARLORD, 800},
                         [3] = {CREATURE_BLACK_DRAGON, 400}, [4] = {CREATURE_PHOENIX, 400},
-                        [5] = {0, 0}, [6] = {0, 0}}}
+                        [5] = {0, 0}, [6] = {0, 0}},
+                 [3] = {[0] = {CREATURE_IRON_GOLEM, 1}, [1] = {0, 0},
+                        [2] = {0, 0}, [3] = {0, 0}, [4] = {0, 0}, [5] = {0, 0}, [6] = {0, 0}},
+                 [4] = {[0] = {CREATURE_SKELETON_ARCHER, 1423}, [1] = {CREATURE_SKELETON_ARCHER, 1423}, [2] = {CREATURE_DEMILICH, 240},
+                        [3] = {CREATURE_SHADOW_DRAGON, 120}, [4] = {CREATURE_DISEASE_ZOMBIE, 1052},
+                        [5] = {CREATURE_BANSHEE, 160}, [6] = {CREATURE_HORROR_DRAGON, 120}},
+                 [5] = {[0] = {CREATURE_IRON_GOLEM, 1}, [1] = {0, 0},
+                        [2] = {0, 0}, [3] = {0, 0}, [4] = {0, 0}, [5] = {0, 0}, [6] = {0, 0}},
+                 [6] = {[0] = {CREATURE_IRON_GOLEM, 1}, [1] = {0, 0},
+                        [2] = {0, 0}, [3] = {0, 0}, [4] = {0, 0}, [5] = {0, 0}, [6] = {0, 0}}}
 
 -- Mapping for iteration of Central Area NPCs
 INDEX2NPC = {"MapMaker", "Piao", "Tang", "RoundSweetPie", "Pia", "TinY", "Yanshen", "ASha", "Aldens", "DubiousMage1", "DubiousMage2",
@@ -754,7 +763,7 @@ end
 
 function SarFamilyStartFight()
     local heroName, sarName = g_tabCallbackParams[1], g_tabCallbackParams[2]
-    SetGameVar("SarChallenge", sarName)
+    SetGameVar("SarElamTrialSarChallenge", sarName)
 
     BlockGame()
     g_tabCreatureStored = _GetCreatureSlots(heroName)
@@ -2293,6 +2302,12 @@ function LandlordsMineCaptureTrigger(oldOwner, newOwner, heroName, dwellingName)
     end
 end
 
+function HeroLostTrigger(heroName)
+    BlockGame()
+    SetupDragonGuardianThread()
+    UnblockGame()
+end
+
 function SetupScene()
     BlockGame()
     for i = 1, 15 do SetObjectEnabled("Treant"..i, nil) end
@@ -2350,20 +2365,29 @@ end
 
 function SetupDragonGuardianThread()
     for i, guardian in GUARDIAN2NAME do
-        _SetCreatureSlots(guardian.."Guardian", GUARDIAN2ARMY[i])
-        SetHeroLootable(guardian.."Guardian", nil)
-        if guardian == "Dark" then
-            local morale = GetHeroStat(guardian.."Guardian", STAT_MORALE)
-            ChangeHeroStat(guardian.."Guardian", STAT_MORALE, 10 - morale)
-        elseif guardian == "Fire" then
-            local luck = GetHeroStat(guardian.."Guardian", STAT_LUCK)
-            ChangeHeroStat(guardian.."Guardian", STAT_LUCK, 0 - luck)
+        if GetGameVar("SarElamTrial"..guardian.."GuardianFought") == "true" and IsObjectExists(guardian.."Guardian") then
+            print("setup ", guardian)
+            _SetCreatureSlots(guardian.."Guardian", GUARDIAN2ARMY[i])
+            SetHeroLootable(guardian.."Guardian", nil)
+            if guardian == "Dark" or guardian == "Air" then
+                local morale = GetHeroStat(guardian.."Guardian", STAT_MORALE)
+                ChangeHeroStat(guardian.."Guardian", STAT_MORALE, 10 - morale)
+            elseif guardian == "Fire" then
+                local luck = GetHeroStat(guardian.."Guardian", STAT_LUCK)
+                ChangeHeroStat(guardian.."Guardian", STAT_LUCK, 0 - luck)
+            end
+            SetGameVar("SarElamTrial"..guardian.."GuardianFought", "false")
         end
     end
 end
 
 function SetupQuestObjects()
+    for i, guardian in GUARDIAN2NAME do
+        SetGameVar("SarElamTrial"..guardian.."GuardianFought", "true")
+    end
+
     startThread(SetupDragonGuardianThread)
+    Trigger(PLAYER_REMOVE_HERO_TRIGGER, 1, "HeroLostTrigger")
 
     -- Setup new day trigger
     Trigger(NEW_DAY_TRIGGER, "NewDayTrigger")
