@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Effect>
+	<Instances/>
+	<Lights/>
+	<Models>
+		<Item href="/Maps/SingleMissions/TrialsOfSarElam/MapObjects/Buildings/Effects/TrainingBank.(ModelInstance).xdb#xpointer(/ModelInstance)"/>
+		<Item href="/Maps/SingleMissions/TrialsOfSarElam/MapObjects/Buildings/Effects/TrainingBankFlagA1.(ModelInstance).xdb#xpointer(/ModelInstance)"/>
+		<Item href="/Maps/SingleMissions/TrialsOfSarElam/MapObjects/Buildings/Effects/TrainingBankFlagA2.(ModelInstance).xdb#xpointer(/ModelInstance)"/>
+		<Item href="/Maps/SingleMissions/TrialsOfSarElam/MapObjects/Buildings/Effects/TrainingBankFlagB1.(ModelInstance).xdb#xpointer(/ModelInstance)"/>
+		<Item href="/Maps/SingleMissions/TrialsOfSarElam/MapObjects/Buildings/Effects/TrainingBankFlagB2.(ModelInstance).xdb#xpointer(/ModelInstance)"/>
+		<Item href="/Maps/SingleMissions/TrialsOfSarElam/MapObjects/Buildings/Effects/TrainingBankFlagO1.(ModelInstance).xdb#xpointer(/ModelInstance)"/>
+	</Models>
+	<WindAffected>true</WindAffected>
+	<WindPower>1</WindPower>
+	<Duration>2.5</Duration>
+</Effect>

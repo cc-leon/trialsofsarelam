@@ -20,7 +20,8 @@ PORT_NECROPOLIS = "/GameMechanics/RefTables/GhostMode/face_Spectre.(Texture).xdb
 PORT_INFERNO = "/GameMechanics/RefTables/GhostMode/face_Chimera.(Texture).xdb#xpointer(/Texture)"
 PORT_FORTRESS = "/GameMechanics/RefTables/GhostMode/face_StoneSpirit.(Texture).xdb#xpointer(/Texture)"
 PORT_STRONGHOLD = "/GameMechanics/RefTables/GhostMode/face_Spook.(Texture).xdb#xpointer(/Texture)"
-
+PORT_TRAINING = "/UI/TownHall/haven/128/s3.xdb#xpointer(/Texture)"
+PORT_DE = "/UI/TownHall/necropolis/128/s1.xdb#xpointer(/Texture)"
 
 -- Names of the eight starting towns, mapped to GetPlayerRace() result
 RACE2NAME = {
@@ -122,13 +123,46 @@ CREATURE_TEXTS = {
     [CREATURE_LONGBOWMAN] = "Text/Game/Creatures/Haven/Longbowman.txt",
     [CREATURE_SWORDSMAN] = "Text/Game/Creatures/Haven/Swordsman.txt",
     [CREATURE_VINDICATOR] = "Text/Game/Creatures/Haven/Vindicator.txt",
-    [CREATURE_SKELETON] = "Text/Game/Creatures/Necropolis/Skeleton.txt",
     [CREATURE_SKELETON_ARCHER] = "Text/Game/Creatures/Necropolis/Skeleton_Archer.txt",
-    [CREATURE_SHARP_SHOOTER] = "Text/Game/Creatures/Preserve/3rd/SharpShooter_Name.txt"}
+    [CREATURE_SHARP_SHOOTER] = "Text/Game/Creatures/Preserve/3rd/SharpShooter_Name.txt",
+    [CREATURE_SKELETON] = "Text/Game/Creatures/Necropolis/Skeleton.txt",
+    [CREATURE_WALKING_DEAD] = "Text/Game/Creatures/Necropolis/Walking_Dead.txt",
+    [CREATURE_MANES] = "Text/Game/Creatures/Necropolis/Manes.txt",
+    [CREATURE_VAMPIRE] = "Text/Game/Creatures/Necropolis/Vampire.txt",
+    [CREATURE_LICH] = "Text/Game/Creatures/Necropolis/Lich.txt",
+    [CREATURE_WIGHT] = "Text/Game/Creatures/Necropolis/Wight.txt",
+    [CREATURE_BONE_DRAGON] = "Text/Game/Creatures/Necropolis/Bone_Dragon.txt",
+    [CREATURE_PEASANT] = "Text/Game/Creatures/Haven/Peasant.txt",
+    [CREATURE_MILITIAMAN] = "Text/Game/Creatures/Haven/Militiaman.txt",
+    [CREATURE_LANDLORD] = "Text/Game/Creatures/Haven/Landlord.txt",
+    [CREATURE_ARCHER] = "Text/Game/Creatures/Haven/Archer.txt",
+    [CREATURE_MARKSMAN] = "Text/Game/Creatures/Haven/Marksman.txt",
+    [CREATURE_LONGBOWMAN] = "Text/Game/Creatures/Haven/Longbowman.txt",
+    [CREATURE_FOOTMAN] = "Text/Game/Creatures/Haven/Footman.txt",
+    [CREATURE_SWORDSMAN] = "Text/Game/Creatures/Haven/Swordsman.txt",
+    [CREATURE_VINDICATOR] = "Text/Game/Creatures/Haven/Vindicator.txt",
+    [CREATURE_PRIEST] = "Text/Game/Creatures/Haven/Priest.txt",
+    [CREATURE_CLERIC] = "Text/Game/Creatures/Haven/Cleric.txt",
+    [CREATURE_ZEALOT] = "Text/Game/Creatures/Haven/Zealot.txt",
+    [CREATURE_CAVALIER] = "Text/Game/Creatures/Haven/Cavalier.txt",
+    [CREATURE_PALADIN] = "Text/Game/Creatures/Haven/Paladin.txt",
+    [CREATURE_CHAMPION] = "Text/Game/Creatures/Haven/Champion.txt",
+    [CREATURE_WAR_DANCER] = "Text/Game/Creatures/Preserve/War_Dancer.txt",
+    [CREATURE_GOBLIN_TRAPPER] = "Text/Game/Creatures/Orcs/Goblin2.txt"}
+
+SKILL_TEXTS = {
+    [RANGER_FEAT_FOREST_GUARD_EMBLEM] = "Text/Game/Skills/Common/Leadership/ForestGuardEmblem/Name.txt",
+    [HERO_SKILL_GOBLIN_SUPPORT] = "Text/Game/Skills/Common/WarMachines/GoblinSupport/Name.txt",
+    [HERO_SKILL_DEFEND_US_ALL] = "Text/Game/Skills/Common/Defence/DefendUsAll/Name.txt"}
 
 -- Dragon Guardian Fight
-INDEX2GUARDIAN = {"Dark"}
-INDEX2ARMY = {[0] = {{}, {}, {}, {}, {}, {}, {}}}
+GUARDIAN2NAME = {"Dark", "Fire"}
+GUARDIAN2ARMY = {[1] = {[0] = {CREATURE_ASSASSIN, 2000}, [1] = {CREATURE_BLOOD_WITCH, 2975}, [2] = {CREATURE_BLOOD_WITCH_2, 2033}, 
+                        [3] = {CREATURE_MATRON, 350}, [4] = {CREATURE_MATRIARCH, 311},
+                        [5] = {CREATURE_BLACK_DRAGON, 116}, [6] = {CREATURE_SHAMAN_HAG, 1400}},
+                 [2] = {[0] = {CREATURE_FLAME_MAGE, 880}, [1] = {CREATURE_FLAME_KEEPER, 880}, [2] = {CREATURE_WARLORD, 800},
+                        [3] = {CREATURE_BLACK_DRAGON, 400}, [4] = {CREATURE_PHOENIX, 400},
+                        [5] = {0, 0}, [6] = {0, 0}}}
 
 -- Mapping for iteration of Central Area NPCs
 INDEX2NPC = {"MapMaker", "Piao", "Tang", "RoundSweetPie", "Pia", "TinY", "Yanshen", "ASha", "Aldens", "DubiousMage1", "DubiousMage2",
@@ -152,6 +186,19 @@ BANKLOCATIONS = {{26, 39}, {25, 39}, {24, 39}, {23, 39}, {22, 39},
 CRYSTAL2INDEX = {["StorageCrystal1"] = 1, ["StorageCrystal2"] = 2, ["StorageCrystal3"] = 3, ["StorageCrystal4"] = 4,
                  ["StorageCrystal5"] = 5, ["StorageCrystal6"] = 6, ["StorageCrystal7"] = 7, ["StorageCrystal8"] = 8,
                  ["StorageCrystal9"] = 9, ["StorageCrystal10"] = 10}
+
+-- Training and dark energy bank information
+TRAINING_MAPPING = {
+    [CREATURE_PEASANT] = CREATURE_ARCHER, [CREATURE_MILITIAMAN] = CREATURE_ARCHER, [CREATURE_LANDLORD] = CREATURE_ARCHER,
+    [CREATURE_ARCHER] = CREATURE_FOOTMAN, [CREATURE_MARKSMAN] = CREATURE_FOOTMAN, [CREATURE_LONGBOWMAN] = CREATURE_FOOTMAN,
+    [CREATURE_FOOTMAN] = CREATURE_PRIEST, [CREATURE_SWORDSMAN] = CREATURE_PRIEST, [CREATURE_VINDICATOR] = CREATURE_PRIEST,
+    [CREATURE_PRIEST] = CREATURE_CAVALIER, [CREATURE_CLERIC] = CREATURE_CAVALIER, [CREATURE_ZEALOT] = CREATURE_CAVALIER}
+
+RECRUIT_COST = {[CREATURE_ARCHER] = 50, [CREATURE_FOOTMAN] = 85, [CREATURE_PRIEST] = 600, [CREATURE_CAVALIER] = 1300}
+
+DE_COST = {
+    {CREATURE_SKELETON, 2}, {CREATURE_WALKING_DEAD, 4}, {CREATURE_MANES, 9}, {CREATURE_VAMPIRE, 20},
+    {CREATURE_LICH, 46}, {CREATURE_WIGHT, 88}, {CREATURE_BONE_DRAGON, 126}}
 
 -- Learn spell effects
 EFFECT_REGEN = "/Effects/_(Effect)/Spells/Regeneration.(Effect).xdb#xpointer(/Effect)"
@@ -205,11 +252,18 @@ g_tabHeroesBanked = {}
 -- Data exchange for callbacks
 g_tabCallbackParams = {}
 
+-- Training and dark energy bank
+g_iDarkEnergy = 120000
+g_iTrainingQuota = 800
+
 -- Quest flags
 _alienQuestHero = nil
 _panickyInfernoRazed = nil
 _dwellingsRazed = 0
 _golemFightResult = 0
+_goblinSupportUsed = nil
+_defendUsAllUsed = nil
+_battleCommanderUsed = nil
 
 function _GetHeroRace(heroName)
     -- Return the race id of a hero
@@ -363,7 +417,8 @@ function _ConfiscateCreatures(heroName, creatureID, creatureAmount)
     _MergeCreatureSlots(heroName, creatureID)
     local temp = _GetCreatureSlots(heroName)
     if _GetCreatureCount(heroName) == creatureAmount then
-        creatureAmount = creatureAmount - 1
+        AddHeroCreatures(heroName, CREATURE_PEASANT, 1)
+        sleep(1)
     end
     for i, slot in temp do
         if slot[1] == creatureID then
@@ -430,6 +485,82 @@ function _TeachSpell(heroName, spellID)
         ShowFlyingSign(g_sPath.."SpellLearntError.txt", heroName, -1, 8)
     end
     sleep(6)
+end
+
+_pagedObj = {
+    ["page"] = nil, ["port"] = nil, ["info"] = nil, ["desc"] = nil, 
+    ["capt"] = nil, ["callback"] = nil, ["options"] = nil, ["next"] = nil, ["back"] = nil}
+
+function _PagedTalkBoxCallback(pNum, cNum)
+    local callback = ""
+    local recall = nil
+    if (not (_pagedObj["next"] or _pagedObj["back"])) or cNum == 0 then
+        callback = _pagedObj["callback"].."("..cNum..")"
+    elseif _pagedObj["back"] and cNum == _pagedObj["back"] then
+        _pagedObj["page"] = 1
+        recall = true
+    elseif _pagedObj["next"] and cNum == _pagedObj["next"] then
+        _pagedObj["page"] = _pagedObj["page"] + 1
+        recall = true
+    else
+        callback = _pagedObj["callback"].."("..((_pagedObj["page"] - 1) * 4 + cNum)..")"
+    end
+    if recall then
+        _PagedTalkBox(_pagedObj["port"], _pagedObj["info"], _pagedObj["desc"], _pagedObj["capt"], _pagedObj["callback"], _pagedObj["options"])
+    else
+        _pagedObj = {}
+        parse(callback)()
+    end
+end
+
+function _PagedTalkBox(port, info, desc, capt, callback, options)
+    args = {}
+    if not _pagedObj["page"] then
+        _pagedObj["page"] = 1
+        _pagedObj["port"] = port
+        _pagedObj["info"] = info
+        _pagedObj["desc"] = desc
+        _pagedObj["capt"] = capt
+        _pagedObj["callback"] = callback
+        _pagedObj["options"] = options
+    end
+    if length(options) <= 5 then
+        if options[1] then args[1] = {g_sPath.."TalkBoxOption.txt"; texts = options[1]} end
+        if options[2] then args[2] = {g_sPath.."TalkBoxOption.txt"; texts = options[2]} end
+        if options[3] then args[3] = {g_sPath.."TalkBoxOption.txt"; texts = options[3]} end
+        if options[4] then args[4] = {g_sPath.."TalkBoxOption.txt"; texts = options[4]} end
+        if options[5] then args[5] = {g_sPath.."TalkBoxOption.txt"; texts = options[5]} end
+    else
+        local startI = (_pagedObj["page"] - 1) * 4
+        for i = 1, 4 do
+            if options[startI + i] then
+                args[i] = {g_sPath.."TalkBoxOption.txt"; texts = options[startI + i]}
+            else
+                args[i] = g_sPath.."TalkBoxBack.txt"
+                _pagedObj["next"] = nil
+                _pagedObj["back"] = i
+                break
+            end
+        end
+        if options[startI + 5] then
+            args[5] = g_sPath.."TalkBoxNext.txt"
+            _pagedObj["next"] = 5
+            _pagedObj["back"] = nil
+        end
+    end
+
+    TalkBoxForPlayers(
+        GetPlayerFilter(1),
+        port,
+        info,
+        {g_sPath.."TalkBoxMain.txt"; texts = desc},
+        nil,
+        "_PagedTalkBoxCallback",
+        1,
+        capt,
+        nil,
+        0,
+        args[1], args[2], args[3], args[4], args[5])
 end
 
 function GarrisonVisitingMessageTrigger(heroName, garrisonName)
@@ -730,6 +861,7 @@ function NPCMapMakerCallback(pNum, cNum)
             if remainingSpells <= 0 then
                 MessageBox(g_sPath.."MapMakerOption3AllSpellsOK.txt")
                 SetObjectiveState("LearnAllSpells", OBJECTIVE_COMPLETED)
+                _TeachSpell(heroName, SPELL_CELESTIAL_SHIELD)
             else
                 MessageBox({g_sPath.."MapMakerOption3AllSpellsNotOK.txt"; n_spell = remainingSpells})
             end
@@ -746,8 +878,9 @@ function NPCMapMakerCallback(pNum, cNum)
             if remainingSpells <= 0 then
                 local heroName = g_tabCallbackParams[1]
                 MessageBox(g_sPath.."MapMakerOption3AllRunesOK.txt")
-                _TeachSpell(heroName, SPELL_CELESTIAL_SHIELD)
                 SetObjectiveState("LearnAllRunes", OBJECTIVE_COMPLETED)
+                GiveArtefact(heroName, ARTIFACT_GREAT_AXE_OF_GIANT_SLAYING)
+                GiveArtefact(heroName, ARTIFACT_DWARVEN_SMITHY_HUMMER)
             else
                 MessageBox(g_sPath.."MapMakerOption3AllRunesNotOK.txt")
             end
@@ -764,8 +897,7 @@ function NPCMapMakerCallback(pNum, cNum)
             if remainingSpells <= 0 then
                 local heroName = g_tabCallbackParams[1]
                 MessageBox(g_sPath.."MapMakerOption3AllWarCriesOK.txt")
-                GiveArtefact(heroName, ARTIFACT_GREAT_AXE_OF_GIANT_SLAYING)
-                GiveArtefact(heroName, ARTIFACT_DWARVEN_SMITHY_HUMMER)
+                GiveArtefact(heroName, ARTIFACT_SANDALS_OF_THE_SAINT)
                 SetObjectiveState("LearnAllWarCries", OBJECTIVE_COMPLETED)
             else
                 MessageBox(g_sPath.."MapMakerOption3AllWarCriesNotOK.txt")
@@ -928,6 +1060,38 @@ function NPCWindBellKLCallback(pNum, cNum)
         SetPlayerResource(1, SULFUR, 200)
         SetPlayerResource(1, GEM, 200)
         SetPlayerResource(1, GEM, 1000000)
+    elseif cNum == 4 then
+        local nothing = nil
+        local creatureID, creatureAmount, skillID
+        if (not _goblinSupportUsed) and HasHeroSkill(heroName, HERO_SKILL_GOBLIN_SUPPORT) then
+            creatureID = CREATURE_GOBLIN_TRAPPER
+            creatureAmount = 2240
+            skillID = HERO_SKILL_GOBLIN_SUPPORT
+            _goblinSupportUsed = true
+        elseif (not _defendUsAllUsed) and HasHeroSkill(heroName, HERO_SKILL_DEFEND_US_ALL) then
+            creatureID = CREATURE_GOBLIN_TRAPPER
+            creatureAmount = 960
+            skillID = HERO_SKILL_DEFEND_US_ALL
+            _defendUsAllUsed = true
+        elseif (not _battleCommanderUsed) and HasHeroSkill(heroName, RANGER_FEAT_FOREST_GUARD_EMBLEM) then
+            creatureID = CREATURE_WAR_DANCER
+            creatureAmount = 960
+            skillID = RANGER_FEAT_FOREST_GUARD_EMBLEM
+            _battleCommanderUsed = true
+        else
+            nothing = true
+        end
+        if _goblinSupportUsed and _defendUsAllUsed and _battleCommanderUsed and (not creatureID) then
+            MessageBox(g_sPath.."WindBellKLOption4AllClaimed.txt")
+        else
+            if nothing then
+                MessageBox(g_sPath.."WindBellKLOption4Nothing.txt")
+            else
+                AddHeroCreatures(heroName, creatureID, creatureAmount)
+                sleep(2)
+                ShowFlyingSign({g_sPath.."WindBellKLOption4Awarded.txt"; n_amount = creatureAmount, c_creature = CREATURE_TEXTS[creatureID], c_skill = SKILL_TEXTS[skillID]}, heroName, -1, 8)
+            end
+        end
     end
 end
 
@@ -1062,6 +1226,11 @@ function MegaGodzillaCombatCallback(heroName, isWin)
         SetObjectiveState("ArkathPuzzle", OBJECTIVE_FAILED)
         MessageBox(g_sPath.."MegaGodzillaFail.txt")
     end
+end
+
+function BeastBreederCallback()
+    SetObjectiveState("BreedWolves", OBJECTIVE_ACTIVE)
+    AddObjectCreatures(g_tabCallbackParams[1], CREATURE_WOLF, 10)
 end
 
 function NPCVisitsTrigger(heroName, npcName)
@@ -1214,7 +1383,7 @@ function NPCVisitsTrigger(heroName, npcName)
         MessageBox({g_sPath.."YanshenIntro.txt"; n_hero = numHeroes})
         if length(g_tabHeroesBanked) < 10 then
             local temp = _GetHeroInfo(heroName)
-            g_tabCallbackParams = {heroName, temp}
+            g_tabCallbackParams = {heroName, _GetHeroInfo(heroName)}
             QuestionBox({g_sPath.."YanshenIntro2.txt"; h_level = temp[1],
                          h_prof = temp[2], h_name = temp[3]}, "NPCYanshenCallback", "")
         end
@@ -1302,7 +1471,8 @@ function NPCVisitsTrigger(heroName, npcName)
             0,
             g_sPath.."WindBellKLOption1.txt",
             g_sPath.."WindBellKLOption2.txt",
-            g_sPath.."WindBellKLOption3.txt")
+            g_sPath.."WindBellKLOption3.txt",
+            g_sPath.."WindBellKLOption4.txt")
 
     elseif npcName == "MasterTieru" then
         local objState = GetObjectiveState("AnswerAllSphinxRiddles")
@@ -1483,6 +1653,28 @@ function NPCVisitsTrigger(heroName, npcName)
         end
         SetObjectRotation("MegaGodzilla", 180)
 
+    elseif npcName == "BeastBreeder" then
+        local objState = GetObjectiveState("BreedWolves")
+        if objState < OBJECTIVE_ACTIVE then
+            MessageBox(g_sPath.."BreedWolvesDescription2.txt")
+            g_tabCallbackParams = {heroName}
+            QuestionBox(g_sPath.."NPCConfirm.txt", "BeastBreederCallback", "")
+        elseif objState == OBJECTIVE_ACTIVE then
+            local wolvesAmount = GetObjectCreatures(heroName, CREATURE_WOLF)
+            if wolvesAmount < 500 then
+                MessageBox({g_sPath.."BeastBreederNotEnough.txt"; n_limit = 500, n_actual = wolvesAmount})
+            else
+                MessageBox(g_sPath.."BeastBreederEnough.txt")
+                GiveArtefact(heroName, ARTIFACT_PLATE_MAIL_OF_STABILITY)
+                BlockGame()
+                _ConfiscateCreatures(heroName, CREATURE_WOLF, 500)
+                UnblockGame()
+                SetObjectiveState("BreedWolves", OBJECTIVE_COMPLETED)
+                SetObjectiveVisible("BreedWolves", nil)
+            end
+        elseif objState == OBJECTIVE_COMPLETED then
+            MessageBox(g_sPath.."BeastBreederFinished.txt")
+        end
     else
         print("Run into error in NPCVisitsTrigger! ", heroName, " ", npcName)
     end
@@ -1510,6 +1702,46 @@ function RuneProdigyMonitoringThread()
             break
         else
             sleep(10)
+        end
+    end
+end
+
+function TrainingBankCallback(cNum)
+    if cNum > 0 then
+        local heroName, slot = g_tabCallbackParams[1], g_tabCallbackParams[2][cNum]
+        if GetPlayerResource(1, GOLD) < slot[4] then
+            MessageBox({g_sPath.."TrainingBankNotEnoughGold.txt"; n_actual = slot[4], n_limit = GetPlayerResource(1, GOLD)})
+        elseif g_iTrainingQuota < slot[2] then
+            MessageBox({g_sPath.."TrainingBankNotEnoughQuota.txt"; n_actual = g_iTrainingQuota, n_limit = slot[2]})
+        else
+            BlockGame()
+            ShowFlyingSign({g_sPath.."TrainingBankFlyby.txt"; n_amount = slot[2], c_prev = CREATURE_TEXTS[slot[1]], c_after = CREATURE_TEXTS[slot[3]]},
+                           heroName, -1, 8)
+            _ConfiscateCreatures(heroName, slot[1], slot[2])
+            sleep(1)
+            AddHeroCreatures(heroName, slot[3], slot[2])
+            sleep(1)
+            UnblockGame()
+            ShowFlyingSign({g_sPath.."TrainingBankFlyby2.txt"; n_gold = slot[4]}, heroName, -1, 8)
+            SetPlayerResource(1, GOLD, GetPlayerResource(1, GOLD) - slot[4])
+            g_iTrainingQuota = g_iTrainingQuota - slot[2]
+        end
+    end
+end
+
+function DarkEnergyBankCallback(cNum)
+    if cNum > 0 then
+        local heroName, slot = g_tabCallbackParams[1], g_tabCallbackParams[2][cNum]
+        if g_iDarkEnergy < slot[3] then
+            MessageBox({g_sPath.."DarkEnegyBankNotEnough.txt"; n_actual = g_iDarkEnergy, n_limit = slot[3]})
+        else
+            BlockGame()
+            ShowFlyingSign({g_sPath.."DarkEnergyBankFlyby.txt"; n_amount = slot[2], c_creature = CREATURE_TEXTS[slot[1]]},
+                           heroName, -1, 8)
+            AddHeroCreatures(heroName, slot[1], slot[2])
+            sleep(2)
+            UnblockGame()
+            g_iDarkEnergy = g_iDarkEnergy - slot[3]
         end
     end
 end
@@ -1607,6 +1839,76 @@ function BuildingTouchTrigger(heroName, buildingName)
             MessageBox(g_sPath.."WarCryShrineNotBarbarian.txt")
         end
 
+    elseif buildingName == "TrainingBank" then
+        local discount = 100
+        local discountHero = {["Isabell"] = true, ["Nicolai"] = true, ["Saint Isabell"] = true}
+        local slots = _GetCreatureSlots(heroName)
+        local mastery = GetHeroSkillMastery(heroName, SKILL_TRAINING)
+        local options = {}
+        g_tabCallbackParams[2] = {}
+        if mastery == 1 then
+            dicount = discount - 0
+        elseif mastery == 2 then
+            discount = discount - 15
+        elseif mastery == 3 then
+            discount = discount - 30
+        elseif mastery == 4 then
+            discount = discount - 45
+        else
+            MessageBox(g_sPath.."TrainingBankRefused.txt")
+            return
+        end
+        if HasHeroSkill(heroName, PERK_EXPERT_TRAINER) then
+            discount = discount - 35
+        end
+        if discountHero[heroName] then
+            discout = discount - floor((GetHeroLevel(heroName) - 1) / 3) - 1
+        end
+        for i, slot in slots do
+            if TRAINING_MAPPING[slot[1]] then
+                local trainedID = TRAINING_MAPPING[slot[1]]
+                local gold = intg(RECRUIT_COST[trainedID] * slot[2] * discount / 100)
+                options[length(options) + 1] = {g_sPath.."TrainingBankOption.txt"; n_amount = slot[2], n_gold = gold, c_prev = CREATURE_TEXTS[slot[1]], c_after = CREATURE_TEXTS[trainedID]}
+                g_tabCallbackParams[2][length(g_tabCallbackParams[2]) + 1] = {slot[1] ,slot[2], trainedID, gold}
+            end
+        end
+        if length(options) > 0 then
+            local maintext = {g_sPath.."TrainingBankDescription.txt"; n_quota = g_iTrainingQuota, n_discount = 100 - discount}
+            g_tabCallbackParams[1] = heroName
+            _PagedTalkBox(
+                PORT_TRAINING, g_sPath.."DescriptionTrainingBank.txt",
+                maintext, g_sPath.."NameTrainingBank.txt", 
+                "TrainingBankCallback", options)
+        else
+            MessageBox(g_sPath.."TrainingBankRefused2.txt")
+        end
+
+    elseif buildingName == "DarkEnergyBank" then
+        if RACE2PROF[_GetHeroRace(heroName)] == "Necromancer" then
+            local options = {}
+            local discount = 100
+            local amount = _GetCreatureCount(heroName)
+            if HasArtefact(heroName, ARTIFACT_NECROMANCER_PENDANT, 1) then
+                discount = discount - 10
+                if HasArtefact(heroName, ARTIFACT_STAFF_OF_VEXINGS, 1) and HasArtefact(heroName, ARTIFACT_CLOAK_OF_MOURNING, 1)
+                   and HasArtefact(heroName, ARTIFACT_RING_OF_DEATH, 1) then
+                    discount = discount - 25
+                end
+            end
+            g_tabCallbackParams = {heroName, {}}
+            for i, de in DE_COST do
+                local unitCost = round(de[2] * discount / 100)
+                options[length(options) + 1] = {g_sPath.."DarkEnergyBankOption.txt"; n_de = amount * unitCost, n_creature = amount, c_creature = CREATURE_TEXTS[de[1]]}
+                g_tabCallbackParams[2][length(g_tabCallbackParams[2]) + 1] = {de[1], amount, amount * unitCost}
+            end
+            local maintext = {g_sPath.."DarkEnergyBankDescription.txt"; n_de = g_iDarkEnergy, n_discount = 100 - discount}
+            _PagedTalkBox(
+                PORT_DE, g_sPath.."DescriptionDarkEnergyBank.txt",
+                maintext, g_sPath.."NameDarkEnergyBank.txt",
+                "DarkEnergyBankCallback", options)
+        else
+            MessageBox(g_sPath.."DarkEnergyBankRefused.txt")
+        end
     else
         print("Run into error in BuildingTouchTrigger! ", heroName, " ", trainerName)
     end
@@ -1631,7 +1933,6 @@ function AreTestColemsDefeated(heroName, isWin)
         SetObjectiveState("KillMagneticGolems", OBJECTIVE_FAILED)
     end
     RemoveObject("TestGolems")
-    print("Result is, ", _GolemFightResult)
 end
 
 function AnnoyingDevilConfirmCallback()
@@ -1746,6 +2047,7 @@ end
 function NonHostileMonsterTrigger(heroName, monsterName)
     if monsterName == "UndyingPeasant" then
         StartCombat(heroName, nil, 1, CREATURE_LANDLORD, 1, nil, "LandLordAfterFightCallback")
+
     elseif monsterName == "TestGolems" then
         if RACE2PROF[_GetHeroRace(heroName)] == "Barbarian" then
             StartCombat(heroName, nil, 3,
@@ -1754,6 +2056,7 @@ function NonHostileMonsterTrigger(heroName, monsterName)
         else
             MessageBox(g_sPath.."ExoticMageError.txt")
         end
+
     elseif monsterName == "Khenghi" then
         local cyclops = {CREATURE_CYCLOP, CREATURE_CYCLOP_UNTAMED, CREATURE_CYCLOP_BLOODEYED}
         local theCyclop = nil
@@ -2045,7 +2348,23 @@ function NormalizeStartRace()
     end
 end
 
+function SetupDragonGuardianThread()
+    for i, guardian in GUARDIAN2NAME do
+        _SetCreatureSlots(guardian.."Guardian", GUARDIAN2ARMY[i])
+        SetHeroLootable(guardian.."Guardian", nil)
+        if guardian == "Dark" then
+            local morale = GetHeroStat(guardian.."Guardian", STAT_MORALE)
+            ChangeHeroStat(guardian.."Guardian", STAT_MORALE, 10 - morale)
+        elseif guardian == "Fire" then
+            local luck = GetHeroStat(guardian.."Guardian", STAT_LUCK)
+            ChangeHeroStat(guardian.."Guardian", STAT_LUCK, 0 - luck)
+        end
+    end
+end
+
 function SetupQuestObjects()
+    startThread(SetupDragonGuardianThread)
+
     -- Setup new day trigger
     Trigger(NEW_DAY_TRIGGER, "NewDayTrigger")
 
@@ -2109,6 +2428,10 @@ function SetupQuestObjects()
     SetObjectEnabled("WarCryShrine2", nil)
     Trigger(OBJECT_TOUCH_TRIGGER, "WarCryShrine1", "BuildingTouchTrigger")
     Trigger(OBJECT_TOUCH_TRIGGER, "WarCryShrine2", "BuildingTouchTrigger")
+    SetObjectEnabled("TrainingBank", nil)
+    SetObjectEnabled("DarkEnergyBank", nil)
+    Trigger(OBJECT_TOUCH_TRIGGER, "TrainingBank", "BuildingTouchTrigger")
+    Trigger(OBJECT_TOUCH_TRIGGER, "DarkEnergyBank", "BuildingTouchTrigger")
 
     -- Setup Monster Triggers
     SetObjectEnabled("UndyingPeasant", nil)
@@ -2142,9 +2465,8 @@ function SetupQuestObjects()
 
     -- Make NPC non-lootable
     SetHeroLootable("RedHeavenHero03", nil)
+    SetHeroLootable("Wulfstan", nil)
 
-    -- Setup Dragon Guardians
-    --for i, guardian in INDEX2GUARDIAN do SetObjectOwner(guardian.."Guardian", 8) end
 end
 
 function DancingPeasant()
