@@ -1,9 +1,12 @@
+true = not nil
+DRAINABLE = {
+    ["AirGuardian"] = true, ["FireGuardian"] = true, ["LightGuardian"] = true, ["WaterGuardian"] = true, 
+    ["SeventhGuardian"] = true, ["ChaosGuardian"] = true}
+
 g_sGuardianName = ""
 g_bFirstTime = nil
 g_iTurns = 0
-true = not nil
 g_setDeadDefender = {}
-
 g_sThread = ""
 
 function _subThread() parse(g_sThread)() end
@@ -76,7 +79,7 @@ function _CureSelf(sUnitName)
         if GetCreatureType(unit) == CREATURE_SPRITE then existing[unit] = true end
     end
     AddCreature(DEFENDER, CREATURE_SPRITE, 1, 7, 5)
-    sleep(70)
+    sleep(80)
     units = GetDefenderCreatures()
     local casterName = ""
     for i, unit in units do
@@ -86,7 +89,7 @@ function _CureSelf(sUnitName)
     local ux, uy = GetUnitPosition(sUnitName)
     g_sThread = "UseCombatAbility(".."\""..casterName.."\""..", "..SPELL_ABILITY_LAY_HANDS..", "..ux..", "..uy..")"
     startThread(_subThread)
-    sleep(70)
+    sleep(80)
     RemoveCombatUnit(casterName)
     sleep(1)
 end
@@ -106,6 +109,20 @@ function _CommandWait(sUnitName)
     startThread(_subThread)
 end
 
+function _Kill5Stacks()
+    local units = GetAttackerCreatures()
+    local j = 0
+    for i, unit in units do
+        if j >= 5 then
+            break
+        else
+            g_sThread = "UnitCastAimedSpell(\"defender-hero\", "..SPELL_MAGIC_FIST..", \""..unit.."\")"
+            for k = 1, 20 do startThread(_subThread); sleep(1); end
+        end
+        j = j + 1
+    end
+end
+
 function Prepare()
     g_sGuardianName = GetHeroName("defender-hero")
     SetGameVar("SarElamTrial"..g_sGuardianName.."Fought", "true")
@@ -119,34 +136,26 @@ function Start()
     setATB("defender-hero", 0.99)
     sleep(1)
     if g_sGuardianName == "FireGuardian" then
-        SetUnitManaPoints("attacker-hero", 0)
         for i, unit in GetDefenderCreatures() do
             local unitID = GetCreatureType(unit)
             if unitID == CREATURE_FLAME_MAGE or unitID == CREATURE_FLAME_KEEPER then
                 SetUnitManaPoints(unit, 0)
             end
         end
-        SummonCreature(DEFENDER, CREATURE_WARLORD, 800, 13, 9)
-        SummonCreature(DEFENDER, CREATURE_WARLORD, 800, 13, 1)
+        AddCreature(DEFENDER, CREATURE_WARLORD, 800, 13, 9)
+        AddCreature(DEFENDER, CREATURE_WARLORD, 800, 13, 1)
     elseif g_sGuardianName == "AirGuardian" then
         local units = GetDefenderCreatures()
         local dummyName = units[0]
         SetCombatPosition(dummyName, 13, 1)
         sleep(1)
         AddCreature(DEFENDER, CREATURE_TITAN, 400, 13, 10)
-        sleep(1)
         AddCreature(DEFENDER, CREATURE_STORM_LORD, 400, 13, 8)
-        sleep(1)
         AddCreature(DEFENDER, CREATURE_GRAND_ELF, 4000, 13, 6)
-        sleep(1)
         AddCreature(DEFENDER, CREATURE_GRAND_ELF, 4000, 13, 4)
-        sleep(1)
         AddCreature(DEFENDER, CREATURE_COMBAT_MAGE, 2000, 12, 6)
-        sleep(1)
         AddCreature(DEFENDER, CREATURE_COMBAT_MAGE, 2000, 12, 5)
-        sleep(1)
         AddCreature(DEFENDER, CREATURE_COMBAT_MAGE, 2000, 12, 4)
-        sleep(1)
         RemoveCombatUnit(dummyName)
         sleep(1)
     elseif g_sGuardianName == "LightGuardian" then
@@ -155,28 +164,20 @@ function Start()
         SetCombatPosition(dummyName, 13, 1)
         sleep(1)
         AddCreature(DEFENDER, CREATURE_INFERNAL_SUCCUBUS, 4000, 13, 10)
-        sleep(1)
         AddCreature(DEFENDER, CREATURE_INFERNAL_SUCCUBUS, 4000, 13, 9)
-        sleep(1)
         AddCreature(DEFENDER, CREATURE_INFERNAL_SUCCUBUS, 4000, 13, 8)
-        sleep(1)
         AddCreature(DEFENDER, CREATURE_INFERNAL_SUCCUBUS, 4000, 13, 7)
-        sleep(1)
         AddCreature(DEFENDER, CREATURE_INFERNAL_SUCCUBUS, 4000, 13, 6)
-        sleep(1)
         AddCreature(DEFENDER, CREATURE_INFERNAL_SUCCUBUS, 4000, 13, 5)
-        sleep(1)
         AddCreature(DEFENDER, CREATURE_INFERNAL_SUCCUBUS, 4000, 13, 4)
-        sleep(1)
         RemoveCombatUnit(dummyName)
         sleep(1)
         _MassAimedSpell("defender-hero", ATTACKER, SPELL_MAGIC_FIST)
         sleep(100)
         _MassAimedSpell("defender-hero", ATTACKER, SPELL_MAGIC_FIST)
-        sleep(500)
+        sleep(800)
         _MassAimedSpell("defender-hero", ATTACKER, SPELL_MAGIC_FIST)
         sleep(1)
-        SetUnitManaPoints("attacker-hero", 0)
     elseif g_sGuardianName == "WaterGuardian" then
         local units = GetDefenderCreatures()
         local dummyName = units[0]
@@ -188,13 +189,30 @@ function Start()
         AddCreature(DEFENDER, CREATURE_ARCH_MAGI, 10000, 13, 7)
         AddCreature(DEFENDER, CREATURE_ARCH_MAGI, 10000, 13, 6)
         AddCreature(DEFENDER, CREATURE_COMBAT_MAGE, 10000, 13, 3)
+        RemoveCombatUnit(dummyName)
+        sleep(10)
+        AddCreature(DEFENDER, CREATURE_COMBAT_MAGE, 10000, 13, 1)
+        _MassAbility("defender-hero", SPELL_ABILITY_COUNTERSPELL)
+        sleep(1)
+    elseif g_sGuardianName == "SeventhGuardian" then
+        local units = GetDefenderCreatures()
+        local dummyName = units[0]
+        SetCombatPosition(dummyName, 13, 1)
+        sleep(1)
+        AddCreature(DEFENDER, CREATURE_OBSIDIAN_GOLEM, 8000, 13, 10)
+        AddCreature(DEFENDER, CREATURE_OBSIDIAN_GOLEM, 8000, 13, 9)
         sleep(1)
         RemoveCombatUnit(dummyName)
         sleep(1)
-        AddCreature(DEFENDER, CREATURE_COMBAT_MAGE, 10000, 13, 1)
+        _Kill5Stacks()
         _MassAbility("defender-hero", SPELL_ABILITY_COUNTERSPELL)
-        SetUnitManaPoints("attacker-hero", 0)
+        setATB("attacker-hero", 1.00)
         sleep(1)
+    elseif g_sGuardianName == "ChaosGuardian" then
+        local units = GetDefenderCreatures()
+        for i, unit in units do setATB(unit, 0.0) end
+        sleep(1)
+        _MassAimedSpell("defender-hero", DEFENDER, SPELL_ANTI_MAGIC)
     end
 end
 
@@ -224,7 +242,6 @@ function DefenderHeroMove(sUnitName)
         if g_iTurns >= 3 then _MassAimedSpell(sUnitName, ATTACKER, SPELL_IMPLOSION) end
         if g_iTurns >= 2 then _MassAimedSpell(sUnitName, ATTACKER, SPELL_DEEP_FREEZE) end
         if g_iTurns >= 1 then _MassSpell(sUnitName, SPELL_ARMAGEDDON) end
-        SetUnitManaPoints("attacker-hero", 0)
         combatSetPause(nil)
     elseif g_sGuardianName == "AirGuardian" then
         combatSetPause(true)
@@ -251,7 +268,6 @@ function DefenderHeroMove(sUnitName)
         sleep(300)
         _MassAimedSpell(sUnitName, DEFENDER, SPELL_REGENERATION)
         sleep(1)
-        SetUnitManaPoints("attacker-hero", 0)
         combatSetPause(nil)
     elseif g_sGuardianName == "WaterGuardian" then
         combatSetPause(true)
@@ -263,8 +279,21 @@ function DefenderHeroMove(sUnitName)
         _MassResurrect(sUnitName)
         sleep(1)
         _MassAbility(sUnitName, SPELL_ABILITY_COUNTERSPELL)
-        SetUnitManaPoints("attacker-hero", 0)
         _CommandWait(sUnitName)
+        combatSetPause(nil)
+    elseif g_sGuardianName == "SeventhGuardian" then
+        combatSetPause(true)
+        SetUnitManaPoints(sUnitName, 1800); sleep(1);
+        _MassAbility(sUnitName, SPELL_ABILITY_COUNTERSPELL)
+        if g_iTurns == 0 then 
+            _Kill5Stacks()
+        end
+        combatSetPause(nil)
+    elseif g_sGuardianName == "ChaosGuardian" then
+        combatSetPause(true)
+        SetUnitManaPoints(sUnitName, 1800); sleep(1);
+        _MassAbility(sUnitName, SPELL_ABILITY_COUNTERSPELL)
+        _MassAimedSpell(sUnitName, ATTACKER, SPELL_DIVINE_VENGEANCE)
         combatSetPause(nil)
     end
     g_iTurns = g_iTurns + 1
@@ -272,21 +301,21 @@ function DefenderHeroMove(sUnitName)
 end
 
 function DefenderCreatureMove(sUnitName)
-    if g_sGuardianName == "FireGuardian" then
-        SetUnitManaPoints("attacker-hero", 0)
-    elseif g_sGuardianName == "AirGuardian" then
+    if g_sGuardianName == "AirGuardian" then
         combatSetPause(true)
         _CureSelf(sUnitName)
         combatSetPause(nil)
     elseif g_sGuardianName == "LightGuardian" then
-        SetUnitManaPoints("attacker-hero", 0)
         return true
     elseif g_sGuardianName == "WaterGuardian" then
-        SetUnitManaPoints("attacker-hero", 0)
         SetUnitManaPoints(sUnitName, 4)
     end
 end
 
 function DefenderCreatureDeath(sUnitName)
     g_setDeadDefender[sUnitName] = true
+end
+
+function AttackerHeroMove(sUnitName)
+    if DRAINABLE[g_sGuardianName] and GetUnitManaPoints(sUnitName) > 0 then SetUnitManaPoints(sUnitName, 0) end
 end

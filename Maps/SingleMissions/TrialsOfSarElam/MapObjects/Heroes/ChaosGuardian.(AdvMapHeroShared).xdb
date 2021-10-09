@@ -29,11 +29,11 @@
 	<RazedStatic/>
 	<Icon128/>
 	<InternalName>ChaosGuardian</InternalName>
-	<Class>HERO_CLASS_NECROMANCER</Class>
+	<Class>HERO_CLASS_WARLOCK</Class>
 	<Specialization>HERO_SPEC_MIND_CLEANER</Specialization>
 	<PrimarySkill>
-		<Mastery>MASTERY_BASIC</Mastery>
-		<SkillID>HERO_SKILL_NECROMANCY</SkillID>
+		<Mastery>MASTERY_EXPERT</Mastery>
+		<SkillID>HERO_SKILL_INVOCATION</SkillID>
 	</PrimarySkill>
 	<SpecializationNameFileRef href="/Text/Game/Heroes/Specializations/Necropolis/Mind_Cleaner/Name.txt"/>
 	<SpecializationDescFileRef href="/Text/Game/Heroes/Specializations/Necropolis/Mind_Cleaner/Description.txt"/>
@@ -73,8 +73,8 @@
 	</Editable>
 	<ArrowButtonState>0</ArrowButtonState>
 	<Decal/>
-	<Selection href="/_(Model)/Heroes/Necromancer_Path/Symbol.xdb#xpointer(/Model)"/>
-	<Trace href="/MapObjects/_(AdvMapHeroTraceSet)/Necropolis.xdb#xpointer(/AdvMapHeroTraceSet)"/>
+	<Selection/>
+	<Trace/>
 	<RaceTraitIcon/>
 	<RaceTraitDescFileRef href=""/>
 	<ScenarioHero>false</ScenarioHero>

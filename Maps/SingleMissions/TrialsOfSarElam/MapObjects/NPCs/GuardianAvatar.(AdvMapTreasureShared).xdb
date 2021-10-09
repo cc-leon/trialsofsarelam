@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AdvMapTreasureShared ObjectRecordID="4">
+	<Model href="/Characters/Heroes/Ghost.xdb#xpointer(/Model)"/>
+	<AnimSet href="/Characters/Heroes/Ghost.(AnimSet).xdb#xpointer(/AnimSet)"/>
+	<blockedTiles/>
+	<holeTiles/>
+	<activeTiles>
+		<Item>
+			<x>0</x>
+			<y>0</y>
+		</Item>
+	</activeTiles>
+	<passableTiles/>
+	<PossessionMarkerTile>
+		<x>0</x>
+		<y>0</y>
+	</PossessionMarkerTile>
+	<Effect/>
+	<EffectWhenOwned/>
+	<messagesFileRef>
+		<Item href="/Maps/SingleMissions/TrialsOfSarElam/NameGuardianAvatar.txt"/>
+		<Item href="/Maps/SingleMissions/TrialsOfSarElam/DescriptionGuardianAvatar.txt"/>
+	</messagesFileRef>
+	<WaterBased>false</WaterBased>
+	<ApplyHeroTrace>false</ApplyHeroTrace>
+	<SoundEffect href="/Sounds/_(Sound)/Interface/Events/Get_artf_res02.xdb#xpointer(/Sound)"/>
+	<flybyMessageFileRef href=""/>
+	<ObjectTypeFileRef href="/Text/Visibility_Types/Treasures.txt"/>
+	<TerrainAligned>false</TerrainAligned>
+	<FlyPassable>true</FlyPassable>
+	<AdventureSoundEffect/>
+	<RazedStatic/>
+	<Icon128/>
+	<Type>TREASURE_SULFUR</Type>
+	<MinResource>2</MinResource>
+	<MaxResource>4</MaxResource>
+</AdvMapTreasureShared>

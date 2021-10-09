@@ -13,23 +13,22 @@ SAND_ARENA = "/Scenes/CombatArenas/Sand_Big_01.xdb#xpointer(/AdventureFlybyScene
 
 -- Portraits
 PORT_HAVEN = "/GameMechanics/RefTables/GhostMode/face_Revenant.(Texture).xdb#xpointer(/Texture)"
+PORT_SYLVAN = "/GameMechanics/RefTables/GhostMode/face_Shade.(Texture.xdb#xpointer(/Texture)"
 PORT_ACADEMY = "/GameMechanics/RefTables/GhostMode/face_Phantasm.(Texture).xdb#xpointer(/Texture)"
-PORT_SYLVAN = "/GameMechanics/RefTables/GhostMode/face_Shade.(Texture).xdb#xpointer(/Texture)"
-PORT_DUNGEON = "/GameMechanics/RefTables/GhostMode/face_Banshee.(Texture).(Texture).xdb#xpointer(/Texture)"
+PORT_DUNGEON = "/GameMechanics/RefTables/GhostMode/face_Banshee.(Texture).xdb#xpointer(/Texture)"
 PORT_NECROPOLIS = "/GameMechanics/RefTables/GhostMode/face_Spectre.(Texture).xdb#xpointer(/Texture)"
 PORT_INFERNO = "/GameMechanics/RefTables/GhostMode/face_Chimera.(Texture).xdb#xpointer(/Texture)"
 PORT_FORTRESS = "/GameMechanics/RefTables/GhostMode/face_StoneSpirit.(Texture).xdb#xpointer(/Texture)"
 PORT_STRONGHOLD = "/GameMechanics/RefTables/GhostMode/face_Spook.(Texture).xdb#xpointer(/Texture)"
 PORT_TRAINING = "/UI/TownHall/haven/128/s3.xdb#xpointer(/Texture)"
 PORT_DE = "/UI/TownHall/necropolis/128/s1.xdb#xpointer(/Texture)"
+PORT_DIMEN = "/Textures/SpellBook______2618/Spells/Spell_DimensionalDoor.xdb#xpointer(/Texture)"
 
 -- Names of the eight starting towns, mapped to GetPlayerRace() result
 RACE2NAME = {
     [0] = "Haven", [1] = "Preserve", [2] = "Academy", [3] = "Dungeon",
     [4] = "Necropolis", [5] = "Inferno", [6] = "Dwarves", [7] = "Stronghold"}
-NAME2RACE = {
-    ["Haven"] = 0, ["Preserve"] = 1, ["Academy"] = 2, ["Dungeon"] = 3,
-    ["Necropolis"] = 4, ["Inferno"] = 5, ["Dwarves"] = 6, ["Stronghold"] = 7}
+NAME2RACE = {}
 
 RACE2TOWN = {
     [0] = "HavenVillage", [1] = "SylvanVillage", [2] = "AcademyVillage", [3] = "DungeonVillage",
@@ -39,16 +38,14 @@ TOWN2RACE = {
     ["NecropolisVillage"] = 4, ["InfernoVillage"] = 5, ["FortressVillage"] = 6, ["StrongholdVillage"] = 7}
 -- Types of heroes, mapped to race id
 RACE2PROF = {
-    [0] = "Knight", [1] = "Avenger", [2] = "Wizard", [3] = "Walock", [4] = "Necromancer", [5] = "DemonLord",
+    [0] = "Knight", [1] = "Ranger", [2] = "Wizard", [3] = "Warlock", [4] = "Necromancer", [5] = "DemonLord",
     [6] = "Runemage", [7] = "Barbarian"}
 
 -- Names of the eight starting garrisons, mapped to GetPlayerRace() result
 RACE2GARRISON = {
     [0] = "HavenGarrison", [1] = "SylvanGarrison", [2] = "AcademyGarrison", [3] = "DungeonGarrison", 
     [4] = "NecropolisGarrison", [5] = "InfernoGarrison", [6] = "FortressGarrison", [7] = "StrongholdGarrison"}
-GARRISON2RACE = {
-    ["HavenGarrison"] = 0, ["SylvanGarrison"] = 1, ["AcademyGarrison"] = 2, ["DungeonGarrison"] = 3, 
-    ["NecropolisGarrison"] = 4, ["InfernoGarrison"] = 5, ["FortressGarrison"] = 6, ["StrongholdGarrison"] = 7}
+GARRISON2RACE = {}
 
 RACE2AURA =
     {[0] = "/Maps/SingleMissions/TrialsOfSarElam/MapObjects/Auras/HavenS.xdb#xpointer(/AdvMapStaticShared)",
@@ -72,8 +69,7 @@ INIT_CREATURE_COUNT = {[0] = {2080, 1040, 840, 400, 240, 160, 80}, [1] = {1080, 
 
 -- Mapping for iteration of Sar family NPCs
 INDEX2SAR = {"SarIssus", "SarAggreth", "SarAntor", "SarTigon", "SarBadon", "SarBahir", "SarShazzar"}
-SAR2INDEX = {["SarIssus"] = 1, ["SarAggreth"] = 2, ["SarAntor"] = 3, ["SarTigon"] = 4,
-             ["SarBadon"] = 5, ["SarBahir"] = 6, ["SarShazzar"] = 7}
+SAR2INDEX = {}
 CRYSTAL_DUMP_POS = {4, 6}
 HERO_DUMP_POS = {13, 6}
 
@@ -156,7 +152,9 @@ SKILL_TEXTS = {
     [HERO_SKILL_DEFEND_US_ALL] = "Text/Game/Skills/Common/Defence/DefendUsAll/Name.txt"}
 
 -- Dragon Guardian Fight
-GUARDIAN2NAME = {"Dark", "Fire", "Air", "Earth", "Light", "Water"}
+GUARDIAN2NAME = {"DarkGuardian", "FireGuardian", "AirGuardian", "EarthGuardian", "LightGuardian", "WaterGuardian", "SeventhGuardian", "ChaosGuardian"}
+NAME2GUARDIAN = {}
+
 GUARDIAN2ARMY = {[1] = {[0] = {CREATURE_ASSASSIN, 2000}, [1] = {CREATURE_BLOOD_WITCH, 2975}, [2] = {CREATURE_BLOOD_WITCH_2, 2033}, 
                         [3] = {CREATURE_MATRON, 350}, [4] = {CREATURE_MATRIARCH, 311},
                         [5] = {CREATURE_BLACK_DRAGON, 116}, [6] = {CREATURE_SHAMAN_HAG, 1400}},
@@ -171,14 +169,31 @@ GUARDIAN2ARMY = {[1] = {[0] = {CREATURE_ASSASSIN, 2000}, [1] = {CREATURE_BLOOD_W
                  [5] = {[0] = {CREATURE_IRON_GOLEM, 1}, [1] = {0, 0},
                         [2] = {0, 0}, [3] = {0, 0}, [4] = {0, 0}, [5] = {0, 0}, [6] = {0, 0}},
                  [6] = {[0] = {CREATURE_IRON_GOLEM, 1}, [1] = {0, 0},
-                        [2] = {0, 0}, [3] = {0, 0}, [4] = {0, 0}, [5] = {0, 0}, [6] = {0, 0}}}
+                        [2] = {0, 0}, [3] = {0, 0}, [4] = {0, 0}, [5] = {0, 0}, [6] = {0, 0}},
+                 [7] = {[0] = {CREATURE_IRON_GOLEM, 1}, [1] = {0, 0},
+                        [2] = {0, 0}, [3] = {0, 0}, [4] = {0, 0}, [5] = {0, 0}, [6] = {0, 0}},
+                 [8] = {[0] = {CREATURE_STOUT_DEFENDER, 9762}, [1] = {CREATURE_AXE_THROWER, 9762}, [2] = {CREATURE_WHITE_BEAR_RIDER, 3903},
+                        [3] = {CREATURE_BATTLE_RAGER, 3901}, [4] = {CREATURE_FLAME_KEEPER, 1801},
+                        [5] = {CREATURE_WARLORD, 973}, [6] = {CREATURE_THUNDER_THANE, 808}}}
+
+GUARDIAN2PORTAL = {{82, 107}, {100, 107}, {82, 125}, {91, 129}, {100, 125}, {91, 102}, {77, 116}, {105, 116}}
+GUARDIAN2AURA   = {{80, 105}, {102, 105}, {80, 127}, {91, 132}, {102, 127}, {91, 100}, {75, 116}, {107, 116}}
+ISLAND_COORD = {{89, 117}, {89, 115}, {90, 114}, {92, 114}, {93, 115}, {93, 117}, {92, 118}, {90, 118}}
+MAINLAND_COORD = {{45, 37}, {46, 37}, {47, 37}, {45, 36}, {46, 36}, {47, 36}, {45, 35}, {46, 35}}
+
+GUARDIAN_CAGE = "/Maps/SingleMissions/TrialsOfSarElam/MapObjects/Decorations/LightCage.xdb#xpointer(/AdvMapStaticShared)"
+
+SPIRIT2HEROES = {"AvatarOfDeath", "Evasive", "Furious", "MountainKing", "Prudent"}
+SPIRIT2TEXTS = {"/Text/Game/Heroes/Specializations/Necropolis/AvatarOfDeath/Name.txt",
+                "/Text/Game/Heroes/Specializations/Dungeon/Evasive/Name.txt",
+                "/Text/Game/Heroes/Specializations/Inferno/Furious/Name.txt",
+                "/Text/Game/Heroes/Specializations/Fortress/Mountain_King/Name.txt",
+                "/Text/Game/Heroes/Specializations/Dungeon/Prudent/Name.txt"}
 
 -- Mapping for iteration of Central Area NPCs
 INDEX2NPC = {"MapMaker", "Piao", "Tang", "RoundSweetPie", "Pia", "TinY", "Yanshen", "ASha", "Aldens", "DubiousMage1", "DubiousMage2",
              "WindBellKL", "MasterTieru", "NamelessDragonKnight", "ThirdBro", "SecondBro", "BeastTrainer", "Merchant", "ExoticMage", 
-             "BeastBreeder", "MegaGodzilla"}
--- NPC2INDEX = {["MapMaker"] = 1, ["Piao"] = 2, ["Tang"] = 3, ["RoundSweetPie"] = 4, ["Pia"] = 5, ["TinY"] = 6, ["YanShen"] = 7,
-            -- ["ASha"] = 8, ["Aldens"] = 9, ["DubiousMage1"] = 10, ["DubiousMage2"] = 11, ["WindBellKL"] = 12, ["MasterTieru"] = 13,}
+             "BeastBreeder", "MegaGodzilla", "GuardianAvatar"}
 
 ARKATH_SLOTS = {[0] = {CREATURE_SKELETON, 7},
                 [1] = {0, 0}, [2] = {0, 0}, [3] = {0, 0}, [4] = {0, 0}, [5] = {0, 0}, [6] = {0, 0}}
@@ -235,7 +250,9 @@ SPELL2NAME = {
     [SPELL_ANTI_MAGIC] = "/Text/Game/Spells/Combat/Anti-magic/Name.txt",
     [SPELL_RESURRECT] = "/Text/Game/Spells/Combat/Resurrect/Name.txt",
     [SPELL_IMPLOSION] = "/Text/Game/Spells/Combat/Implosion/Name.txt",
-    [SPELL_DEEP_FREEZE] = "/Text/Game/Spells/Combat/DeepFreeze/Name.txt"}
+    [SPELL_DEEP_FREEZE] = "/Text/Game/Spells/Combat/DeepFreeze/Name.txt",
+    [SPELL_ARCANE_CRYSTAL] = "Text/Game/Spells/Combat/ArcaneCrystal/Name.txt",
+    [SPELL_BLADE_BARRIER] = "Text/Game/Spells/Combat/BladeBarrier/Name.txt"}
 
 -- A set, store objectives for Sar family
 g_setSarObjectives = {}
@@ -265,14 +282,30 @@ g_tabCallbackParams = {}
 g_iDarkEnergy = 120000
 g_iTrainingQuota = 800
 
+-- Guardian locked heroes
+g_tabHeroesLocked = {}
+g_bCreaturesReset = 0
+g_bAncientHeroHired = 0
+g_sHeroTeleported = ""
+g_sTownSummoned = ""
+
 -- Quest flags
-_alienQuestHero = nil
-_panickyInfernoRazed = nil
+_alienQuestHero = ""
+_panickyInfernoRazed = 0
 _dwellingsRazed = 0
-_golemFightResult = 0
-_goblinSupportUsed = nil
-_defendUsAllUsed = nil
-_battleCommanderUsed = nil
+_goblinSupportUsed = 0
+_defendUsAllUsed = 0
+_battleCommanderUsed = 0
+
+function _ReverseTable(tableName)
+    local result = {}
+    for i, j in tableName do result[j] = i end
+    return result
+end
+
+function _SameLoc(ax, ay, al, bx, by, bl)
+    return ax == bx and ay == by and al == bl
+end
 
 function _GetHeroRace(heroName)
     -- Return the race id of a hero
@@ -555,6 +588,10 @@ function _PagedTalkBox(port, info, desc, capt, callback, options)
             args[5] = g_sPath.."TalkBoxNext.txt"
             _pagedObj["next"] = 5
             _pagedObj["back"] = nil
+        else
+            args[5] = g_sPath.."TalkBoxBack.txt"
+            _pagedObj["next"] = nil
+            _pagedObj["back"] = 5
         end
     end
 
@@ -663,7 +700,12 @@ function SarFamilyAutoComplete(heroName)
     end
 
     for i = 0, 7 do
-        if GetObjectOwner(RACE2TOWN[i]) ~= 1 then SetObjectOwner(RACE2TOWN[i], 1) end
+        if GetObjectOwner(RACE2TOWN[i]) ~= 1 then
+            SetObjectOwner(RACE2TOWN[i], 1)
+            for j = 1, 7 do
+                AddObjectCreatures(RACE2TOWN[i], CREATURE_IDS_BY_RACE[i][j], INIT_CREATURE_COUNT[i][j])
+            end
+        end
         if not IsObjectEnabled(RACE2GARRISON[i]) then SetObjectEnabled(RACE2GARRISON[i], true) end
         if GetObjectOwner(RACE2GARRISON[i]) ~= 1 then SetObjectOwner(RACE2GARRISON[i], true) end
     end
@@ -678,7 +720,7 @@ function SarFamilyAutoComplete(heroName)
 end
 
 function SarFinishedCallback(heroName, isWin)
-    sarName = GetGameVar("SarChallenge")
+    sarName = GetGameVar("SarElamTrialSarChallenge")
     if isWin then
         local fulfilled = true
 
@@ -721,6 +763,9 @@ function SarFinishedCallback(heroName, isWin)
                     MoveCamera(x, y, l, 80, 3.14/3, 0, 0, 1)
                     sleep(20)
                     SetObjectOwner(RACE2TOWN[currRace], 1)
+                    for j = 1, 7 do
+                        AddObjectCreatures(RACE2TOWN[currRace], CREATURE_IDS_BY_RACE[currRace][j], INIT_CREATURE_COUNT[currRace][j])
+                    end
                     SetObjectEnabled(RACE2GARRISON[currRace], true)
                     SetObjectOwner(RACE2GARRISON[currRace], true)
                     sleep(10)
@@ -968,10 +1013,14 @@ function StorageCrystalCallback()
 end
 
 function StorageCrystalVisitTrigger(visitName, crystalName)
-    local temp = _GetHeroInfo(g_tabHeroesBanked[CRYSTAL2INDEX[crystalName]])
-    g_tabCallbackParams = {crystalName, visitName}
-    QuestionBox({g_sPath.."YanshenWithdrawConfirm.txt"; h_level = temp[1],
-                 h_prof = temp[2], h_name = temp[3]}, "StorageCrystalCallback", "")
+    if length(GetPlayerHeroes(1)) < 8 then
+        local temp = _GetHeroInfo(g_tabHeroesBanked[CRYSTAL2INDEX[crystalName]])
+        g_tabCallbackParams = {crystalName, visitName}
+        QuestionBox({g_sPath.."YanshenWithdrawConfirm.txt"; h_level = temp[1],
+                     h_prof = temp[2], h_name = temp[3]}, "StorageCrystalCallback", "")
+    else
+        MessageBox(g_sPath.."GuardianAvatarBonus2Refused.txt")
+    end
 end
 
 function NPCYanshenCallback()
@@ -1072,25 +1121,25 @@ function NPCWindBellKLCallback(pNum, cNum)
     elseif cNum == 4 then
         local nothing = nil
         local creatureID, creatureAmount, skillID
-        if (not _goblinSupportUsed) and HasHeroSkill(heroName, HERO_SKILL_GOBLIN_SUPPORT) then
+        if _goblinSupportUsed == 0 and HasHeroSkill(heroName, HERO_SKILL_GOBLIN_SUPPORT) then
             creatureID = CREATURE_GOBLIN_TRAPPER
             creatureAmount = 2240
             skillID = HERO_SKILL_GOBLIN_SUPPORT
-            _goblinSupportUsed = true
-        elseif (not _defendUsAllUsed) and HasHeroSkill(heroName, HERO_SKILL_DEFEND_US_ALL) then
+            _goblinSupportUsed = 1
+        elseif _defendUsAllUsed == 0 and HasHeroSkill(heroName, HERO_SKILL_DEFEND_US_ALL) then
             creatureID = CREATURE_GOBLIN_TRAPPER
             creatureAmount = 960
             skillID = HERO_SKILL_DEFEND_US_ALL
-            _defendUsAllUsed = true
-        elseif (not _battleCommanderUsed) and HasHeroSkill(heroName, RANGER_FEAT_FOREST_GUARD_EMBLEM) then
+            _defendUsAllUsed = 1
+        elseif _battleCommanderUsed == 0 and HasHeroSkill(heroName, RANGER_FEAT_FOREST_GUARD_EMBLEM) then
             creatureID = CREATURE_WAR_DANCER
             creatureAmount = 960
             skillID = RANGER_FEAT_FOREST_GUARD_EMBLEM
-            _battleCommanderUsed = true
+            _battleCommanderUsed = 1
         else
             nothing = true
         end
-        if _goblinSupportUsed and _defendUsAllUsed and _battleCommanderUsed and (not creatureID) then
+        if _goblinSupportUsed == 1 and _defendUsAllUsed == 1 and _battleCommanderUsed == 1 and (not creatureID) then
             MessageBox(g_sPath.."WindBellKLOption4AllClaimed.txt")
         else
             if nothing then
@@ -1127,7 +1176,7 @@ end
 function InfernoTownCaptureTrigger(oldOwner, newOwner, heroName, townName)
     if newOwner == 1 then
         RazeTown("PanickyInferno")
-        _panickyInfernoRazed = true
+        _panickyInfernoRazed = 1
     end
 end
 
@@ -1240,6 +1289,309 @@ end
 function BeastBreederCallback()
     SetObjectiveState("BreedWolves", OBJECTIVE_ACTIVE)
     AddObjectCreatures(g_tabCallbackParams[1], CREATURE_WOLF, 10)
+end
+
+function GrailMonitoringThread()
+    while true do
+        local heroes = GetPlayerHeroes(1)
+        for i, hero in heroes do
+            if HasArtefact(hero, ARTIFACT_GRAAL) then
+                BlockGame()
+                for i, hero in g_tabHeroesLocked do
+                    if IsObjectExists(hero) then
+                        SetObjectPos(hero, MAINLAND_COORD[i][1], MAINLAND_COORD[i][2])
+                    end
+                end
+                sleep(20)
+                SetObjectiveState("CompleteSarElamTrial", OBJECTIVE_COMPLETED)
+                local nx, ny, nl = GetObjectPos("GuardianAvatar")
+                MoveCamera(nx, ny, nl, 20, 0.99, 0)
+                SetObjectiveState("FinalSendOff", OBJECTIVE_ACTIVE)
+                sleep(20)
+                UnblockGame()
+                MessageBox(g_sPath.."FinalSendOffDescription.txt")
+                return
+            end
+        end
+        sleep(2)
+    end
+end
+
+function GuardianMonitoringThread()
+    while true do
+        for i, loc in GUARDIAN2AURA do
+            local gx, gy, gl = loc[1], loc[2], 0
+            local heroes = GetPlayerHeroes(1)
+            for j, hero in g_tabHeroesLocked do
+                if hero and not IsObjectExists(hero) then
+                    RemoveObject("GuardianCage"..j)
+                    g_tabHeroesLocked[j] = nil
+                end
+            end
+            for j, hero in heroes do
+                local hx, hy, hl = GetObjectPos(hero)
+                if _SameLoc(gx, gy, gl, hx, hy, hl) and (not IsObjectExists("GuardianCage"..i)) then
+                    BlockGame()
+                    PlayVisualEffect("/Effects/_(Effect)/Spells/CelestialShield.xdb#xpointer(/Effect)", hero)
+                    Play3DSound("/Sounds/_(Sound)/Spells/CelestialShield.xdb#xpointer(/Sound)", hx, hy, hl)
+                    sleep(25)
+                    CreateStatic("GuardianCage"..i, GUARDIAN_CAGE, gx, gy, gl)
+                    g_tabHeroesLocked[i] = hero
+                    UnblockGame()
+                end
+            end
+        end
+        local allDone = true
+        for i = 1, 8 do
+            if not g_tabHeroesLocked[i] then
+                allDone = nil
+            end
+        end
+        if allDone then
+            BlockGame()
+            MoveCamera(91, 116 - 2, 0, 110, 0.99, 0)
+            sleep(10)
+            PlayVisualEffect("/Effects/_(Effect)/Spells/Armageddon.xdb#xpointer(/Effect)", "", "", 92, 117, 0, 0, 0)
+            sleep(11)
+            Play3DSound("/Sounds/_(Sound)/Spells/Armageddon.xdb#xpointer(/Sound)", 92, 117, 0)
+            sleep(15)
+            RemoveObject("CentralIsland")
+            sleep(15)
+            for i, hero in g_tabHeroesLocked do
+                if IsObjectExists(hero) then
+                    SetObjectPos(hero, ISLAND_COORD[i][1], ISLAND_COORD[i][2])
+                end
+            end
+            sleep(10)
+            startThread(GrailMonitoringThread)
+            UnblockGame()
+            break
+        end
+        sleep(2)
+    end
+end
+
+function GuardianAvatarInfoCallback(cNum)
+    if cNum > 0 and cNum <= length(GUARDIAN2NAME) then
+        MessageBox(g_sPath.."Description"..GUARDIAN2NAME[cNum]..".txt")
+    end
+end
+
+function GuardianAvatarBonus1Callback()
+    local empty0 = {[0] = {0, 0}, [1] = {0, 0}, [2] = {0, 0}, [3] = {0, 0}, [4] = {0, 0}, [5] = {0, 0}, [6] = {0, 0}, [7] = {0, 0}}
+    local empty1 = {[0] = {1, 1}, [1] = {0, 0}, [2] = {0, 0}, [3] = {0, 0}, [4] = {0, 0}, [5] = {0, 0}, [6] = {0, 0}, [7] = {0, 0}}
+    BlockGame()
+    for i = 0, 7 do
+        if GetObjectOwner(RACE2GARRISON[i]) == 1 then _SetCreatureSlots(RACE2GARRISON[i], empty0) end
+        if GetObjectOwner(RACE2TOWN[i]) == 1 then _SetCreatureSlots(RACE2TOWN[i], empty0) end
+    end
+    for i = 1, 4 do
+        if GetObjectOwner("LandlordsMine"..i) == 1 then _SetCreatureSlots("LandlordsMine"..i, empty0) end
+    end
+    if GetObjectOwner("Mine1") == 1 then _SetCreatureSlots("Mine1", empty0) end
+    for i, hero in GetPlayerHeroes(1) do _SetCreatureSlots(hero, empty1) end
+    for i, hero in g_tabHeroesBanked do  _SetCreatureSlots(hero, empty1) end
+    for i = 0, 7 do
+        for j = 1, 7 do
+            if GetObjectOwner(RACE2TOWN[i]) == 1 then
+                AddObjectCreatures(RACE2TOWN[i], CREATURE_IDS_BY_RACE[i][j], INIT_CREATURE_COUNT[i][j])
+            end
+        end
+    end
+    g_iDarkEnergy = 120000
+    g_iTrainingQuota = 800
+    g_bCreaturesReset = 1
+    UnblockGame()
+    MessageBox(g_sPath.."GuardianAvatarBonus1Done.txt")
+end
+
+function GuardianAvatarBonus2Callback1(cNum)
+    if cNum >= 1 and cNum <= 5 then
+        g_tabCallbackParams = {SPIRIT2HEROES[cNum]}
+        local options = {}
+        for i = 0, 7 do
+            options[i + 1] = "GameMechanics/RefTables/HeroClass/HeroClass"..RACE2PROF[i]..".txt"
+        end
+        _PagedTalkBox(
+            PORT_ACADEMY,
+            g_sPath.."DescriptionGuardianAvatar.txt",
+            g_sPath.."GuardianAvatarBonus2Prof.txt",
+            g_sPath.."NameGuardianAvatar.txt",
+            "GuardianAvatarBonus2Callback2", options)
+    end
+end
+
+function GuardianAvatarBonus2Callback2(cNum)
+    if cNum >= 1 and cNum <= 8 then
+        BlockGame()
+        for i, hero in GetPlayerHeroes(1) do
+            local hx, hy, hl = GetObjectPos(hero)
+            if (hx == 43 and hy == 28 and hl == 0) or (hx == 44 and hy == 28 and hl == 0) then
+                SetObjectPos(hero, hx + 2, hy, 0)
+            end
+        end
+        MoveCamera(43, 28 - 1, 0, 20, 0.99, 0)
+        sleep(15)
+        local target = g_tabCallbackParams[1]..RACE2PROF[cNum - 1]
+        PlayVisualEffect("/Effects/_(Effect)/Modes/Ghost/GhostFX/cast.(Effect).xdb#xpointer(/Effect)", "GuardianAvatar", "")
+        SetObjectPos(target, 43, 28, 0)
+        sleep(1)
+        PlayVisualEffect("/Effects/_(Effect)/Spells/Resurrect.xdb#xpointer(/Effect)", target, "")
+        Play3DSound("/Sounds/_(Sound)/Spells/Resurrect.xdb#xpointer(/Sound)", 43, 28, 0)
+        sleep(20)
+        g_bAncientHeroHired = 1
+        SetObjectOwner(target, 1)
+        UnblockGame()
+    end
+end
+
+function SummonVillageCallback(cNum)
+    if cNum >= 1 then
+        for i, hero in GetPlayerHeroes(1) do
+            if IsHeroInTown(hero, "HavenVillage") then
+                MessageBox({g_sPath.."SummonVillageHasHero.txt";
+                            h_name = _GetHeroInfo(hero)[3], t_name = g_sPath.."Name"..g_CallbackParams[1][cNum]..".txt"})
+                return
+            end
+        end
+        BlockGame()
+        g_sTownSummoned = g_CallbackParams[1][cNum]
+        Trigger(CUSTOM_ABILITY_TRIGGER, nil)
+        ControlHeroCustomAbility(g_sHeroTeleported, CUSTOM_ABILITY_3, CUSTOM_ABILITY_NOT_PRESENT)
+        SetObjectEnabled("FreydaGarrison", true)
+        MakeTownMovable(g_sTownSummoned)
+        local tx, ty, tl = GetObjectPos(g_sTownSummoned)
+        sleep(1)
+        MoveCamera(tx, ty -1, tl, 40, 0.99, 0)
+        sleep(15)
+        local effect = "/Effects/_(Effect)/Spells/DivineVengeance/FX_DivineVengeance.(Effect).xdb#xpointer(/Effect)"
+        PlayVisualEffect(effect, g_sTownSummoned, "", -3, -3, 0)
+        PlayVisualEffect(effect, g_sTownSummoned, "", -3, 3, 0)
+        Play2DSound("/Maps/Scenario/A2C3M1/SummonEarthsound.xdb#xpointer(/Sound)")
+        sleep(1)
+        PlayVisualEffect(effect, g_sTownSummoned, "", 3, -3, 0)
+        PlayVisualEffect(effect, g_sTownSummoned, "", 3, 3, 0)
+        sleep(3)
+        PlayVisualEffect(effect, g_sTownSummoned, "", 1, -2, 0)
+        sleep(5)
+        SetObjectRotation(g_sTownSummoned, -90);
+        SetObjectPos(g_sTownSummoned, 40, 117, 0);
+        Play2DSound("/Maps/Scenario/A2C3M1/SummonEarthsound.xdb#xpointer(/Sound)")
+        MoveCamera(40, 117 - 1, 0, 40, 0.99, 0)
+        sleep(5)
+        tx, ty, tl = GetObjectPos(g_sTownSummoned)
+        PlayVisualEffect(effect, "", "", tx - 3, ty - 3, 0)
+        PlayVisualEffect(effect, "", "", tx - 3, ty + 3, 0)
+        sleep(1)
+        PlayVisualEffect(effect, "", "", tx + 3, ty - 3, 0)
+        PlayVisualEffect(effect, "", "", tx + 3, ty + 3, 0)
+        sleep(3)
+        PlayVisualEffect(effect, "", "", tx + 1, ty - 2, 0)
+        sleep(10)
+        SetObjectiveState("SummonVillage", OBJECTIVE_COMPLETED)
+        SetObjectPos(g_sHeroTeleported, 40, 117)
+        SetObjectPos("Freyda", 26, 117, 0)
+        sleep(1)
+        tx, ty, tl = GetObjectPos("Freyda")
+        MoveCamera(32, ty, tl, 50, 0.99, 0)
+        sleep(30)
+        if GetTownBuildingLevel(g_sTownSummoned, TOWN_BUILDING_GRAIL) == 1 then
+            SetGameVar("SarElamTrialGrailBuilt", "true")
+        else
+            SetGameVar("SarElamTrialGrailBuilt", "false")
+            PlayVisualEffect("/Effects/_(Effect)/Artefacts/TomeOfLightMagicSun.(Effect).xdb#xpointer(/Effect)", "Freyda", "", 0, 0, 4)
+            ShowFlyingSign("")
+        end
+        MoveHeroRealTime("Freyda", 40, 117, 0)
+        sleep(10)
+        UnblockGame()
+
+    end
+end
+
+function CustomAbilityTrigger(heroName, customAbilityID)
+    if customAbilityID == CUSTOM_ABILITY_3 then
+        local hx, hy, hl = GetObjectPos(heroName)
+        if _SameLoc(hx, hy, hl, 29, 117, 0) then
+            local options = {}
+            g_CallbackParams = {{}}
+            for i, townName in RACE2TOWN do
+                if GetObjectOwner(townName) == 1 then
+                    options[length(options) + 1] = g_sPath.."Name"..townName..".txt"
+                    g_CallbackParams[1][length(g_CallbackParams[1]) + 1] = townName
+                end
+            end
+            _PagedTalkBox(
+                "/GameMechanics/Spell/Script_Abilities/Custom2/Icon.xdb#xpointer(/Texture)",
+                nil,
+                "/GameMechanics/Spell/Script_Abilities/Custom3/Desc.txt",
+                "/GameMechanics/Spell/Script_Abilities/Custom3/Name.txt",
+                "SummonVillageCallback", options)
+        else
+            MessageBox(g_sPath.."SummonVillageNotInLocation.txt")
+        end
+    end
+end
+
+function GuardianAvatarBonus3Callback()
+    BlockGame()
+    local heroName = g_tabCallbackParams[1]
+    local hx, hy, hl = GetObjectPos(heroName)
+    MoveCamera(hx, hy - 1, hl, 20, 0.99, 0)
+    sleep(15)
+    _TeachSpell(heroName, SPELL_ARCANE_CRYSTAL)
+    sleep(2)
+    _TeachSpell(heroName, SPELL_BLADE_BARRIER)
+    sleep(2)
+    Trigger(CUSTOM_ABILITY_TRIGGER, "CustomAbilityTrigger")
+    ControlHeroCustomAbility(heroName, CUSTOM_ABILITY_3, CUSTOM_ABILITY_ENABLED)
+    ShowFlyingSign(g_sPath.."GuardianAvatarBonus3TeachSpell1.txt", heroName, -1, 8)
+    sleep(20)
+    MoveCamera(29, 117, 0, 20, 0.99, 0)
+    sleep(2)
+    SetObjectPos(heroName, 29, 117, 0)
+    SetObjectiveState("FinalSendOff", OBJECTIVE_COMPLETED)
+    SetObjectiveState("SummonVillage", OBJECTIVE_ACTIVE)
+    sleep(20)
+    g_sHeroTeleported = heroName
+    UnblockGame()
+end
+
+function GuardianAvatarBonusCallback(cNum)
+    if cNum == 1 then
+        if g_bCreaturesReset == 1 then
+            MessageBox(g_sPath.."GuardianAvatarBonus1Done.txt")
+        else
+            QuestionBox(g_sPath.."GuardianAvatarBonus1Confirm.txt", "GuardianAvatarBonus1Callback", "")
+        end
+    elseif cNum == 2 then
+        if g_bAncientHeroHired == 1 then
+            MessageBox(g_sPath.."GuardianAvatarBonus2Done.txt")
+            return
+        end
+        if length(GetPlayerHeroes(1)) >= 8 then
+            MessageBox(g_sPath.."GuardianAvatarBonus2Refused.txt")
+            return
+        else
+            MessageBox(g_sPath.."GuardianAvatarBonus2Description.txt")
+        end
+        local options = {}
+        for i = 1, length(SPIRIT2TEXTS) do
+            options[i] = SPIRIT2TEXTS[i]
+        end
+        _PagedTalkBox(
+            PORT_ACADEMY,
+            g_sPath.."DescriptionGuardianAvatar.txt",
+            g_sPath.."GuardianAvatarBonus2Spec.txt",
+            g_sPath.."NameGuardianAvatar.txt",
+            "GuardianAvatarBonus2Callback1", options)
+    elseif cNum == 3 then
+        if g_sHeroTeleported ~= "" then
+            MessageBox(g_sPath.."GuardianAvatarAfterSendOff.txt")
+        else
+            QuestionBox(g_sPath.."GuardianAvatarBonus3Confirm.txt", "GuardianAvatarBonus3Callback", "")
+        end
+    end
 end
 
 function NPCVisitsTrigger(heroName, npcName)
@@ -1518,12 +1870,12 @@ function NPCVisitsTrigger(heroName, npcName)
             else
                 MessageBox(g_sPath.."NamelessDragonKnightDwellingEnough.txt")
             end
-            if _panickyInfernoRazed then
+            if _panickyInfernoRazed == 1 then
                 MessageBox(g_sPath.."NamelessDragonKnightTownDone.txt")
             else
                 MessageBox(g_sPath.."NamelessDragonKnightTownNotDone.txt")
             end
-            if _dwellingsRazed == 32 and _panickyInfernoRazed then
+            if _dwellingsRazed == 32 and _panickyInfernoRazed == 1 then
                 MessageBox(g_sPath.."NamelessDragonKnightBothDone.txt")
                 GiveArtefact(heroName, ARTIFACT_JINXING_BAND)
                 GiveArtefact(heroName, ARTIFACT_JINXING_BAND)
@@ -1684,6 +2036,47 @@ function NPCVisitsTrigger(heroName, npcName)
         elseif objState == OBJECTIVE_COMPLETED then
             MessageBox(g_sPath.."BeastBreederFinished.txt")
         end
+
+    elseif npcName == "GuardianAvatar" then
+        local objState = GetObjectiveState("CompleteSarElamTrial")
+        g_tabCallbackParams = {heroName}
+        if objState < OBJECTIVE_ACTIVE then
+            MessageBox(g_sPath.."CompleteSarElamTrialDescription.txt")
+            MessageBox(g_sPath.."CompleteSarElamTrialDescription2.txt")
+            SetObjectiveState("CompleteSarElamTrial", OBJECTIVE_ACTIVE)
+            Trigger(OBJECT_TOUCH_TRIGGER, "DragonGuardianPortal", nil)
+            sleep(1)
+            Trigger(OBJECT_TOUCH_TRIGGER, "DragonGuardianPortal", "BuildingTouchTrigger")
+            SetDisabledObjectMode("DragonGuardianPortal", DISABLED_INTERACT)
+            startThread(GuardianMonitoringThread)
+        elseif objState == OBJECTIVE_ACTIVE then
+            local options = {}
+            for i, guardian in GUARDIAN2NAME do
+                options[length(options) + 1] = g_sPath.."Name"..guardian..".txt"
+            end
+            _PagedTalkBox(
+                PORT_ACADEMY,
+                g_sPath.."DescriptionGuardianAvatar.txt",
+                g_sPath.."GuardianAvatarChooseInfo.txt",
+                g_sPath.."NameGuardianAvatar.txt",
+                "GuardianAvatarInfoCallback", options)
+        elseif objState == OBJECTIVE_COMPLETED then
+            objState = GetObjectiveState("FinalSendOff")
+            if objState <= OBJECTIVE_ACTIVE then
+                local options = {}
+                options[1] = g_sPath.."GuardianAvatarBonus1.txt"
+                options[2] = g_sPath.."GuardianAvatarBonus2.txt"
+                options[3] = g_sPath.."GuardianAvatarBonus3.txt"
+                _PagedTalkBox(
+                    PORT_ACADEMY,
+                    g_sPath.."DescriptionGuardianAvatar.txt",
+                    g_sPath.."GuardianAvatarBonus.txt",
+                    g_sPath.."NameGuardianAvatar.txt",
+                    "GuardianAvatarBonusCallback", options)
+            else
+                MessageBox(g_sPath..".txt")
+            end
+        end
     else
         print("Run into error in NPCVisitsTrigger! ", heroName, " ", npcName)
     end
@@ -1752,6 +2145,25 @@ function DarkEnergyBankCallback(cNum)
             UnblockGame()
             g_iDarkEnergy = g_iDarkEnergy - slot[3]
         end
+    end
+end
+
+function DragonGuardianPortalConfirmCallback()
+    local heroName, hx, hy = g_tabCallbackParams[1], GUARDIAN2PORTAL[g_tabCallbackParams[2]][1], GUARDIAN2PORTAL[g_tabCallbackParams[2]][2]
+    SetObjectPos(heroName, hx, hy, 0)
+end
+
+function DragonGuardianPortalCallback(cNum)
+    if cNum > 0 and cNum <= length(GUARDIAN2NAME) then
+        local heroName = g_tabCallbackParams[1]
+        local heroInfo = _GetHeroInfo(heroName)
+        QuestionBox({g_sPath.."GuardianAvatarChoosePortalConfirm.txt";
+                     h_prof = heroInfo[2],
+                     h_name = heroInfo[3],
+                     h_level = heroInfo[1],
+                     g_name = g_sPath.."Name"..GUARDIAN2NAME[cNum]..".txt"},
+                     "DragonGuardianPortalConfirmCallback", "")
+        g_tabCallbackParams = {heroName, cNum}
     end
 end
 
@@ -1918,6 +2330,18 @@ function BuildingTouchTrigger(heroName, buildingName)
         else
             MessageBox(g_sPath.."DarkEnergyBankRefused.txt")
         end
+    elseif buildingName == "DragonGuardianPortal" then
+        local options = {}
+        g_tabCallbackParams = {heroName}
+        for i, guardian in GUARDIAN2NAME do
+            options[length(options) + 1] = g_sPath.."Name"..guardian..".txt"
+        end
+        _PagedTalkBox(
+            PORT_DIMEN,
+            "/Text/Game/Buildings/Monoliths/OneWayEntrance-Description.txt",
+            g_sPath.."GuardianAvatarChoosePortal.txt",
+            "/Text/Game/Buildings/Monoliths/OneWayEntrance-Name.txt",
+            "DragonGuardianPortalCallback", options)
     else
         print("Run into error in BuildingTouchTrigger! ", heroName, " ", trainerName)
     end
@@ -2344,6 +2768,13 @@ function SetupScene()
     UnblockGame()
 end
 
+function SetupTables()
+    NAME2RACE = _ReverseTable(RACE2NAME)
+    GARRISON2RACE = _ReverseTable(RACE2GARRISON)
+    SAR2INDEX = _ReverseTable(INDEX2SAR)
+    NAME2GUARDIAN = _ReverseTable(GUARDIAN2NAME)
+end
+
 function NormalizeStartRace()
     -- Clean up all creature dwellings
     -- Disown all towns that is not the starting race
@@ -2365,25 +2796,25 @@ end
 
 function SetupDragonGuardianThread()
     for i, guardian in GUARDIAN2NAME do
-        if GetGameVar("SarElamTrial"..guardian.."GuardianFought") == "true" and IsObjectExists(guardian.."Guardian") then
+        if GetGameVar("SarElamTrial"..guardian.."Fought") == "true" and IsObjectExists(guardian) then
             print("setup ", guardian)
-            _SetCreatureSlots(guardian.."Guardian", GUARDIAN2ARMY[i])
-            SetHeroLootable(guardian.."Guardian", nil)
-            if guardian == "Dark" or guardian == "Air" then
-                local morale = GetHeroStat(guardian.."Guardian", STAT_MORALE)
-                ChangeHeroStat(guardian.."Guardian", STAT_MORALE, 10 - morale)
+            _SetCreatureSlots(guardian, GUARDIAN2ARMY[i])
+            SetHeroLootable(guardian, nil)
+            if guardian == "DarkGuardian" or guardian == "AirGuardian" then
+                local morale = GetHeroStat(guardian, STAT_MORALE)
+                ChangeHeroStat(guardian, STAT_MORALE, 10 - morale)
             elseif guardian == "Fire" then
-                local luck = GetHeroStat(guardian.."Guardian", STAT_LUCK)
-                ChangeHeroStat(guardian.."Guardian", STAT_LUCK, 0 - luck)
+                local luck = GetHeroStat(guardian, STAT_LUCK)
+                ChangeHeroStat(guardian, STAT_LUCK, 0 - luck)
             end
-            SetGameVar("SarElamTrial"..guardian.."GuardianFought", "false")
+            SetGameVar("SarElamTrial"..guardian.."Fought", "false")
         end
     end
 end
 
 function SetupQuestObjects()
     for i, guardian in GUARDIAN2NAME do
-        SetGameVar("SarElamTrial"..guardian.."GuardianFought", "true")
+        SetGameVar("SarElamTrial"..guardian.."Fought", "true")
     end
 
     startThread(SetupDragonGuardianThread)
@@ -2491,6 +2922,17 @@ function SetupQuestObjects()
     SetHeroLootable("RedHeavenHero03", nil)
     SetHeroLootable("Wulfstan", nil)
 
+    -- Setup Spirit Heros
+    for i, spec in SPIRIT2HEROES do
+        for j, prof in RACE2PROF do
+            SetObjectOwner(spec..prof, 8)
+        end
+    end
+
+    DisableAutoEnterTown("PanickyInferno", true)
+    DisableAutoEnterTown("ValeriasHaven", true)
+
+    SetObjectEnabled("FreydaGarrison", nil)
 end
 
 function DancingPeasant()
@@ -2560,13 +3002,8 @@ function backgroundThread()
     end
 end
 
-function testfunc()
-    sarName = "SarShazzar"
-    g_tabCreatureStored = _GetCreatureSlots("Nur")
-    _SetCreatureSlots("Nur", SAR2SLOTS[sarName])
-end
-
 -- Map start from here
+SetupTables()
 NormalizeStartRace()
 OpenCircleFog(37, 31, 0, 30, 1)
 OpenCircleFog(54, 31, 0, 30, 1)

@@ -73,8 +73,8 @@
 	</Editable>
 	<ArrowButtonState>0</ArrowButtonState>
 	<Decal/>
-	<Selection href="/_(Model)/Heroes/DemonLord_Path/Symbol.(Model).xdb#xpointer(/Model)"/>
-	<Trace href="/MapObjects/_(AdvMapHeroTraceSet)/Inferno.xdb#xpointer(/AdvMapHeroTraceSet)"/>
+	<Selection/>
+	<Trace/>
 	<RaceTraitIcon/>
 	<RaceTraitDescFileRef href=""/>
 	<ScenarioHero>true</ScenarioHero>

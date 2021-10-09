@@ -71,8 +71,8 @@
 	</Editable>
 	<ArrowButtonState>0</ArrowButtonState>
 	<Decal/>
-	<Selection href="/_(Model)/Heroes/RuneMage_Path/Symbol.xdb#xpointer(/Model)"/>
-	<Trace href="/MapObjects/_(AdvMapHeroTraceSet)/Fortress.(AdvMapHeroTraceSet).xdb#xpointer(/AdvMapHeroTraceSet)"/>
+	<Selection/>
+	<Trace/>
 	<RaceTraitIcon/>
 	<RaceTraitDescFileRef href=""/>
 	<ScenarioHero>false</ScenarioHero>
