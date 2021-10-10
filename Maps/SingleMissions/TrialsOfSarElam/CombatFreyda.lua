@@ -69,7 +69,7 @@ function AttackerHeroMove(sUnitName)
     if g_bGrailBuilt ==  0 then
         local mode = mod(g_iTurn, 7)
         local spellID = 0
-        SetUnitManaPoints(sUnitName, 400)
+        SetUnitManaPoints(sUnitName, 800)
         sleep(180)
         if mode == 0 then spellID = SPELL_HASTE
         elseif mode == 1 then spellID = SPELL_BLOODLUST

@@ -286,16 +286,20 @@ g_iTrainingQuota = 800
 g_tabHeroesLocked = {}
 g_bCreaturesReset = 0
 g_bAncientHeroHired = 0
+g_bBonusAttributes = 0
 g_sHeroTeleported = ""
 g_sTownSummoned = ""
 
+-- Control Animation
+g_bRandomAnimDone = 0
+
 -- Quest flags
-_alienQuestHero = ""
-_panickyInfernoRazed = 0
-_dwellingsRazed = 0
-_goblinSupportUsed = 0
-_defendUsAllUsed = 0
-_battleCommanderUsed = 0
+g_sAlienQuestHero = ""
+g_bPanickyInfernoRazed = 0
+g_bDwellingsRazed = 0
+g_bGoblinSupportUsed = 0
+g_bDefendUsAllUsed = 0
+g_bBattleCommanderUsed = 0
 
 function _ReverseTable(tableName)
     local result = {}
@@ -617,6 +621,46 @@ function GarrisonVisitingMessageTrigger(heroName, garrisonName)
     end
 end
 
+function SarIssusGreetingsCallback()
+    BlockGame()
+    PlayVisualEffect(
+        "/Effects/_(Effect)/Spells/Teleport_Start.xdb#xpointer(/Effect)", "SarIssus")
+    Play3DSound(
+        "/Sounds/_(Sound)/Spells/TeleportStart.xdb#xpointer(/Sound)",
+        46, 38, 0)
+    SetObjectPos("SarIssus", origPosX, origPosY)
+    SetObjectRotation("SarIssus", 90)
+    sleep(10)
+    SetObjectPos("ArtBonusSarStaff", 45, 37, 0)
+    sleep(2)
+    SetObjectPos("ArtBonusSarCrown", 46, 37, 0)
+    sleep(2)
+    SetObjectPos("ArtBonusSarRing", 47, 37, 0)
+    sleep(2)
+    SetObjectPos("ArtBonusSarRobe", 45, 36, 0)
+    sleep(2)
+    SetObjectPos("ArtBonusDarkRitualScroll1", 46, 36, 0)
+    sleep(2)
+    SetObjectPos("ArtBonusDarkRitualScroll2", 47, 36, 0)
+    sleep(2)
+    SetObjectPos("ArtBonusDarkRitualScroll3", 45, 35, 0)
+    sleep(2)
+    SetObjectPos("ArtBonusDarkRitualScroll4", 46, 35, 0)
+    sleep(2)
+    SetObjectPos("ArtBonusDarkRitualScroll5", 47, 35, 0)
+    sleep(2)
+    SetPlayerResource(1, WOOD, 400)
+    SetPlayerResource(1, ORE, 400)
+    SetPlayerResource(1, MERCURY, 200)
+    SetPlayerResource(1, CRYSTAL, 200)
+    SetPlayerResource(1, SULFUR, 200)
+    SetPlayerResource(1, GEM, 200)
+    SetPlayerResource(1, GOLD, 1000000)
+    UnblockGame()
+    SetObjectiveState("CompleteSarFamily", OBJECTIVE_ACTIVE)
+    Trigger(OBJECT_CAPTURE_TRIGGER, garrisonName, nil)
+end
+
 function GarrisonCapturedTrigger(oldOwner, newOwner, heroName, garrisonName)
     -- Triggered when any hero first come out of the tavern
     -- This completes the startup objective
@@ -632,42 +676,57 @@ function GarrisonCapturedTrigger(oldOwner, newOwner, heroName, garrisonName)
     BlockGame()
     SetObjectPos(heroName, 46, 39, 0)
     SetObjectRotation(heroName, 0)
-    --MoveCamera(46, 39, 0, 80, 3.14/3, 0)
-    --sleep(1)
+    MoveCamera(46, 39, 0, 20, 0.90, 0)
+    sleep(20)
     local origPosX, origPosY = GetObjectPos("SarIssus")
-    SetObjectPos("SarIssus", 46, 38)
+    SetObjectPos("SarIssus", 46, 38, 0)
+    PlayVisualEffect(
+        "/Effects/_(Effect)/Spells/Teleport_End.xdb#xpointer(/Effect)", "SarIssus")
+    Play3DSound(
+        "/Sounds/_(Sound)/Spells/TeleportEnd.xdb#xpointer(/Sound)",
+        46, 38, 0)
     SetObjectRotation("SarIssus", 180)
-    --MoveCamera(45, 38, 0, 80, 3.14/3, 0)
-    --sleep(1)
+    MoveCamera(45, 38, 0, 80, 3.14/3, 0)
+    sleep(20)
     UnblockGame()
 
-    MessageBox(g_sPath.."SarIssusGreeting.txt")
+    MessageBox(g_sPath.."SarIssusGreeting.txt", "SarIssusGreetingsCallback")
+end
+
+function UnblockPaths()
     BlockGame()
-    SetObjectPos("SarIssus", origPosX, origPosY)
-    SetObjectRotation("SarIssus", 90)
-    --sleep(1)
-
-    SetObjectPos("ArtBonusSarStaff", 45, 37, 0)
-    SetObjectPos("ArtBonusSarCrown", 46, 37, 0)
-    SetObjectPos("ArtBonusSarRing", 47, 37, 0)
-    SetObjectPos("ArtBonusSarRobe", 45, 36, 0)
-    SetObjectPos("ArtBonusDarkRitualScroll1", 46, 36, 0)
-    SetObjectPos("ArtBonusDarkRitualScroll2", 47, 36, 0)
-    SetObjectPos("ArtBonusDarkRitualScroll3", 45, 35, 0)
-    SetObjectPos("ArtBonusDarkRitualScroll4", 46, 35, 0)
-    SetObjectPos("ArtBonusDarkRitualScroll5", 47, 35, 0)
-    SetPlayerResource(1, WOOD, 400)
-    SetPlayerResource(1, ORE, 400)
-    SetPlayerResource(1, MERCURY, 200)
-    SetPlayerResource(1, CRYSTAL, 200)
-    SetPlayerResource(1, SULFUR, 200)
-    SetPlayerResource(1, GEM, 200)
-    SetPlayerResource(1, GOLD, 1000000)
+    MoveCamera(45, 24, 0, 60, 0.99, 0)
+    sleep(20)
+    for i = 1, 18 do
+        Trigger(OBJECT_TOUCH_TRIGGER, "BlockingAura"..i, nil)
+        local bx, by, bl = GetObjectPos("BlockingAura"..i)
+        CreateStatic(
+            "BlockingPuppet"..i,
+            "/Maps/SingleMissions/TrialsOfSarElam/MapObjects/NPCs/BlockingPuppet.xdb#xpointer(/AdvMapStaticShared)",
+            bx, by, bl)
+    end
+    sleep(1)
+    for i = 1, 18 do
+        PlayVisualEffect("/Effects/_(Effect)/Spells/Plague.xdb#xpointer(/Effect)", "BlockingPuppet"..i)
+    end
+    Play2DSound("/Sounds/_(Sound)/Spells/Plague.xdb#xpointer(/Sound)")
+    sleep(10)
+    for i = 1, 18 do
+        PlayObjectAnimation("BlockingPuppet"..i, "hit", ONESHOT)
+    end
+    sleep(10)
+    for i = 1, 18 do
+        PlayObjectAnimation("BlockingPuppet"..i, "death", ONESHOT_STILL)
+    end
+    sleep(30)
+    for i = 1, 18 do
+        RemoveObject("BlockingAura"..i)
+        RemoveObject("BlockingPuppet"..i)
+    end
+    sleep(5)
     UnblockGame()
-    MessageBox(g_sPath.."SarIssusBonus.txt")
-
-    SetObjectiveState("CompleteSarFamily", OBJECTIVE_ACTIVE)
-    Trigger(OBJECT_CAPTURE_TRIGGER, garrisonName, nil)
+    Trigger(OBJECTIVE_STATE_CHANGE_TRIGGER, "CompleteSarFamily", nil)
+    MessageBox(g_sPath.."BlockingAuraRemoved.txt")
 end
 
 function SarFamilyAutoComplete(heroName)
@@ -717,6 +776,7 @@ function SarFamilyAutoComplete(heroName)
     if GetObjectiveState("CompleteSarFamily") == OBJECTIVE_ACTIVE then
         SetObjectiveState("CompleteSarFamily", OBJECTIVE_COMPLETED)
     end
+    UnblockPaths()
 end
 
 function SarFinishedCallback(heroName, isWin)
@@ -802,6 +862,7 @@ function SarFinishedCallback(heroName, isWin)
             SetObjectiveVisible(INDEX2SAR[i].."Challenge", nil)
         end
         SetObjectiveState("CompleteSarFamily", OBJECTIVE_COMPLETED)
+        UnblockPaths()
     end
 
 end
@@ -1121,25 +1182,25 @@ function NPCWindBellKLCallback(pNum, cNum)
     elseif cNum == 4 then
         local nothing = nil
         local creatureID, creatureAmount, skillID
-        if _goblinSupportUsed == 0 and HasHeroSkill(heroName, HERO_SKILL_GOBLIN_SUPPORT) then
+        if g_bGoblinSupportUsed == 0 and HasHeroSkill(heroName, HERO_SKILL_GOBLIN_SUPPORT) then
             creatureID = CREATURE_GOBLIN_TRAPPER
             creatureAmount = 2240
             skillID = HERO_SKILL_GOBLIN_SUPPORT
-            _goblinSupportUsed = 1
-        elseif _defendUsAllUsed == 0 and HasHeroSkill(heroName, HERO_SKILL_DEFEND_US_ALL) then
+            g_bGoblinSupportUsed = 1
+        elseif g_bDefendUsAllUsed == 0 and HasHeroSkill(heroName, HERO_SKILL_DEFEND_US_ALL) then
             creatureID = CREATURE_GOBLIN_TRAPPER
             creatureAmount = 960
             skillID = HERO_SKILL_DEFEND_US_ALL
-            _defendUsAllUsed = 1
-        elseif _battleCommanderUsed == 0 and HasHeroSkill(heroName, RANGER_FEAT_FOREST_GUARD_EMBLEM) then
+            g_bDefendUsAllUsed = 1
+        elseif g_bBattleCommanderUsed == 0 and HasHeroSkill(heroName, RANGER_FEAT_FOREST_GUARD_EMBLEM) then
             creatureID = CREATURE_WAR_DANCER
             creatureAmount = 960
             skillID = RANGER_FEAT_FOREST_GUARD_EMBLEM
-            _battleCommanderUsed = 1
+            g_bBattleCommanderUsed = 1
         else
             nothing = true
         end
-        if _goblinSupportUsed == 1 and _defendUsAllUsed == 1 and _battleCommanderUsed == 1 and (not creatureID) then
+        if g_bGoblinSupportUsed == 1 and g_bDefendUsAllUsed == 1 and g_bBattleCommanderUsed == 1 and (not creatureID) then
             MessageBox(g_sPath.."WindBellKLOption4AllClaimed.txt")
         else
             if nothing then
@@ -1169,14 +1230,14 @@ function InfernoDwellingCaptureTrigger(oldOwner, newOwner, heroName, dwellingNam
         PlayVisualEffect("/Effects/_(Effect)/Buildings/Capture/Start_dust_S.xdb#xpointer(/Effect)", "","tag1", dwx, dwy, 0, 90, dwl)
         PlayVisualEffect("/Effects/_(Effect)/Characters/Heroes/DemonLord/Path/Level_2b.xdb#xpointer(/Effect)","","tag2", dwx, dwy, 0, 90, dwl)
         RazeBuilding(dwellingName)
-        _dwellingsRazed = _dwellingsRazed + 1
+        g_bDwellingsRazed = g_bDwellingsRazed + 1
     end
 end
 
 function InfernoTownCaptureTrigger(oldOwner, newOwner, heroName, townName)
     if newOwner == 1 then
         RazeTown("PanickyInferno")
-        _panickyInfernoRazed = 1
+        g_bPanickyInfernoRazed = 1
     end
 end
 
@@ -1216,7 +1277,7 @@ function NPCNamelessDragonKnightCallback()
 end
 
 function NPCThirdBroStartQuestCallback()
-    _alienQuestHero = g_tabCallbackParams[1]
+    g_sAlienQuestHero = g_tabCallbackParams[1]
     Trigger(OBJECT_TOUCH_TRIGGER, "AlienPortal", nil)
     SetObjectEnabled("AlienPortal", true)
     SetObjectiveState("AssassinateAlien", OBJECTIVE_ACTIVE)
@@ -1313,7 +1374,7 @@ function GrailMonitoringThread()
                 return
             end
         end
-        sleep(2)
+        sleep(10)
     end
 end
 
@@ -1363,11 +1424,12 @@ function GuardianMonitoringThread()
                 end
             end
             sleep(10)
+            for j, aura in GUARDIAN2AURA do RemoveObject("GuardianCage"..j) end
             startThread(GrailMonitoringThread)
             UnblockGame()
             break
         end
-        sleep(2)
+        sleep(10)
     end
 end
 
@@ -1494,14 +1556,16 @@ function SummonVillageCallback(cNum)
         sleep(1)
         tx, ty, tl = GetObjectPos("Freyda")
         MoveCamera(32, ty, tl, 50, 0.99, 0)
-        sleep(30)
         if GetTownBuildingLevel(g_sTownSummoned, TOWN_BUILDING_GRAIL) == 1 then
             SetGameVar("SarElamTrialGrailBuilt", "true")
         else
             SetGameVar("SarElamTrialGrailBuilt", "false")
-            PlayVisualEffect("/Effects/_(Effect)/Artefacts/TomeOfLightMagicSun.(Effect).xdb#xpointer(/Effect)", "Freyda", "", 0, 0, 4)
-            ShowFlyingSign("")
+            SetObjectFlashlight("Freyda", "light")
+            ShowFlyingSign(g_sPath.."FreydaHasLight.txt", "Freyda", -1, 25)
+            ChangeHeroStat("Freyda", 2, 100)
+            ChangeHeroStat("Freyda", 3, 50)
         end
+        sleep(30)
         MoveHeroRealTime("Freyda", 40, 117, 0)
         sleep(10)
         UnblockGame()
@@ -1534,6 +1598,16 @@ function CustomAbilityTrigger(heroName, customAbilityID)
 end
 
 function GuardianAvatarBonus3Callback()
+    local heroName = g_tabCallbackParams[1]
+    ChangeHeroStat(heroName, 1, 20)
+    ChangeHeroStat(heroName, 2, 20)
+    ChangeHeroStat(heroName, 3, 20)
+    ChangeHeroStat(heroName, 4, 20)
+    g_bBonusAttributes = 1
+    ShowFlyingSign(g_sPath.."GuardianAvatarBonus3Flyby.txt", heroName, -1, 8)
+end
+
+function GuardianAvatarBonus4Callback()
     BlockGame()
     local heroName = g_tabCallbackParams[1]
     local hx, hy, hl = GetObjectPos(heroName)
@@ -1545,7 +1619,7 @@ function GuardianAvatarBonus3Callback()
     sleep(2)
     Trigger(CUSTOM_ABILITY_TRIGGER, "CustomAbilityTrigger")
     ControlHeroCustomAbility(heroName, CUSTOM_ABILITY_3, CUSTOM_ABILITY_ENABLED)
-    ShowFlyingSign(g_sPath.."GuardianAvatarBonus3TeachSpell1.txt", heroName, -1, 8)
+    ShowFlyingSign(g_sPath.."GuardianAvatarBonus4TeachSpell1.txt", heroName, -1, 8)
     sleep(20)
     MoveCamera(29, 117, 0, 20, 0.99, 0)
     sleep(2)
@@ -1586,10 +1660,16 @@ function GuardianAvatarBonusCallback(cNum)
             g_sPath.."NameGuardianAvatar.txt",
             "GuardianAvatarBonus2Callback1", options)
     elseif cNum == 3 then
+        if g_bBonusAttributes == 1 then
+            MessageBox(g_sPath.."GuardianAvatarBonus3Done.txt")
+        else
+            QuestionBox(g_sPath.."GuardianAvatarBonus3Confirm.txt", "GuardianAvatarBonus3Callback", "")
+        end
+    elseif cNum == 4 then
         if g_sHeroTeleported ~= "" then
             MessageBox(g_sPath.."GuardianAvatarAfterSendOff.txt")
         else
-            QuestionBox(g_sPath.."GuardianAvatarBonus3Confirm.txt", "GuardianAvatarBonus3Callback", "")
+            QuestionBox(g_sPath.."GuardianAvatarBonus4Confirm.txt", "GuardianAvatarBonus4Callback", "")
         end
     end
 end
@@ -1865,17 +1945,17 @@ function NPCVisitsTrigger(heroName, npcName)
             MessageBox(g_sPath.."DestroyInfernoOutpostDescription2.txt")
             QuestionBox(g_sPath.."NPCConfirm.txt", "NPCNamelessDragonKnightCallback" , "")
         elseif objState == OBJECTIVE_ACTIVE then
-            if _dwellingsRazed < 32 then
-                MessageBox({g_sPath.."NamelessDragonKnightDwellingNotEnough.txt"; n_dwelling = _dwellingsRazed})
+            if g_bDwellingsRazed < 32 then
+                MessageBox({g_sPath.."NamelessDragonKnightDwellingNotEnough.txt"; n_dwelling = g_bDwellingsRazed})
             else
                 MessageBox(g_sPath.."NamelessDragonKnightDwellingEnough.txt")
             end
-            if _panickyInfernoRazed == 1 then
+            if g_bPanickyInfernoRazed == 1 then
                 MessageBox(g_sPath.."NamelessDragonKnightTownDone.txt")
             else
                 MessageBox(g_sPath.."NamelessDragonKnightTownNotDone.txt")
             end
-            if _dwellingsRazed == 32 and _panickyInfernoRazed == 1 then
+            if g_bDwellingsRazed == 32 and g_bPanickyInfernoRazed == 1 then
                 MessageBox(g_sPath.."NamelessDragonKnightBothDone.txt")
                 GiveArtefact(heroName, ARTIFACT_JINXING_BAND)
                 GiveArtefact(heroName, ARTIFACT_JINXING_BAND)
@@ -1894,7 +1974,7 @@ function NPCVisitsTrigger(heroName, npcName)
             g_tabCallbackParams = {heroName}
             QuestionBox(g_sPath.."NPCConfirm.txt", "NPCThirdBroStartQuestCallback" , "")
         elseif objState == OBJECTIVE_ACTIVE then
-            if heroName == _alienQuestHero then
+            if heroName == g_sAlienQuestHero then
                 if IsHeroAlive("ufo") then
                     MessageBox(g_sPath.."NPCWaiting.txt")
                 else
@@ -2064,9 +2144,7 @@ function NPCVisitsTrigger(heroName, npcName)
             objState = GetObjectiveState("FinalSendOff")
             if objState <= OBJECTIVE_ACTIVE then
                 local options = {}
-                options[1] = g_sPath.."GuardianAvatarBonus1.txt"
-                options[2] = g_sPath.."GuardianAvatarBonus2.txt"
-                options[3] = g_sPath.."GuardianAvatarBonus3.txt"
+                for i = 1, 4 do options[i] = g_sPath.."GuardianAvatarBonus"..i..".txt" end
                 _PagedTalkBox(
                     PORT_ACADEMY,
                     g_sPath.."DescriptionGuardianAvatar.txt",
@@ -2614,6 +2692,46 @@ function RecruiteWraithsCallback()
     startThread(RecruiteWraithsThread)
 end
 
+function WinRegionCallback()
+    BlockGame()
+    RemoveObject("LaszloHero")
+    MoveCamera(18, 115, 0, 20, 0.99, 0)
+    SetObjectPos(g_sHeroTeleported, 19, 117)
+    SetObjectRotation(g_sHeroTeleported, -90)
+    sleep(20)
+    PlayObjectAnimation("LaszloPuppet", "buff", ONESHOT)
+    sleep(15)
+    PlayVisualEffect(
+        "/Effects/_(Effect)/Spells/Bless.xdb#xpointer(/Effect)",
+        g_sHeroTeleported, "", 0, 0, 2)
+    sleep(10)
+    PlayObjectAnimation("LaszloPuppet", "happy", ONESHOT)
+    sleep(20)
+    PlayVisualEffect(
+        "/Effects/_(Effect)/Spells/Teleport_Start.xdb#xpointer(/Effect)",
+        "LaszloPuppet", "", 0, 0, 2)
+    Play2DSound("/Sounds/_(Sound)/Spells/bless.xdb#xpointer(/Sound)")
+    sleep(2)
+    SetObjectiveState("RescueLaszlo", OBJECTIVE_COMPLETED)
+    RemoveObject("LaszloPuppet")
+    sleep(1)
+    SetObjectRotation(g_sHeroTeleported, 90)
+    SetObjectPos(g_sHeroTeleported, 17, 117, 0)
+    for i = 1, 6 do
+        PlayObjectAnimation("AliveFootman"..i, "happy", IDLE)
+    end
+    sleep(10)
+    PlayVisualEffect(
+        "/Effects/_(Effect)/Spells/Prayer.xdb#xpointer(/Effect)",
+        g_sHeroTeleported, 0, 0, 2)
+    Play2DSound("/Sounds/_(Sound)/Spells/Prayer.xdb#xpointer(/Sound)")
+    sleep(2)
+    SetObjectFlashlight(g_sHeroTeleported, "final")
+    sleep(30)
+    UnblockGame()
+    Win()
+end
+
 function RegionEnterTrigger(heroName, regionName)
     if regionName == "VeyerRegion" then
         local objState = GetObjectiveState("ScareAwayVeyer")
@@ -2653,6 +2771,8 @@ function RegionEnterTrigger(heroName, regionName)
             MessageBox(g_sPath.."MarkalNPCError.txt")
         end
         SetObjectPos(heroName, 26, 35)
+    elseif regionName == "WinRegion" then
+        MessageBox(g_sPath.."ScenarioWin2.txt", "WinRegionCallback")
     else
         print("Error in RegionEnterTrigger, ", heroName, "\t", regionName)
     end
@@ -2726,10 +2846,124 @@ function LandlordsMineCaptureTrigger(oldOwner, newOwner, heroName, dwellingName)
     end
 end
 
-function HeroLostTrigger(heroName)
+function ScenarioLostCallback()
     BlockGame()
-    SetupDragonGuardianThread()
+    MoveCamera(21, 117, 0, 18, 0.9, 3.1416/2)
+    sleep(20)
+    for i = 1, 7 do
+        local decider = random(2)
+        local ani = "attack00"
+        if decider == 0 then ani = "attack01" end
+        PlayObjectAnimation("Surround"..i, ani, ONESHOT)
+    end
+    for i = 1, 6 do
+        PlayObjectAnimation("Cheer"..i, "happy", ONESHOT)
+    end
+    sleep(2)
+    for i = 1, 6 do
+        PlayVisualEffect(
+            "/Effects/_(Effect)/Spells/DivineVengeance/FX_DivineVengeance.(Effect).xdb#xpointer(/Effect)",
+            "AliveFootman"..i)
+    end
+    sleep(1)
+    for i = 1, 6 do
+        PlayObjectAnimation("AliveFootman"..i, "death", ONESHOT_STILL)
+    end
+    sleep(10)
+    PlayObjectAnimation("LaszloPuppet", "defeat01", ONESHOT_STILL)
+    sleep(30)
     UnblockGame()
+    Loose()
+end
+
+function PlayerHeroLostTrigger(heroName)
+    if heroName == g_sHeroTeleported then
+        SetObjectiveState("RescueLaszlo", OBJECTIVE_FAILED)
+        g_bRandomAnimDone = 1
+        MessageBox(g_sPath.."ScenarioLost.txt", "ScenarioLostCallback")
+    else
+        BlockGame()
+        SetupDragonGuardianThread()
+        UnblockGame()
+    end
+end
+
+function AI2HeroLostTrigger(heroName)
+    if heroName == "Freyda" then
+        BlockGame()
+        MoveCamera(17, 117, 0, 40, 0.99, -3.1416/2)
+        sleep(20)
+        for i = 1, 6 do
+            PlayObjectAnimation("AliveFootman"..i, "happy", ONESHOT)
+        end
+        for i = 1, 7 do
+            PlayVisualEffect("/Effects/_(Effect)/Characters/UnsummonCreature.xdb#xpointer(/Effect)", "Surround"..i)
+            PlayObjectAnimation("Surround"..i, "death", ONESHOT_STILL)
+        end
+        for i = 1, 6 do
+            PlayVisualEffect("/Effects/_(Effect)/Characters/UnsummonCreature.xdb#xpointer(/Effect)", "Cheer"..i)
+            PlayObjectAnimation("Cheer"..i, "death", ONESHOT_STILL)
+        end
+        sleep(10)
+        for i = 1, 7 do RemoveObject("Surround"..i) end
+        for i = 1, 6 do RemoveObject("Cheer"..i) end
+        sleep(10)
+        UnblockGame()
+        MessageBox(g_sPath.."ScenarioWin1.txt")
+        Trigger(REGION_ENTER_AND_STOP_TRIGGER, "WinRegion", "RegionEnterTrigger")
+    end
+end
+
+function BlockingAuraTrigger(heroName, objName)
+    MessageBox(g_sPath.."DescriptionBlockAura.txt")
+end
+
+function AliveFootmanThread()
+    while g_bRandomAnimDone == 0 do
+        local decider = random(4)
+        local ani = "stir00"
+        if decider == 0 then ani = "attack00"
+        elseif decider == 1 then ani = "attack01"
+        elseif decider == 2 then ani = "specability"
+        end
+        decider = random(4)
+        local ani2 = "call"
+        if decider == 0 then ani2 = "capture"
+        elseif decider == 1 then ani2 = "stir00"
+        elseif decider == 2 then ani2 = "happy"
+        end
+        for i = 1, 6 do
+            PlayObjectAnimation("AliveFootman"..i, ani, ONESHOT)
+        end
+        PlayObjectAnimation("LaszloPuppet", ani2, ONESHOT)
+        sleep(40)
+    end
+end
+
+function SurroundThread()
+    while g_bRandomAnimDone == 0 do
+        for i = 1, 7 do
+            local decider = random(3)
+            local delay = 1 + random(3)
+            ani = "idle00"
+            if decider == 0 then ani = "attack00"
+            elseif decider == 1 then ani = "attack01"
+            elseif decider == 2 then ani = "happy"
+            end
+            sleep(delay)
+            PlayObjectAnimation("Surround"..i, ani, ONESHOT)
+        end
+        sleep(40 + random(15))
+    end
+end
+
+function CheerThread()
+    while g_bRandomAnimDone == 0 do
+        for i = 1, 6 do
+            PlayObjectAnimation("Cheer"..i, "happy", ONESHOT)
+        end
+        sleep(80 + random(20))
+    end
 end
 
 function SetupScene()
@@ -2748,15 +2982,15 @@ function SetupScene()
 
     for i = 1, 6 do SetObjectEnabled("AliveFootman"..i, nil) end
     sleep(1)
-    for i = 1, 6 do SetMonsterSelectionType("AliveFootman"..i, 0) end
+    --for i = 1, 6 do SetMonsterSelectionType("AliveFootman"..i, 0) end
 
     for i = 1, 7 do SetObjectEnabled("Surround"..i, nil) end
     sleep(1)
-    for i = 1, 7 do SetMonsterSelectionType("Surround"..i, 0) end
+    --for i = 1, 7 do SetMonsterSelectionType("Surround"..i, 0) end
 
     for i = 1, 6 do SetObjectEnabled("Cheer"..i, nil) end
     sleep(1)
-    for i = 1, 6 do SetMonsterSelectionType("Cheer"..i, 0) end
+    --for i = 1, 6 do SetMonsterSelectionType("Cheer"..i, 0) end
 
     SetObjectEnabled("TinYUnicorn", nil)
     SetDisabledObjectMode("TinYUnicorn", DISABLED_INTERACT)
@@ -2765,7 +2999,14 @@ function SetupScene()
     sleep(1)
     SetMonsterSelectionType("TinYUnicorn", 0)
     SetMonsterSelectionType("TinYNightmare", 0)
+
+    startThread(AliveFootmanThread)
+    startThread(SurroundThread)
+    startThread(CheerThread)
     UnblockGame()
+
+    local cx, cy, cl = 17, 117, 0
+    --MoveCamera(17, 117, 0, 40, 0.99, -3.1416/2)
 end
 
 function SetupTables()
@@ -2818,7 +3059,7 @@ function SetupQuestObjects()
     end
 
     startThread(SetupDragonGuardianThread)
-    Trigger(PLAYER_REMOVE_HERO_TRIGGER, 1, "HeroLostTrigger")
+    Trigger(PLAYER_REMOVE_HERO_TRIGGER, 1, "PlayerHeroLostTrigger")
 
     -- Setup new day trigger
     Trigger(NEW_DAY_TRIGGER, "NewDayTrigger")
@@ -2929,6 +3170,14 @@ function SetupQuestObjects()
         end
     end
 
+    -- Setup blocing auras
+    for i = 1, 18 do
+        SetObjectEnabled("BlockingAura"..i, nil)
+        Trigger(OBJECT_TOUCH_TRIGGER, "BlockingAura"..i, "BlockingAuraTrigger")
+    end
+    Trigger(OBJECTIVE_STATE_CHANGE_TRIGGER, "CompleteSarFamily", "SarFamilyObjectiveCompleteTrigger")
+
+    -- Setup auto-raze town
     DisableAutoEnterTown("PanickyInferno", true)
     DisableAutoEnterTown("ValeriasHaven", true)
 
@@ -2959,14 +3208,21 @@ function DancingPeasant()
     PlayObjectAnimation("UndyingPeasant", animeName, ONESHOT)
 end
 
-function DancingSiege()
+function DancingGoblin()
     if IsObjectExists("Khenghi") then
         PlayObjectAnimation("Khenghi", "specability", ONESHOT)
     end
 end
 
 function OpeningScene()
+    BlockGame()
+    MoveCamera(18, 115, 0, 40, 0.99, 0)
+    sleep(5)
     OpenCircleFog(25, 117, 0, 30, 1)
+    sleep(35)
+    UnblockGame()
+    MessageBox(g_sPath.."ScenarioStart.txt")
+    SetObjectiveState("RescueLaszlo", OBJECTIVE_ACTIVE)
 end
 
 function backgroundThread()
@@ -2993,7 +3249,7 @@ function backgroundThread()
 
         siegeCycle = siegeCycle + 1
         if siegeCycle >= 1 then
-            DancingSiege()
+            DancingGoblin()
             siegeCycle = 0
         end
         -- Animation end

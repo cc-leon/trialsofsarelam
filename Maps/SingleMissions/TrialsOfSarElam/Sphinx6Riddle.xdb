@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SphinxRiddle>
+	<Question href="Sphinx6RiddleQuestion.txt"/>
+	<answers>
+		<Item href="Sphinx6RiddleAnswer0.txt"/>
+		<Item href="Sphinx6RiddleAnswer1.txt"/>
+		<Item href="Sphinx6RiddleAnswer2.txt"/>
+	</answers>
+	<Experience>0</Experience>
+	<ArtifactID>DRAGON_EYE_RING</ArtifactID>
+	<Gold>0</Gold>
+</SphinxRiddle>
