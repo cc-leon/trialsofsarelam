@@ -9,6 +9,9 @@ function Start()
 end
 
 function DefenderCreatureMove(sUnitName)
+end
+
+function AttackerHeroMove(sUnitName)
     sarName = GetGameVar("SarElamTrialSarChallenge")
-    if sarName ~= "SarShazzar" then SetUnitManaPoints("attacker-hero", 0) end
+    if sarName ~= "SarShazzar" and GetUnitManaPoints(sUnitName) > 0 then SetUnitManaPoints(sUnitName, 0) end
 end

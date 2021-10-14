@@ -15,6 +15,12 @@ function _MassAimedSpell(unitName, nSide, spellID)
     end
 end
 
+function _MassSpell(unitName, spellID)
+    g_sThread = "UnitCastGlobalSpell(".."\""..unitName.."\""..", "..spellID..")"
+    startThread(_subThread); sleep(1);
+end
+
+
 function _CommandWait(sUnitName)
     g_sThread = "setATB(".."\""..sUnitName.."\", ".."0.5"..")"
     sleep(1)
@@ -46,40 +52,42 @@ end
 function AttackerHeroMove(sUnitName)
     combatSetPause(true)
     if g_iTurn == 0 then
-        for i = 14, 1, -1 do CreateCreature(ATTACKER, CREATURE_MARKSMAN, 500, 2, i) end
-    elseif g_iTurn == 1 and g_bGrailBuilt == 0 then
-        CreateCreature(ATTACKER, CREATURE_PALADIN, 300, 6, 10)
-        CreateCreature(ATTACKER, CREATURE_PALADIN, 300, 6, 6)
+        for i = 14, 1, -1 do CreateCreature(ATTACKER, CREATURE_MARKSMAN, 1000, 2, i) end
+    elseif g_iTurn == 1 then
+        CreateCreature(ATTACKER, CREATURE_PALADIN, 600, 6, 10)
+        CreateCreature(ATTACKER, CREATURE_PALADIN, 600, 6, 6)
     elseif g_iTurn == 2 then
-        CreateCreature(ATTACKER, CREATURE_WHITE_UNICORN, 400, 8, 14)
-        CreateCreature(ATTACKER, CREATURE_WHITE_UNICORN, 400, 8, 2)
-    elseif g_iTurn == 3 then
-        CreateCreature(ATTACKER, CREATURE_PHOENIX, 200, 6, 12)
-        CreateCreature(ATTACKER, CREATURE_PHOENIX, 200, 6, 4)
+        CreateCreature(ATTACKER, CREATURE_WHITE_UNICORN, 800, 8, 14)
+        CreateCreature(ATTACKER, CREATURE_WHITE_UNICORN, 800, 8, 2)
+    elseif g_iTurn == 3 and g_bGrailBuilt == 0 then
+        CreateCreature(ATTACKER, CREATURE_PHOENIX, 1000, 6, 12)
+        CreateCreature(ATTACKER, CREATURE_PHOENIX, 1000, 6, 4)
     elseif g_iTurn == 4 then
-        CreateCreature(ATTACKER, CREATURE_SERAPH, 200, 6, 14)
-        CreateCreature(ATTACKER, CREATURE_ARCHANGEL, 200, 6, 2)
-    elseif g_iTurn == 5 then
-        CreateCreature(ATTACKER, CREATURE_BERSERKER, 1000, 5, 8)
-        CreateCreature(ATTACKER, CREATURE_BATTLE_RAGER, 1000, 5, 7)
-    elseif g_iTurn >= 6 and g_bGrailBuilt == 1 then
+        CreateCreature(ATTACKER, CREATURE_SERAPH, 300, 6, 14)
+        CreateCreature(ATTACKER, CREATURE_ARCHANGEL, 300, 6, 2)
+    elseif g_iTurn >= 5 and g_bGrailBuilt == 1 then
         g_sThread = "UnitCastGlobalSpell(\""..sUnitName.."\", "..SPELL_CONJURE_PHOENIX..")"
         startThread(_subThread);sleep(10)
     end
     if g_bGrailBuilt ==  0 then
         local mode = mod(g_iTurn, 7)
-        local spellID = 0
         SetUnitManaPoints(sUnitName, 800)
         sleep(180)
-        if mode == 0 then spellID = SPELL_HASTE
-        elseif mode == 1 then spellID = SPELL_BLOODLUST
-        elseif mode == 2 then spellID = SPELL_STONESKIN
-        elseif mode == 3 then spellID = SPELL_BLESS
-        elseif mode == 4 then spellID = SPELL_DEFLECT_ARROWS
-        elseif mode == 5 then spellID = SPELL_CELESTIAL_SHIELD
-        elseif mode == 6 then spellID = SPELL_REGENERATION
+        if mode == 0 then
+            _MassSpell(sUnitName, SPELL_MASS_HASTE)
+        elseif mode == 1 then
+            _MassSpell(sUnitName, SPELL_MASS_BLOODLUST)
+        elseif mode == 2 then
+            _MassSpell(sUnitName, SPELL_MASS_STONESKIN)
+        elseif mode == 3 then
+            _MassSpell(sUnitName, SPELL_MASS_BLESS)
+        elseif mode == 4 then
+            _MassSpell(sUnitName, SPELL_MASS_DEFLECT_ARROWS)
+        elseif mode == 5 then
+            _MassAimedSpell(sUnitName, ATTACKER, SPELL_CELESTIAL_SHIELD)
+        elseif mode == 6 then
+            _MassAimedSpell(sUnitName, ATTACKER, SPELL_REGENERATION)
         end
-        _MassAimedSpell(sUnitName, ATTACKER, spellID)
         sleep(100)
         _MassAimedSpell(sUnitName, ATTACKER, SPELL_DISPEL)
         _CommandWait(sUnitName)
@@ -92,5 +100,19 @@ end
 function AttackerCreatureMove(sUnitName)
     if GetCreatureType(sUnitName) == CREATURE_TREANT_GUARDIAN then
         return true
+    end
+end
+
+function AttackerCreatureDeath(sUnitName)
+    print("Attacker died ", sUnitName, "\t", length(GetAttackerCreatures()))
+    if length(GetAttackerCreatures()) == 0 then Finish(DEFENDER) end
+end
+
+function DefenderCreatureDeath(sUnitName)
+    print("Defender died ", sUnitName, "\t", length(GetDefenderCreatures()))
+    if length(GetDefenderCreatures()) == 0 then
+        AddCreature(ATTACKER, 10, 1000000, 2, 1)
+        sleep(100)
+        Finish(ATTACKER)
     end
 end

@@ -142,8 +142,8 @@ function Start()
                 SetUnitManaPoints(unit, 0)
             end
         end
-        AddCreature(DEFENDER, CREATURE_WARLORD, 800, 13, 9)
-        AddCreature(DEFENDER, CREATURE_WARLORD, 800, 13, 1)
+        AddCreature(DEFENDER, CREATURE_WARLORD, 650, 13, 9)
+        AddCreature(DEFENDER, CREATURE_WARLORD, 650, 13, 1)
     elseif g_sGuardianName == "AirGuardian" then
         local units = GetDefenderCreatures()
         local dummyName = units[0]

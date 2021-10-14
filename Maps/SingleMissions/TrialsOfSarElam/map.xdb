@@ -111,7 +111,7 @@
 					<Item>
 						<Type>TB_GRAIL</Type>
 						<InitialUpgrade>BLD_UPG_NONE</InitialUpgrade>
-						<MaxUpgrade>BLD_UPG_NONE</MaxUpgrade>
+						<MaxUpgrade>BLD_UPG_1</MaxUpgrade>
 					</Item>
 					<Item>
 						<Type>TB_WONDER</Type>
@@ -371,7 +371,7 @@
 					<Item>
 						<Type>TB_GRAIL</Type>
 						<InitialUpgrade>BLD_UPG_NONE</InitialUpgrade>
-						<MaxUpgrade>BLD_UPG_NONE</MaxUpgrade>
+						<MaxUpgrade>BLD_UPG_1</MaxUpgrade>
 					</Item>
 					<Item>
 						<Type>TB_WONDER</Type>
@@ -1185,8 +1185,8 @@
 					</Item>
 					<Item>
 						<Type>TB_SPECIAL_2</Type>
-						<InitialUpgrade>BLD_UPG_NONE</InitialUpgrade>
-						<MaxUpgrade>BLD_UPG_NONE</MaxUpgrade>
+						<InitialUpgrade>BLD_UPG_1</InitialUpgrade>
+						<MaxUpgrade>BLD_UPG_1</MaxUpgrade>
 					</Item>
 					<Item>
 						<Type>TB_SPECIAL_3</Type>
@@ -1466,7 +1466,7 @@
 				</buildings>
 				<Editable>
 					<NameFileRef href="NameNecropolisVillage.txt"/>
-					<BiographyFileRef href=""/>
+					<BiographyFileRef href="TownBiography.1.txt"/>
 				</Editable>
 				<armySlots/>
 				<spellIDs>
@@ -10039,15 +10039,25 @@
 						<pointLights/>
 						<Shared href="MapObjects/Heroes/RuneProdigy.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
 						<PlayerID>PLAYER_1</PlayerID>
-						<Experience>10000</Experience>
+						<Experience>81961</Experience>
 						<armySlots>
 							<Item>
 								<Creature>CREATURE_DEFENDER</Creature>
 								<Count>1</Count>
 							</Item>
 						</armySlots>
-						<artifactIDs/>
-						<isUntransferable/>
+						<artifactIDs>
+							<Item>DWARVEN_MITHRAL_CUIRASS</Item>
+							<Item>DWARVEN_MITHRAL_GREAVES</Item>
+							<Item>DWARVEN_MITHRAL_HELMET</Item>
+							<Item>DWARVEN_MITHRAL_SHIELD</Item>
+						</artifactIDs>
+						<isUntransferable>
+							<Item>1</Item>
+							<Item>1</Item>
+							<Item>1</Item>
+							<Item>1</Item>
+						</isUntransferable>
 						<Editable>
 							<NameFileRef href=""/>
 							<BiographyFileRef href=""/>
@@ -10064,7 +10074,7 @@
 							<FavoriteEnemies/>
 							<TalismanLevel>0</TalismanLevel>
 						</Editable>
-						<OverrideMask>8</OverrideMask>
+						<OverrideMask>40</OverrideMask>
 						<PrimarySkillMastery>MASTERY_BASIC</PrimarySkillMastery>
 						<LossTrigger>
 							<Action>
@@ -10870,8 +10880,8 @@
 				<pointLights/>
 				<Shared href="/MapObjects/Neutral/Phoenix.(AdvMapMonsterShared).xdb#xpointer(/AdvMapMonsterShared)"/>
 				<Custom>true</Custom>
-				<Amount>400</Amount>
-				<Amount2>400</Amount2>
+				<Amount>200</Amount>
+				<Amount2>200</Amount2>
 				<AttackType>ATTACK_ANY</AttackType>
 				<MoveType>MOVE_ANY</MoveType>
 				<DoesNotGrow>false</DoesNotGrow>
@@ -12523,14 +12533,7 @@
 				<Courage>MONSTER_COURAGE_ALWAYS_JOIN</Courage>
 				<AllowQuickCombat>true</AllowQuickCombat>
 				<DoesNotDependOnDifficulty>true</DoesNotDependOnDifficulty>
-				<AdditionalStacks>
-					<Item>
-						<Creature>CREATURE_MASTER_GREMLIN</Creature>
-						<CustomAmount>true</CustomAmount>
-						<Amount>400</Amount>
-						<Amount2>0</Amount2>
-					</Item>
-				</AdditionalStacks>
+				<AdditionalStacks/>
 				<SingleMonsterNameFileRef href=""/>
 				<MultipleMonstersNameFileRef href=""/>
 				<RacesRandomGroupID>0</RacesRandomGroupID>
@@ -12572,14 +12575,7 @@
 				<Courage>MONSTER_COURAGE_ALWAYS_JOIN</Courage>
 				<AllowQuickCombat>true</AllowQuickCombat>
 				<DoesNotDependOnDifficulty>true</DoesNotDependOnDifficulty>
-				<AdditionalStacks>
-					<Item>
-						<Creature>CREATURE_MASTER_GREMLIN</Creature>
-						<CustomAmount>true</CustomAmount>
-						<Amount>400</Amount>
-						<Amount2>0</Amount2>
-					</Item>
-				</AdditionalStacks>
+				<AdditionalStacks/>
 				<SingleMonsterNameFileRef href=""/>
 				<MultipleMonstersNameFileRef href=""/>
 				<RacesRandomGroupID>0</RacesRandomGroupID>
@@ -12621,14 +12617,7 @@
 				<Courage>MONSTER_COURAGE_ALWAYS_JOIN</Courage>
 				<AllowQuickCombat>true</AllowQuickCombat>
 				<DoesNotDependOnDifficulty>true</DoesNotDependOnDifficulty>
-				<AdditionalStacks>
-					<Item>
-						<Creature>CREATURE_MASTER_GREMLIN</Creature>
-						<CustomAmount>true</CustomAmount>
-						<Amount>400</Amount>
-						<Amount2>0</Amount2>
-					</Item>
-				</AdditionalStacks>
+				<AdditionalStacks/>
 				<SingleMonsterNameFileRef href=""/>
 				<MultipleMonstersNameFileRef href=""/>
 				<RacesRandomGroupID>0</RacesRandomGroupID>
@@ -12670,14 +12659,7 @@
 				<Courage>MONSTER_COURAGE_ALWAYS_JOIN</Courage>
 				<AllowQuickCombat>true</AllowQuickCombat>
 				<DoesNotDependOnDifficulty>true</DoesNotDependOnDifficulty>
-				<AdditionalStacks>
-					<Item>
-						<Creature>CREATURE_MASTER_GREMLIN</Creature>
-						<CustomAmount>true</CustomAmount>
-						<Amount>400</Amount>
-						<Amount2>0</Amount2>
-					</Item>
-				</AdditionalStacks>
+				<AdditionalStacks/>
 				<SingleMonsterNameFileRef href=""/>
 				<MultipleMonstersNameFileRef href=""/>
 				<RacesRandomGroupID>0</RacesRandomGroupID>
@@ -13262,13 +13244,11 @@
 							</Item>
 						</armySlots>
 						<artifactIDs>
-							<Item>ARTIFACT_TREEBORN_QUIVER</Item>
 							<Item>ARTIFACT_OGRE_CLUB</Item>
 							<Item>ARTIFACT_OGRE_SHIELD</Item>
 						</artifactIDs>
 						<isUntransferable>
-							<Item>0</Item>
-							<Item>0</Item>
+							<Item>1</Item>
 							<Item>1</Item>
 						</isUntransferable>
 						<Editable>
@@ -20318,8 +20298,8 @@
 				<Editable>
 					<NameFileRef href=""/>
 					<BiographyFileRef href=""/>
-					<Offence>0</Offence>
-					<Defence>100</Defence>
+					<Offence>20</Offence>
+					<Defence>150</Defence>
 					<Spellpower>1</Spellpower>
 					<Knowledge>40</Knowledge>
 					<skills>
@@ -36965,24 +36945,6 @@
 				<ScalePercent>100</ScalePercent>
 			</AdvMapStatic>
 		</Item>
-		<Item href="#n:inline(AdvMapStatic)" id="item_42F3EED5-5AE3-414E-B06D-E67512530A53">
-			<AdvMapStatic>
-				<Pos>
-					<x>28</x>
-					<y>51</y>
-					<z>0</z>
-				</Pos>
-				<Rot>0</Rot>
-				<Floor>0</Floor>
-				<Name/>
-				<CombatScript/>
-				<pointLights/>
-				<Shared href="/MapObjects/Grass/Rays/Rays_01.(AdvMapStaticShared).xdb#xpointer(/AdvMapStaticShared)"/>
-				<IsRemovable>false</IsRemovable>
-				<TerrainAligned>false</TerrainAligned>
-				<ScalePercent>100</ScalePercent>
-			</AdvMapStatic>
-		</Item>
 		<Item href="#n:inline(AdvMapBuilding)" id="item_A01C1F6F-2ABC-401C-A145-9066C5831F2D">
 			<AdvMapBuilding>
 				<Pos>
@@ -44295,9 +44257,11 @@
 					<Item>ARTIFACT_TREEBORN_QUIVER</Item>
 					<Item>UNICORN_HORN_BOW</Item>
 					<Item>DWARVEN_MITHRAL_CUIRASS</Item>
+					<Item>DWARVEN_MITHRAL_GREAVES</Item>
 					<Item>DWARVEN_MITHRAL_HELMET</Item>
 				</artifactIDs>
 				<isUntransferable>
+					<Item>0</Item>
 					<Item>0</Item>
 					<Item>0</Item>
 					<Item>0</Item>
@@ -44346,8 +44310,8 @@
 						<Item>HERO_SKILL_CHILLING_STEEL</Item>
 						<Item>HERO_SKILL_RETRIBUTION</Item>
 						<Item>HERO_SKILL_SUPRESS_DARK</Item>
-						<Item>HERO_SKILL_SUPRESS_LIGHT</Item>
 						<Item>HERO_SKILL_SHRUG_DARKNESS</Item>
+						<Item>HERO_SKILL_SUPRESS_LIGHT</Item>
 						<Item>HERO_SKILL_ANCIENT_SMITHY</Item>
 						<Item>HERO_SKILL_FAST_AND_FURIOUS</Item>
 						<Item>HERO_SKILL_EMPATHY</Item>
@@ -45496,29 +45460,6 @@
 				<TerrainAligned>false</TerrainAligned>
 				<ScalePercent>100</ScalePercent>
 			</AdvMapStatic>
-		</Item>
-		<Item href="#n:inline(AdvMapBuilding)" id="item_4A49005F-37DB-49DF-AA69-6B54906E3BE3">
-			<AdvMapBuilding>
-				<Pos>
-					<x>85</x>
-					<y>26</y>
-					<z>0</z>
-				</Pos>
-				<Rot>4.71239</Rot>
-				<Floor>0</Floor>
-				<Name/>
-				<CombatScript/>
-				<pointLights/>
-				<Shared href="/MapObjects/H5A2/SacrificeAltar.xdb#xpointer(/AdvMapBuildingShared)"/>
-				<PlayerID>PLAYER_1</PlayerID>
-				<CaptureTrigger>
-					<Action>
-						<FunctionName/>
-					</Action>
-				</CaptureTrigger>
-				<GroupID>0</GroupID>
-				<showCameras/>
-			</AdvMapBuilding>
 		</Item>
 		<Item href="#n:inline(AdvMapBuilding)" id="item_D5456D6A-2B86-4C6D-A5C7-E15DCBD905F1">
 			<AdvMapBuilding>
@@ -48602,8 +48543,8 @@
 		<Item href="#n:inline(AdvMapTreasure)" id="item_2BBE9694-0421-4627-8CF2-CACA369C8F3B">
 			<AdvMapTreasure>
 				<Pos>
-					<x>35</x>
-					<y>26</y>
+					<x>34</x>
+					<y>29</y>
 					<z>0</z>
 				</Pos>
 				<Rot>0</Rot>
@@ -48851,6 +48792,111 @@
 				<MessageFileRef href=""/>
 			</AdvMapTreasure>
 		</Item>
+		<Item href="#n:inline(AdvMapBuilding)" id="item_4C191F4E-94F6-4FF9-8EBF-870961E9C071">
+			<AdvMapBuilding>
+				<Pos>
+					<x>75</x>
+					<y>36</y>
+					<z>0</z>
+				</Pos>
+				<Rot>6.28318</Rot>
+				<Floor>0</Floor>
+				<Name/>
+				<CombatScript/>
+				<pointLights/>
+				<Shared href="/MapObjects/Magic_Spring.(AdvMapBuildingShared).xdb#xpointer(/AdvMapBuildingShared)"/>
+				<PlayerID>PLAYER_1</PlayerID>
+				<CaptureTrigger>
+					<Action>
+						<FunctionName/>
+					</Action>
+				</CaptureTrigger>
+				<GroupID>0</GroupID>
+				<showCameras/>
+			</AdvMapBuilding>
+		</Item>
+		<Item href="#n:inline(AdvMapHero)" id="item_B8CE8BA1-F130-4F36-99F2-86C7E6D98EFC">
+			<AdvMapHero>
+				<Pos>
+					<x>45</x>
+					<y>37</y>
+					<z>0</z>
+				</Pos>
+				<Rot>0</Rot>
+				<Floor>0</Floor>
+				<Name/>
+				<CombatScript/>
+				<pointLights/>
+				<Shared href="/MapObjects/Inferno/Jazaz.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+				<PlayerID>PLAYER_1</PlayerID>
+				<Experience>0</Experience>
+				<armySlots>
+					<Item>
+						<Creature>CREATURE_PEASANT</Creature>
+						<Count>1</Count>
+					</Item>
+					<Item>
+						<Creature>CREATURE_MILITIAMAN</Creature>
+						<Count>1</Count>
+					</Item>
+					<Item>
+						<Creature>CREATURE_CLERIC</Creature>
+						<Count>1</Count>
+					</Item>
+					<Item>
+						<Creature>CREATURE_ARCHDEVIL</Creature>
+						<Count>1</Count>
+					</Item>
+					<Item>
+						<Creature>CREATURE_FAMILIAR</Creature>
+						<Count>1</Count>
+					</Item>
+					<Item>
+						<Creature>CREATURE_STOUT_DEFENDER</Creature>
+						<Count>1</Count>
+					</Item>
+					<Item>
+						<Creature>CREATURE_STONE_DEFENDER</Creature>
+						<Count>1</Count>
+					</Item>
+				</armySlots>
+				<artifactIDs/>
+				<isUntransferable/>
+				<Editable>
+					<NameFileRef href=""/>
+					<BiographyFileRef href=""/>
+					<Offence>0</Offence>
+					<Defence>0</Defence>
+					<Spellpower>0</Spellpower>
+					<Knowledge>0</Knowledge>
+					<skills/>
+					<perkIDs/>
+					<spellIDs/>
+					<Ballista>false</Ballista>
+					<FirstAidTent>false</FirstAidTent>
+					<AmmoCart>false</AmmoCart>
+					<FavoriteEnemies/>
+					<TalismanLevel>0</TalismanLevel>
+				</Editable>
+				<OverrideMask>0</OverrideMask>
+				<PrimarySkillMastery>MASTERY_NONE</PrimarySkillMastery>
+				<LossTrigger>
+					<Action>
+						<FunctionName/>
+					</Action>
+				</LossTrigger>
+				<AllowQuickCombat>true</AllowQuickCombat>
+				<Textures>
+					<Icon128x128/>
+					<Icon64x64/>
+					<RoundedFace/>
+					<LeftFace/>
+					<RightFace/>
+				</Textures>
+				<PresetPrice>0</PresetPrice>
+				<BannedRaces/>
+			</AdvMapHero>
+		</Item>
 	</objects>
 	<Resources>
 		<PointLights>
@@ -48911,10 +48957,6 @@
 			<Item>
 				<Name>SarIssusGreeting</Name>
 				<SaveFilenameFileRef href="SarIssusGreeting.txt"/>
-			</Item>
-			<Item>
-				<Name>SarIssusBonuses</Name>
-				<SaveFilenameFileRef href="SarIssusBonus.txt"/>
 			</Item>
 			<Item>
 				<Name>GarrisonDenied</Name>
@@ -49071,6 +49113,10 @@
 			<Item>
 				<Name>MapMakerOption4Description</Name>
 				<SaveFilenameFileRef href="MapMakerOption4Description.txt"/>
+			</Item>
+			<Item>
+				<Name>MapMakerOption4Finished</Name>
+				<SaveFilenameFileRef href="MapMakerOption4Finished.txt"/>
 			</Item>
 			<Item>
 				<Name>MapMakerOption5</Name>
@@ -49513,8 +49559,8 @@
 				<SaveFilenameFileRef href="SecondBroSkullNotDone.txt"/>
 			</Item>
 			<Item>
-				<Name>CaeserfoxFinish</Name>
-				<SaveFilenameFileRef href="CaeserfoxFinish.txt"/>
+				<Name>SecondBroFinish</Name>
+				<SaveFilenameFileRef href="SecondBroFinish.txt"/>
 			</Item>
 			<Item>
 				<Name>NameBeastTrainer</Name>
@@ -49914,10 +49960,10 @@
 			</Item>
 		</SavesFilenames>
 	</Resources>
-	<AmbientLight/>
-	<UndergroundAmbientLight/>
+	<AmbientLight href="/Lights/_(AmbientLight)/Day.xdb#xpointer(/AmbientLight)"/>
+	<UndergroundAmbientLight href="/Lights/_(AmbientLight)/AdvMap/C4M5.xdb#xpointer(/AmbientLight)"/>
 	<GroundAmbientLights>
-		<Item href="/Lights/_(AmbientLight)/0_Default_AmbientLight.xdb#xpointer(/AmbientLight)"/>
+		<Item href="/Lights/_(AmbientLight)/Day.xdb#xpointer(/AmbientLight)"/>
 	</GroundAmbientLights>
 	<UndergroundAmbientLights>
 		<Item href="/Lights/_(AmbientLight)/Tests/Night.xdb#xpointer(/AmbientLight)"/>
@@ -50241,7 +50287,7 @@
 			</RemoveHeroTrigger>
 			<VictoryMessageRef href=""/>
 			<DefeatMessageRef href=""/>
-			<Race>TOWN_NO_TYPE</Race>
+			<Race>TOWN_HEAVEN</Race>
 			<Colour>PCOLOR_NEUTRAL</Colour>
 			<CanBeDisabled>true</CanBeDisabled>
 			<Attractors/>
@@ -50293,9 +50339,9 @@
 		</Item>
 		<Item>
 			<MainTown/>
-			<MainHero/>
+			<MainHero href="#xpointer(id(item_11D02738-811B-4C77-BC5D-7EEEB3B9826F)/AdvMapHero)"/>
 			<ActivePlayer>true</ActivePlayer>
-			<Team>-1</Team>
+			<Team>2</Team>
 			<CanBeHumanPlayer>false</CanBeHumanPlayer>
 			<CanBeComputerPlayer>true</CanBeComputerPlayer>
 			<Behaviour>PB_RANDOM</Behaviour>
@@ -50315,7 +50361,7 @@
 			</RemoveHeroTrigger>
 			<VictoryMessageRef href=""/>
 			<DefeatMessageRef href=""/>
-			<Race>TOWN_NO_TYPE</Race>
+			<Race>TOWN_INFERNO</Race>
 			<Colour>PCOLOR_NEUTRAL</Colour>
 			<CanBeDisabled>true</CanBeDisabled>
 			<Attractors/>
@@ -50330,9 +50376,9 @@
 		</Item>
 		<Item>
 			<MainTown/>
-			<MainHero/>
+			<MainHero href="#xpointer(id(item_27AD657B-0CF7-47D4-8F32-53E651F0F979)/AdvMapHero)"/>
 			<ActivePlayer>true</ActivePlayer>
-			<Team>0</Team>
+			<Team>3</Team>
 			<CanBeHumanPlayer>false</CanBeHumanPlayer>
 			<CanBeComputerPlayer>true</CanBeComputerPlayer>
 			<Behaviour>PB_RANDOM</Behaviour>
@@ -50352,7 +50398,7 @@
 			</RemoveHeroTrigger>
 			<VictoryMessageRef href=""/>
 			<DefeatMessageRef href=""/>
-			<Race>TOWN_NO_TYPE</Race>
+			<Race>TOWN_HEAVEN</Race>
 			<Colour>PCOLOR_NEUTRAL</Colour>
 			<CanBeDisabled>true</CanBeDisabled>
 			<Attractors/>
@@ -51440,7 +51486,7 @@
 							<IsHidden>false</IsHidden>
 							<Ignore>false</Ignore>
 							<ShowCompleted>true</ShowCompleted>
-							<NeedComplete>true</NeedComplete>
+							<NeedComplete>false</NeedComplete>
 							<StateChangeTrigger>
 								<Action>
 									<FunctionName/>
@@ -54444,7 +54490,7 @@
 			</PlayerSpecific>
 		</Secondary>
 	</Objectives>
-	<Birds href="/MapObjects/_(AdvMapBirds)/Pigeons_Adv.xdb#xpointer(/AdvMapBirds)"/>
+	<Birds/>
 	<BirdsAmount>10</BirdsAmount>
 	<Weather/>
 	<Wind/>
@@ -54463,7 +54509,17 @@
 	<PWLTutorialHintTrigger/>
 	<BorderSize>1</BorderSize>
 	<spellIDs>
+		<Item>SPELL_RUNE_OF_CHARGE</Item>
+		<Item>SPELL_RUNE_OF_BERSERKING</Item>
+		<Item>SPELL_RUNE_OF_MAGIC_CONTROL</Item>
+		<Item>SPELL_RUNE_OF_EXORCISM</Item>
+		<Item>SPELL_RUNE_OF_ELEMENTAL_IMMUNITY</Item>
+		<Item>SPELL_RUNE_OF_STUNNING</Item>
+		<Item>SPELL_RUNE_OF_BATTLERAGE</Item>
+		<Item>SPELL_RUNE_OF_ETHEREALNESS</Item>
+		<Item>SPELL_RUNE_OF_REVIVE</Item>
 		<Item>SPELL_SUMMON_BOAT</Item>
+		<Item>SPELL_RUNE_OF_DRAGONFORM</Item>
 	</spellIDs>
 	<artifactIDs>
 		<Item>GOLDEN_SEXTANT</Item>
@@ -54516,7 +54572,10 @@
 	<disabledArtifactSets/>
 	<RacesRandomGroups/>
 	<ImportantArtifacts>
-		<PreservingArtifacts/>
+		<PreservingArtifacts>
+			<Item>ARTIFACT_OGRE_CLUB</Item>
+			<Item>ARTIFACT_OGRE_SHIELD</Item>
+		</PreservingArtifacts>
 	</ImportantArtifacts>
 	<LoadingScreenSound/>
 	<AdditionallyRollableHeroes/>

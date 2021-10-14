@@ -62,7 +62,7 @@ CREATURE_IDS_BY_RACE = {[0] = {1, 3, 5, 7, 9, 11, 13}, [1] = {43, 45, 47, 49, 51
                         [2] = {57, 59, 61, 63, 65, 67, 69}, [3] = {71, 73,75, 77, 79, 81, 83},
                         [4] = {29, 31, 33, 35,37, 39, 41}, [5] = {15, 17, 19, 21, 23, 25, 27},
                         [6] = {92, 94, 96, 98, 100, 102, 104}, [7] = {117, 119, 121, 123, 125, 127, 129}}
-INIT_CREATURE_COUNT = {[0] = {2080, 1040, 840, 400, 240, 160, 80}, [1] = {1080, 800, 600, 320, 240, 160, 80},
+INIT_CREATURE_COUNT = {[0] = {2080, 1040, 840, 400, 240, 160, 80}, [1] = {1080, 800, 600, 320, 240, 200, 80},
                        [2] = {1720, 1200, 760, 400, 320, 160, 80}, [3] = {680, 480, 520, 320, 240, 160, 80},
                        [4] = {1960, 1280, 760, 400, 240, 160, 120}, [5] = {1400, 1360, 680, 400, 280, 160, 80},
                        [6] = {1560, 1200, 600, 640, 280, 160, 80}, [7] = {2360, 1200, 920, 400, 400, 160, 80}}
@@ -91,7 +91,8 @@ SAR2SLOTS = {
                       [1] = {0, 0}, [2] = {0, 0}, [3] = {0, 0}, [4] = {0, 0}, [5] = {0, 0}, [6] = {0, 0}}}
 
 -- Combat script for Sar family
-SAR_COMBAT_SCRIPT = "/"..g_sPath.."CombatSarChallenges.(Script).xdb#xpointer(/Script)";
+SAR_COMBAT_SCRIPT = "/"..g_sPath.."CombatSarChallenges.(Script).xdb#xpointer(/Script)"
+MAGMA_COMBAT_SCRIPT = "/"..g_sPath.."CombatMagmaDragons.(Script).xdb#xpointer(/Script)"
 
 -- Sar-Challenges reward
 SAR2ARTEFACTS = {
@@ -158,8 +159,8 @@ NAME2GUARDIAN = {}
 GUARDIAN2ARMY = {[1] = {[0] = {CREATURE_ASSASSIN, 2000}, [1] = {CREATURE_BLOOD_WITCH, 2975}, [2] = {CREATURE_BLOOD_WITCH_2, 2033}, 
                         [3] = {CREATURE_MATRON, 350}, [4] = {CREATURE_MATRIARCH, 311},
                         [5] = {CREATURE_BLACK_DRAGON, 116}, [6] = {CREATURE_SHAMAN_HAG, 1400}},
-                 [2] = {[0] = {CREATURE_FLAME_MAGE, 880}, [1] = {CREATURE_FLAME_KEEPER, 880}, [2] = {CREATURE_WARLORD, 800},
-                        [3] = {CREATURE_BLACK_DRAGON, 400}, [4] = {CREATURE_PHOENIX, 400},
+                 [2] = {[0] = {CREATURE_FLAME_MAGE, 980}, [1] = {CREATURE_FLAME_KEEPER, 980}, [2] = {CREATURE_WARLORD, 650},
+                        [3] = {CREATURE_BLACK_DRAGON, 300}, [4] = {CREATURE_PHOENIX, 300},
                         [5] = {0, 0}, [6] = {0, 0}},
                  [3] = {[0] = {CREATURE_IRON_GOLEM, 1}, [1] = {0, 0},
                         [2] = {0, 0}, [3] = {0, 0}, [4] = {0, 0}, [5] = {0, 0}, [6] = {0, 0}},
@@ -294,6 +295,7 @@ g_sTownSummoned = ""
 g_bRandomAnimDone = 0
 
 -- Quest flags
+g_bBypassedSarFamily = 0
 g_sAlienQuestHero = ""
 g_bPanickyInfernoRazed = 0
 g_bDwellingsRazed = 0
@@ -301,7 +303,7 @@ g_bGoblinSupportUsed = 0
 g_bDefendUsAllUsed = 0
 g_bBattleCommanderUsed = 0
 
-function _ReverseTable(tableName)
+function _InvertTable(tableName)
     local result = {}
     for i, j in tableName do result[j] = i end
     return result
@@ -356,67 +358,46 @@ function _GetCreatureCount(objName)
     return result
 end
 
-function _NormalizeOneStack(objName)
-    -- If an object has only a single stack, move this stack to slot 0
-    -- useful for full stacks manipulation consistency
-
-    if _GetCreatureNumStacks(objName) == 1 then
-        local creatureId, creatureCount = 0, 0
-
-        for i = 1, 6 do
-            creatureId, creatureCount = GetObjectArmySlotCreature(objName, i)
-            if creatureId ~= 0 then
-                AddObjectCreatures(objName, 1, 1, 0)
-                sleep(1)
-                RemoveObjectCreatures(objName, creatureId, creatureCount, i)
-                break
-            end
-        end
-
-        if creatureId ~= 0 then
-            AddObjectCreatures(objName, 1, 1, 1)
-            sleep(1)
-            RemoveObjectCreatures(objName, 1, 1, 0)
-            AddObjectCreatures(objName, creatureId, creatureCount, 0)
-            sleep(1)
-            RemoveObjectCreatures(objName, 1, 1, 1)
-        end
-    end
-end
-
 function _SetCreatureSlots(objName, newCreatures)
     -- Given slots information newCreatures (a dict with slot number to a list which has creature id and amount)
     -- Set the object's stacks to be the same as newCreatures
     -- Must be blocked
 
-    _NormalizeOneStack(objName)
-
     local creatureId, creatureCount = 0, 0
-
-    for i = 1, 6 do
+    local finSlot, finId = 7, 0
+    for i = 0, 6 do
         creatureId, creatureCount = GetObjectArmySlotCreature(objName, i)
         if creatureId ~= 0 then RemoveObjectCreatures(objName, creatureId, creatureCount, i) end
-        if newCreatures[i][1] ~= 0 then 
-            AddObjectCreatures(objName, newCreatures[i][1], newCreatures[i][2], i)
-            sleep(1)
+    end
+    sleep(1)
+    for i = 0, 6 do
+        creatureId, creatureCount = GetObjectArmySlotCreature(objName, i)
+        if creatureId ~= 0 then
+            finSlot = i
+            finId = creatureId
         end
     end
-
-    sleep(1)
-    local needCleanUp = nil
-    if _GetCreatureNumStacks(objName) == 1 then
-        AddObjectCreatures(objName, 1, 1, 1)
-        sleep(1)
-        needCleanUp = true
+    for i = 0, 6 do
+        if newCreatures[i][1] ~= 0 and newCreatures[i][2] ~= 0 and i ~= finSlot then 
+            AddObjectCreatures(objName, newCreatures[i][1], newCreatures[i][2], i)
+        end
     end
-
-    creatureId, creatureCount = GetObjectArmySlotCreature(objName, 0)
-    if creatureId ~= 0 then RemoveObjectCreatures(objName, creatureId, creatureCount, 0) end
-    if newCreatures[0][1] ~= 0 then
-        AddObjectCreatures(objName, newCreatures[0][1], newCreatures[0][2], 0)
+    if finSlot < 7 then
+        sleep(1)
+        RemoveObjectCreatures(objName, finId, 1, finSlot)
+        sleep(1)
+        creatureId, creatureCount = GetObjectArmySlotCreature(objName, finSlot)
+        if newCreatures[finSlot][1] ~= 0 then
+            AddObjectCreatures(objName, newCreatures[finSlot][1], newCreatures[finSlot][2])
+            sleep(1)
+        end
+        if creatureId ~= 0 then
+            RemoveObjectCreatures(objName, finId, 1, finSlot)
+            sleep(1)
+        end
+    else
         sleep(1)
     end
-    if needCleanUp then RemoveObjectCreatures(objName, 1, 1, 1) end
 end
 
 function _GetCreatureSlots(objName)
@@ -476,18 +457,26 @@ function _ConfiscateCreatures(heroName, creatureID, creatureAmount)
 end
 
 function _CheckAllSpells(heroName)
-    noSpell = {[16] = true, [22] = true, [27] = true, [30] = true, [33] = true, [36] = true, [37] = true} -- 1 ~ 43
-    yesSpell = {48, 234, 235, 236, 237, 277, 278, 279, 280, 281, 283}
+    noSpell = {[16] = true, [22] = true, [27] = true, [30] = true, [33] = true, [34] = true, [36] = true, [37] = true, [41] = true} -- 1 ~ 43
+    yesSpell = {48, 49, 235, 236, 237, 277, 278, 279, 280, 281, 283}
     local result = 43 - length(noSpell) + length(yesSpell)
 
     for i = 1, 43 do
         if not noSpell[i] then 
-            if KnowHeroSpell(heroName, i) then result = result - 1 end
+            if KnowHeroSpell(heroName, i) then
+                result = result - 1
+            else
+                print("Hero does not know ", i)
+            end
         end
     end
 
     for i, spellID in yesSpell do
-        if KnowHeroSpell(heroName, spellID) then result = result - 1 end
+        if KnowHeroSpell(heroName, spellID) then
+            result = result - 1
+        else
+            print("Hero does not know ", i)
+        end
     end
 
     return result
@@ -506,7 +495,7 @@ end
 function _CheckAllWarCries(heroName)
     local result = 295 - 290 + 1
 
-    for i = 295, 290 do
+    for i = 290, 295 do
         if KnowHeroSpell(heroName, i) then result = result - 1 end
     end
 
@@ -625,10 +614,11 @@ function SarIssusGreetingsCallback()
     BlockGame()
     PlayVisualEffect(
         "/Effects/_(Effect)/Spells/Teleport_Start.xdb#xpointer(/Effect)", "SarIssus")
+    sleep(2)
     Play3DSound(
         "/Sounds/_(Sound)/Spells/TeleportStart.xdb#xpointer(/Sound)",
         46, 38, 0)
-    SetObjectPos("SarIssus", origPosX, origPosY)
+    SetObjectPos("SarIssus", g_tabCallbackParams[1], g_tabCallbackParams[2])
     SetObjectRotation("SarIssus", 90)
     sleep(10)
     SetObjectPos("ArtBonusSarStaff", 45, 37, 0)
@@ -649,16 +639,16 @@ function SarIssusGreetingsCallback()
     sleep(2)
     SetObjectPos("ArtBonusDarkRitualScroll5", 47, 35, 0)
     sleep(2)
-    SetPlayerResource(1, WOOD, 400)
-    SetPlayerResource(1, ORE, 400)
-    SetPlayerResource(1, MERCURY, 200)
-    SetPlayerResource(1, CRYSTAL, 200)
-    SetPlayerResource(1, SULFUR, 200)
-    SetPlayerResource(1, GEM, 200)
-    SetPlayerResource(1, GOLD, 1000000)
+    SetPlayerResource(1, WOOD, 400, g_tabCallbackParams[3])
+    SetPlayerResource(1, ORE, 400, g_tabCallbackParams[3])
+    SetPlayerResource(1, MERCURY, 200, g_tabCallbackParams[3])
+    SetPlayerResource(1, CRYSTAL, 200, g_tabCallbackParams[3])
+    SetPlayerResource(1, SULFUR, 200, g_tabCallbackParams[3])
+    SetPlayerResource(1, GEM, 200, g_tabCallbackParams[3])
+    SetPlayerResource(1, GOLD, 1000000,g_tabCallbackParams[3])
     UnblockGame()
     SetObjectiveState("CompleteSarFamily", OBJECTIVE_ACTIVE)
-    Trigger(OBJECT_CAPTURE_TRIGGER, garrisonName, nil)
+    Trigger(OBJECT_CAPTURE_TRIGGER, g_tabCallbackParams[4], nil)
 end
 
 function GarrisonCapturedTrigger(oldOwner, newOwner, heroName, garrisonName)
@@ -674,19 +664,22 @@ function GarrisonCapturedTrigger(oldOwner, newOwner, heroName, garrisonName)
     end
 
     BlockGame()
-    SetObjectPos(heroName, 46, 39, 0)
     SetObjectRotation(heroName, 0)
-    MoveCamera(46, 39, 0, 20, 0.90, 0)
+    SetObjectPos(heroName, 46, 39, 0)
+    MoveCamera(46, 39, 0, 40, 0.90, 0)
     sleep(20)
     local origPosX, origPosY = GetObjectPos("SarIssus")
+    g_tabCallbackParams = {origPosX, origPosY, heroName, garrisonName}
     SetObjectPos("SarIssus", 46, 38, 0)
     PlayVisualEffect(
-        "/Effects/_(Effect)/Spells/Teleport_End.xdb#xpointer(/Effect)", "SarIssus")
+        "/Effects/_(Effect)/Spells/Teleport_End.xdb#xpointer(/Effect)", "", "",
+        46, 38)
+    sleep(2)
     Play3DSound(
         "/Sounds/_(Sound)/Spells/TeleportEnd.xdb#xpointer(/Sound)",
         46, 38, 0)
     SetObjectRotation("SarIssus", 180)
-    MoveCamera(45, 38, 0, 80, 3.14/3, 0)
+    MoveCamera(45, 38, 0, 40, 3.14/3, 0)
     sleep(20)
     UnblockGame()
 
@@ -695,7 +688,7 @@ end
 
 function UnblockPaths()
     BlockGame()
-    MoveCamera(45, 24, 0, 60, 0.99, 0)
+    MoveCamera(45, 26, 0, 60, 0.99, 0)
     sleep(20)
     for i = 1, 18 do
         Trigger(OBJECT_TOUCH_TRIGGER, "BlockingAura"..i, nil)
@@ -727,56 +720,6 @@ function UnblockPaths()
     UnblockGame()
     Trigger(OBJECTIVE_STATE_CHANGE_TRIGGER, "CompleteSarFamily", nil)
     MessageBox(g_sPath.."BlockingAuraRemoved.txt")
-end
-
-function SarFamilyAutoComplete(heroName)
-    local expReward = {1980, 1610, 1980, 2277, 4080, 640, 1320}
-
-    for i = 1, 7 do
-        local sarName = INDEX2SAR[i]
-        local questName = sarName.."Challenge"
-        if GetObjectiveState(questName) ~= OBJECTIVE_COMPLETED then
-            ChangeHeroStat(heroName, 0, expReward[i])
-            for j, art in SAR2ARTEFACTS[sarName] do
-                if sarName == "SarBahir" then
-                    _TeachSpell(heroName, art)
-                else
-                    GiveArtefact(heroName, art)
-                end
-            end
-        end
-        
-        if GetObjectiveState(questName) < OBJECTIVE_ACTIVE then
-            SetObjectiveState(questName, OBJECTIVE_ACTIVE)
-        end
-        sleep(1)
-        if GetObjectiveState(questName) == OBJECTIVE_ACTIVE then
-            SetObjectiveState(questName, OBJECTIVE_COMPLETED)
-        end
-        if IsObjectiveVisible(questName) then
-            SetObjectiveVisible(questName, nil)
-        end
-    end
-
-    for i = 0, 7 do
-        if GetObjectOwner(RACE2TOWN[i]) ~= 1 then
-            SetObjectOwner(RACE2TOWN[i], 1)
-            for j = 1, 7 do
-                AddObjectCreatures(RACE2TOWN[i], CREATURE_IDS_BY_RACE[i][j], INIT_CREATURE_COUNT[i][j])
-            end
-        end
-        if not IsObjectEnabled(RACE2GARRISON[i]) then SetObjectEnabled(RACE2GARRISON[i], true) end
-        if GetObjectOwner(RACE2GARRISON[i]) ~= 1 then SetObjectOwner(RACE2GARRISON[i], true) end
-    end
-
-    if GetObjectiveState("CompleteSarFamily") < OBJECTIVE_ACTIVE then
-        SetObjectiveState("CompleteSarFamily", OBJECTIVE_ACTIVE)
-    end
-    sleep(1)
-    if GetObjectiveState("CompleteSarFamily") == OBJECTIVE_ACTIVE then
-        SetObjectiveState("CompleteSarFamily", OBJECTIVE_COMPLETED)
-    end
-    UnblockPaths()
 end
 
 function SarFinishedCallback(heroName, isWin)
@@ -847,6 +790,7 @@ function SarFinishedCallback(heroName, isWin)
         UnblockGame()
     else
         SetObjectiveState(sarName.."Challenge", OBJECTIVE_FAILED)
+        sleep(1)
     end
 
     local sarCompleted = true
@@ -956,7 +900,56 @@ function SarFamilyVisitsTrigger(heroName, sarName)
 end
 
 function NPCMapMakerSarFamilyCallback()
-    SarFamilyAutoComplete(g_tabCallbackParams[1])
+    local expReward = {1980, 1610, 1980, 2277, 4080, 640, 1320}
+
+    local heroName = g_tabCallbackParams[1]
+    for i = 1, 7 do
+        local sarName = INDEX2SAR[i]
+        local questName = sarName.."Challenge"
+        if GetObjectiveState(questName) ~= OBJECTIVE_COMPLETED then
+            ChangeHeroStat(heroName, 0, expReward[i])
+            for j, art in SAR2ARTEFACTS[sarName] do
+                if sarName == "SarBahir" then
+                    _TeachSpell(heroName, art)
+                else
+                    GiveArtefact(heroName, art)
+                end
+            end
+        end
+        
+        if GetObjectiveState(questName) < OBJECTIVE_ACTIVE then
+            SetObjectiveState(questName, OBJECTIVE_ACTIVE)
+        end
+        sleep(1)
+        if GetObjectiveState(questName) == OBJECTIVE_ACTIVE then
+            SetObjectiveState(questName, OBJECTIVE_COMPLETED)
+        end
+        if IsObjectiveVisible(questName) then
+            SetObjectiveVisible(questName, nil)
+        end
+    end
+
+    for i = 0, 7 do
+        if GetObjectOwner(RACE2TOWN[i]) ~= 1 then
+            SetObjectOwner(RACE2TOWN[i], 1)
+            for j = 1, 7 do
+                AddObjectCreatures(RACE2TOWN[i], CREATURE_IDS_BY_RACE[i][j], INIT_CREATURE_COUNT[i][j])
+            end
+        end
+        if not IsObjectEnabled(RACE2GARRISON[i]) then SetObjectEnabled(RACE2GARRISON[i], true) end
+        if GetObjectOwner(RACE2GARRISON[i]) ~= 1 then SetObjectOwner(RACE2GARRISON[i], true) end
+    end
+
+    if GetObjectiveState("CompleteSarFamily") < OBJECTIVE_ACTIVE then
+        SetObjectiveState("CompleteSarFamily", OBJECTIVE_ACTIVE)
+    end
+    sleep(1)
+    if GetObjectiveState("CompleteSarFamily") == OBJECTIVE_ACTIVE then
+        SetObjectiveState("CompleteSarFamily", OBJECTIVE_COMPLETED)
+        UnblockPaths()
+    end
+
+    g_bBypassedSarFamily = 1
 end
 
 function NPCMapMakerCallback(pNum, cNum)
@@ -976,6 +969,7 @@ function NPCMapMakerCallback(pNum, cNum)
             if remainingSpells <= 0 then
                 MessageBox(g_sPath.."MapMakerOption3AllSpellsOK.txt")
                 SetObjectiveState("LearnAllSpells", OBJECTIVE_COMPLETED)
+                SetObjectiveVisible("LearnAllSpells", nil)
                 _TeachSpell(heroName, SPELL_CELESTIAL_SHIELD)
             else
                 MessageBox({g_sPath.."MapMakerOption3AllSpellsNotOK.txt"; n_spell = remainingSpells})
@@ -994,8 +988,9 @@ function NPCMapMakerCallback(pNum, cNum)
                 local heroName = g_tabCallbackParams[1]
                 MessageBox(g_sPath.."MapMakerOption3AllRunesOK.txt")
                 SetObjectiveState("LearnAllRunes", OBJECTIVE_COMPLETED)
-                GiveArtefact(heroName, ARTIFACT_GREAT_AXE_OF_GIANT_SLAYING)
-                GiveArtefact(heroName, ARTIFACT_DWARVEN_SMITHY_HUMMER)
+                SetObjectiveVisible("LearnAllRunes", nil)
+                GiveArtefact(heroName, ARTIFACT_RUNIC_WAR_AXE)
+                GiveArtefact(heroName, ARTIFACT_RUNIC_WAR_HARNESS)
             else
                 MessageBox(g_sPath.."MapMakerOption3AllRunesNotOK.txt")
             end
@@ -1012,8 +1007,9 @@ function NPCMapMakerCallback(pNum, cNum)
             if remainingSpells <= 0 then
                 local heroName = g_tabCallbackParams[1]
                 MessageBox(g_sPath.."MapMakerOption3AllWarCriesOK.txt")
-                GiveArtefact(heroName, ARTIFACT_SANDALS_OF_THE_SAINT)
                 SetObjectiveState("LearnAllWarCries", OBJECTIVE_COMPLETED)
+                SetObjectiveVisible("LearnAllWarCries", nil)
+                GiveArtefact(heroName, ARTIFACT_SANDALS_OF_THE_SAINT)
             else
                 MessageBox(g_sPath.."MapMakerOption3AllWarCriesNotOK.txt")
             end
@@ -1023,7 +1019,9 @@ function NPCMapMakerCallback(pNum, cNum)
         if allDone then MessageBox(g_sPath.."MapMakerOption3AllDone.txt") end
 
     elseif cNum == 3 then
-        QuestionBox(g_sPath.."MapMakerOption4Description.txt", "NPCMapMakerSarFamilyCallback", "")
+        if g_bBypassedSarFamily == 1 then MessageBox(g_sPath.."MapMakerOption4Finished.txt")
+        else QuestionBox(g_sPath.."MapMakerOption4Description.txt", "NPCMapMakerSarFamilyCallback", "")
+        end
     elseif cNum == 4 then
         MessageBox(g_sPath.."MapMakerOption5Description.txt")
     end
@@ -1087,14 +1085,17 @@ end
 function NPCYanshenCallback()
     for i = 1, 10 do
         if not g_tabHeroesBanked[i] then
+            BlockGame()
             g_tabHeroesBanked[i] = g_tabCallbackParams[1]
             CreateStatic("CrystalAura"..i,
                          RACE2AURA[_GetHeroRace(g_tabCallbackParams[1])],
                          BANKLOCATIONS[i][1], BANKLOCATIONS[i][2], 0)
-            SetObjectPos("StorageCrystal"..i, BANKLOCATIONS[i][1], BANKLOCATIONS[i][2], 0)
             SetObjectOwner(g_tabCallbackParams[1], 8)
+            sleep(1)
+            SetObjectPos("StorageCrystal"..i, BANKLOCATIONS[i][1], BANKLOCATIONS[i][2], 0)
             SetObjectPos(g_tabCallbackParams[1], HERO_DUMP_POS[1], HERO_DUMP_POS[2], 1)
             OverrideObjectTooltipNameAndDescription("StorageCrystal"..i, g_tabCallbackParams[2][3], "")
+            UnblockGame()
             MessageBox({g_sPath.."YanshenDeposited.txt"; h_level = g_tabCallbackParams[2][1],
                         h_prof = g_tabCallbackParams[2][2], h_name = g_tabCallbackParams[2][3]})
             break
@@ -1116,7 +1117,7 @@ function NPCDubiousMage1Callback()
     SetObjectiveState("HarvestPoltergeists", OBJECTIVE_ACTIVE)
     RemoveObject("DubiousMage1Aura")
     CreateStatic("DubiousMage1Aura",
-                 RACE2AURA[NAME2RACE["Dungeon"]],
+                 RACE2AURA[NAME2RACE["Academy"]],
                  43, 25, 0)
     SetObjectPos("DubiousMage1", 43, 25, 0)
     SetObjectRotation("DubiousMage1", 0)
@@ -1137,6 +1138,7 @@ function NPCWindBellKLCallback(pNum, cNum)
     local noUpgrades = {
         CREATURE_FIRE_ELEMENTAL, CREATURE_WATER_ELEMENTAL, CREATURE_EARTH_ELEMENTAL, CREATURE_AIR_ELEMENTAL, CREATURE_DEATH_KNIGHT,
         CREATURE_PHOENIX, CREATURE_WOLF, CREATURE_SNOW_APE, CREATURE_MANTICORE, CREATURE_MUMMY}
+    noUpgrades = _InvertTable(noUpgrades)
 
     if cNum ==  1 then
         local temp = _GetCreatureSlots(heroName)
@@ -1144,6 +1146,7 @@ function NPCWindBellKLCallback(pNum, cNum)
             local creatureID = temp[i][1]
             if creatureID == 0 or noUpgrades[creatureID] then
                 -- Do nothing
+                print("In the 1st if statement")
             elseif creatureID >= CREATURE_LANDLORD and creatureID <= CREATURE_SERAPH then
                 temp[i][1] = CREATURE_PEASANT + ((creatureID - CREATURE_LANDLORD) * 2)
             elseif creatureID >= CREATURE_QUASIT and creatureID <= CREATURE_ARCH_DEMON then
@@ -1160,6 +1163,8 @@ function NPCWindBellKLCallback(pNum, cNum)
                 temp[i][1] = CREATURE_DEFENDER + ((creatureID - CREATURE_STONE_DEFENDER) * 2)
             elseif creatureID >= CREATURE_GOBLIN_DEFILER and creatureID <= CREATURE_CYCLOP_BLOODEYED then
                 temp[i][1] = CREATURE_GOBLIN + ((creatureID - CREATURE_GOBLIN_DEFILER) * 2)
+            elseif creatureID >= CREATURE_DEFENDER and creatureID <= CREATURE_MAGMA_DRAGON then
+                if mod(temp[i][1], 2) == 1 then temp[i][1] = creatureID - 1 end
             else
                 if mod(temp[i][1], 2) == 0 then temp[i][1] = creatureID - 1 end
             end
@@ -1172,13 +1177,15 @@ function NPCWindBellKLCallback(pNum, cNum)
         QuestionBox(g_sPath.."WindBellKLOption2Confirm.txt", "NPCWindBellKLOption2Callback", "")
 
     elseif cNum == 3 then
-        SetPlayerResource(1, WOOD, 400)
-        SetPlayerResource(1, ORE, 400)
-        SetPlayerResource(1, MERCURY, 200)
-        SetPlayerResource(1, CRYSTAL, 200)
-        SetPlayerResource(1, SULFUR, 200)
-        SetPlayerResource(1, GEM, 200)
-        SetPlayerResource(1, GEM, 1000000)
+        print("Option3")
+        SetPlayerResource(1, WOOD, 400, heroName)
+        SetPlayerResource(1, ORE, 400, heroName)
+        SetPlayerResource(1, MERCURY, 200, heroName)
+        SetPlayerResource(1, CRYSTAL, 200, heroName)
+        SetPlayerResource(1, SULFUR, 200, heroName)
+        SetPlayerResource(1, GEM, 200, heroName)
+        SetPlayerResource(1, GOLD, 1000000, heroName)
+
     elseif cNum == 4 then
         local nothing = nil
         local creatureID, creatureAmount, skillID
@@ -1327,8 +1334,8 @@ function MegaGodzillaConfirmCallback()
     sleep(1)
     UnblockGame()
     StartCombat(heroName, nil, 3,
-                CREATURE_MAGMA_DRAGON, 50, CREATURE_MAGMA_DRAGON, 50, CREATURE_PEASANT, 1,
-                nil, "MegaGodzillaCombatCallback", NOOB2_ARENA)
+                CREATURE_MAGMA_DRAGON, 100, CREATURE_MAGMA_DRAGON, 100, CREATURE_PEASANT, 1,
+                MAGMA_COMBAT_SCRIPT, "MegaGodzillaCombatCallback", NOOB2_ARENA)
 end
 
 function MegaGodzillaCombatCallback(heroName, isWin)
@@ -1410,7 +1417,8 @@ function GuardianMonitoringThread()
         end
         if allDone then
             BlockGame()
-            MoveCamera(91, 116 - 2, 0, 110, 0.99, 0)
+            MoveCamera(91, 118 - 2, 0, 110, 0.99, 0)
+            OpenCircleFog(91, 116, 0, 10, 1)
             sleep(10)
             PlayVisualEffect("/Effects/_(Effect)/Spells/Armageddon.xdb#xpointer(/Effect)", "", "", 92, 117, 0, 0, 0)
             sleep(11)
@@ -1425,6 +1433,8 @@ function GuardianMonitoringThread()
             end
             sleep(10)
             for j, aura in GUARDIAN2AURA do RemoveObject("GuardianCage"..j) end
+            Trigger(OBJECT_TOUCH_TRIGGER, "DragonGuardianPortal", nil)
+            SetDisabledObjectMode("DragonGuardianPortal", DISABLED_BLOCKED)
             startThread(GrailMonitoringThread)
             UnblockGame()
             break
@@ -1462,6 +1472,9 @@ function GuardianAvatarBonus1Callback()
     end
     g_iDarkEnergy = 120000
     g_iTrainingQuota = 800
+    g_bGoblinSupportUsed = 0
+    g_bDefendUsAllUsed = 0
+    g_bBattleCommanderUsed = 0
     g_bCreaturesReset = 1
     UnblockGame()
     MessageBox(g_sPath.."GuardianAvatarBonus1Done.txt")
@@ -1510,7 +1523,7 @@ end
 function SummonVillageCallback(cNum)
     if cNum >= 1 then
         for i, hero in GetPlayerHeroes(1) do
-            if IsHeroInTown(hero, "HavenVillage") then
+            if IsHeroInTown(hero, g_CallbackParams[1][cNum]) then
                 MessageBox({g_sPath.."SummonVillageHasHero.txt";
                             h_name = _GetHeroInfo(hero)[3], t_name = g_sPath.."Name"..g_CallbackParams[1][cNum]..".txt"})
                 return
@@ -1556,13 +1569,14 @@ function SummonVillageCallback(cNum)
         sleep(1)
         tx, ty, tl = GetObjectPos("Freyda")
         MoveCamera(32, ty, tl, 50, 0.99, 0)
+        Trigger(PLAYER_REMOVE_HERO_TRIGGER, PLAYER_2, "AI2HeroLostTrigger")
         if GetTownBuildingLevel(g_sTownSummoned, TOWN_BUILDING_GRAIL) == 1 then
             SetGameVar("SarElamTrialGrailBuilt", "true")
         else
             SetGameVar("SarElamTrialGrailBuilt", "false")
             SetObjectFlashlight("Freyda", "light")
             ShowFlyingSign(g_sPath.."FreydaHasLight.txt", "Freyda", -1, 25)
-            ChangeHeroStat("Freyda", 2, 100)
+            ChangeHeroStat("Freyda", 2, 150)
             ChangeHeroStat("Freyda", 3, 50)
         end
         sleep(30)
@@ -1719,13 +1733,13 @@ function NPCVisitsTrigger(heroName, npcName)
                         SetObjectiveState("Kill"..mob, OBJECTIVE_COMPLETED)
                         SetObjectiveVisible("Kill"..mob, nil)
                         if mob == "Phoenixes" then
-                            _TeachSpell(heroName, SPELL_SUMMON_ELEMENTALS)
-                            _TeachSpell(heroName, SPELL_CONJURE_PHOENIX)
-                            _TeachSpell(heroName, SPELL_SUMMON_HIVE)
-                        elseif mob == "Titans" then
                             _TeachSpell(heroName, SPELL_BERSERK)
                             _TeachSpell(heroName, SPELL_BLIND)
                             _TeachSpell(heroName, SPELL_HYPNOTIZE)
+                        elseif mob == "Titans" then
+                            _TeachSpell(heroName, SPELL_SUMMON_ELEMENTALS)
+                            _TeachSpell(heroName, SPELL_CONJURE_PHOENIX)
+                            _TeachSpell(heroName, SPELL_SUMMON_HIVE)
                         elseif mob == "Magmas" then
                             _TeachSpell(heroName, SPELL_VAMPIRISM)
                         else
@@ -1888,6 +1902,8 @@ function NPCVisitsTrigger(heroName, npcName)
                 MessageBox(g_sPath.."DubiousMage21Found.txt")
             elseif p1Found + p2Found == 2 then
                 MessageBox(g_sPath.."DubiousMage2BothFound.txt")
+                RemoveArtefact(heroName, ARTIFACT_FREIDA)
+                RemoveArtefact(heroName, ARTIFACT_PRINCESS)
                 GiveArtefact(heroName, ARTIFACT_MASK_OF_DOPPELGANGER)
                 GiveArtefact(heroName, ARTIFACT_TWISTING_NEITHER)
                 SetObjectiveState("FindPrincesses", OBJECTIVE_COMPLETED)
@@ -1982,6 +1998,7 @@ function NPCVisitsTrigger(heroName, npcName)
                     GiveArtefact(heroName, ARTIFACT_RING_OF_CELERITY)
                     GiveArtefact(heroName, ARTIFACT_RING_OF_CELERITY)
                     SetObjectEnabled("AlienPortal", nil)
+                    SetDisabledObjectMode("AlienPortal", DISABLED_BLOCKED)
                     SetObjectiveState("AssassinateAlien", OBJECTIVE_COMPLETED)
                     SetObjectiveVisible("AssassinateAlien", nil)
                 end
@@ -2004,9 +2021,10 @@ function NPCVisitsTrigger(heroName, npcName)
             if obj1State == OBJECTIVE_ACTIVE then
                 if HasArtefact(heroName, ARTIFACT_BEGINNER_MAGIC_STICK) then
                     SetObjectiveState("FindBeginnerWand", OBJECTIVE_COMPLETED)
-                    TeacHeroSpell(heroName, SPELL_ANTI_MAGIC)
-                    TeacHeroSpell(heroName, SPELL_RESURRECT)
+                    SetObjectiveVisible("FindBeginnerWand", nil)
                     MessageBox(g_sPath.."SecondBroWandDone.txt")
+                    _TeachSpell(heroName, SPELL_ANTI_MAGIC)
+                    _TeachSpell(heroName, SPELL_RESURRECT)
                 else
                     MessageBox(g_sPath.."SecondBroWandNotDone.txt")
                 end
@@ -2015,18 +2033,17 @@ function NPCVisitsTrigger(heroName, npcName)
             if obj2State == OBJECTIVE_ACTIVE then
                 if HasArtefact(heroName, ARTIFACT_SKULL_OF_MARKAL) then
                     SetObjectiveState("FindMarkalSkull", OBJECTIVE_COMPLETED)
-                    TeacHeroSpell(heroName, SPELL_IMPLOSION)
-                    TeacHeroSpell(heroName, SPELL_DEEP_FREEZE)
+                    SetObjectiveVisible("FindMarkalSkull", nil)
                     MessageBox(g_sPath.."SecondBroSkullDone.txt")
+                    _TeachSpell(heroName, SPELL_IMPLOSION)
+                    _TeachSpell(heroName, SPELL_DEEP_FREEZE)
                 else
                     MessageBox(g_sPath.."SecondBroSkullNotDone.txt")
                 end
-            else
-                MessageBox(g_sPath.."SecondBroSkullNotDone.txt")
             end
 
             if obj1State > OBJECTIVE_ACTIVE and obj2State > OBJECTIVE_ACTIVE then
-                MessageBox(g_sPath.."CaeserfoxFinish.txt")
+                MessageBox(g_sPath.."SecondBroFinish.txt")
             end
         end
 
@@ -2043,9 +2060,8 @@ function NPCVisitsTrigger(heroName, npcName)
                     MessageBox(g_sPath.."BeastTrainerFinished.txt")
                     SetObjectiveState("ScareAwayWolves", OBJECTIVE_COMPLETED)
                     SetObjectiveVisible("ScareAwayWolves", nil)
-                    for i = ARTIFACT_DWARVEN_MITHRAL_CUIRASS, ARTIFACT_DWARVEN_MITHRAL_SHIELD do
-                        GiveArtefact(heroName, i)
-                    end
+                    GiveArtefact(heroName, ARTIFACT_GREAT_AXE_OF_GIANT_SLAYING)
+                    GiveArtefact(heroName, ARTIFACT_DWARVEN_SMITHY_HUMMER)
                 else
                     MessageBox(g_sPath.."BeastTrainerFailed.txt")
                     SetObjectiveState("ScareAwayWolves", OBJECTIVE_FAILED)
@@ -2169,7 +2185,6 @@ end
 function RuneProdigyMonitoringThread()
     sleep(10)
     while true do
-        print("_CheckAllRunes(RuneProdigy): ", _CheckAllRunes("RuneProdigy"))
         if _CheckAllRunes("RuneProdigy") == 0 then
             SetObjectiveState("RuneProdigyQuest", OBJECTIVE_COMPLETED)
             SetObjectiveVisible("RuneProdigyQuest", nil)
@@ -2499,6 +2514,7 @@ function GottaiAngryCallback()
     BlockGame()
     SetObjectOwner("Gottai", 8)
     _SetCreatureSlots("Gottai", GOTTAI_SLOTS)
+    local hx, hy, hl = GetObjectPos(g_tabCallbackParams[1])
     MoveHeroRealTime("Gottai", hx, hy, hl)
     UnblockGame()
     SetObjectiveState("GetRidOfGottai", OBJECTIVE_COMPLETED)
@@ -2548,6 +2564,8 @@ function ArrogantElfCombatCallback(heroName, isWin)
         end
         BlockGame()
         _SetCreatureSlots(heroName, g_tabCallbackParams[3])
+        if whichElf == 1 then CreateArtifact("", ARTIFACT_UNICORN_HORN_BOW, 70, 35, 0) end
+        if whichElf == 2 then CreateArtifact("", ARTIFACT_TREEBORN_QUIVER, 70, 33, 0) end
         UnblockGame()
     else
         SetObjectiveState("TeachElfLesson"..whichElf, OBJECTIVE_FAILED)
@@ -2603,9 +2621,10 @@ function NonHostileMonsterTrigger(heroName, monsterName)
             SetObjectOwner(heroName, 1)
             sleep(5)
             local hx, hy, hl = GetObjectPos(heroName)
+            g_tabCallbackParams = {heroName}
             SetObjectPos("Gottai", hx - 1, hy, hl)
             Play2DSound("/DialogScenes/A2C2/M5/S3/C2M5_S3_Gotai_01sound.xdb#xpointer(/Sound)")
-            Sleep(20)
+            sleep(20)
             UnblockGame()
             MessageBox(g_sPath.."GottaiAngry.txt", "GottaiAngryCallback")
         else
@@ -2752,7 +2771,10 @@ function RegionEnterTrigger(heroName, regionName)
             UnblockGame()
         else
             MessageBox({g_sPath.."ScareAwayVeyerDescription.txt"; n_army = _GetCreatureCount(heroName)})
-            if objState < OBJECTIVE_ACTIVE then SetObjectiveState("ScareAwayVeyer", OBJECTIVE_ACTIVE) end
+            if objState < OBJECTIVE_ACTIVE then
+                MessageBox(g_sPath.."ScareAwayVeyerDescription2.txt")
+                SetObjectiveState("ScareAwayVeyer", OBJECTIVE_ACTIVE)
+            end
         end
         SetObjectPos(heroName, 33, 28, 0)
 
@@ -2797,7 +2819,20 @@ function NewDayTrigger()
     end
 
     if IsObjectExists("RuneProdigy") and GetObjectiveState("RuneProdigyQuest") == OBJECTIVE_COMPLETED then
+        local rx, ry, rl = GetObjectPos("RuneProdigy")
+        BlockGame()
+        MoveCamera(rx, ry - 2, rl, 20, 0.6, 0)
+        sleep(20)
+        SetObjectOwner("RuneProdigy", 8)
+        sleep(2)
+        SetObjectPos("RuneProdigy", HERO_DUMP_POS[1], HERO_DUMP_POS[2], 1)
+        sleep(7)
+        for i = ARTIFACT_DWARVEN_MITHRAL_CUIRASS, ARTIFACT_DWARVEN_MITHRAL_SHIELD do 
+            CreateArtifact("", i, rx, ry, rl)
+        end
         RemoveObject("RuneProdigy")
+        sleep(10)
+        UnblockGame()
     end
 end
 
@@ -2848,7 +2883,7 @@ end
 
 function ScenarioLostCallback()
     BlockGame()
-    MoveCamera(21, 117, 0, 18, 0.9, 3.1416/2)
+    MoveCamera(19, 117, 0, 18, 0.9, 3.1416/2)
     sleep(20)
     for i = 1, 7 do
         local decider = random(2)
@@ -2873,12 +2908,11 @@ function ScenarioLostCallback()
     PlayObjectAnimation("LaszloPuppet", "defeat01", ONESHOT_STILL)
     sleep(30)
     UnblockGame()
-    Loose()
+    SetObjectiveState("RescueLaszlo", OBJECTIVE_FAILED)
 end
 
 function PlayerHeroLostTrigger(heroName)
     if heroName == g_sHeroTeleported then
-        SetObjectiveState("RescueLaszlo", OBJECTIVE_FAILED)
         g_bRandomAnimDone = 1
         MessageBox(g_sPath.."ScenarioLost.txt", "ScenarioLostCallback")
     else
@@ -2891,6 +2925,7 @@ end
 function AI2HeroLostTrigger(heroName)
     if heroName == "Freyda" then
         BlockGame()
+        g_bRandomAnimDone = 1
         MoveCamera(17, 117, 0, 40, 0.99, -3.1416/2)
         sleep(20)
         for i = 1, 6 do
@@ -2910,6 +2945,7 @@ function AI2HeroLostTrigger(heroName)
         sleep(10)
         UnblockGame()
         MessageBox(g_sPath.."ScenarioWin1.txt")
+        Trigger(PLAYER_REMOVE_HERO_TRIGGER, PLAYER_2, nil)
         Trigger(REGION_ENTER_AND_STOP_TRIGGER, "WinRegion", "RegionEnterTrigger")
     end
 end
@@ -3010,16 +3046,18 @@ function SetupScene()
 end
 
 function SetupTables()
-    NAME2RACE = _ReverseTable(RACE2NAME)
-    GARRISON2RACE = _ReverseTable(RACE2GARRISON)
-    SAR2INDEX = _ReverseTable(INDEX2SAR)
-    NAME2GUARDIAN = _ReverseTable(GUARDIAN2NAME)
+    NAME2RACE = _InvertTable(RACE2NAME)
+    GARRISON2RACE = _InvertTable(RACE2GARRISON)
+    SAR2INDEX = _InvertTable(INDEX2SAR)
+    NAME2GUARDIAN = _InvertTable(GUARDIAN2NAME)
 end
 
 function NormalizeStartRace()
     -- Clean up all creature dwellings
     -- Disown all towns that is not the starting race
 
+    SetPlayerTeam(1, 1)
+    SetPlayerTeam(5, 1)
     g_setRaceUnlocked[g_iPlayerRace] = 1
     NewDayTrigger()
 
@@ -3041,12 +3079,14 @@ function SetupDragonGuardianThread()
             print("setup ", guardian)
             _SetCreatureSlots(guardian, GUARDIAN2ARMY[i])
             SetHeroLootable(guardian, nil)
-            if guardian == "DarkGuardian" or guardian == "AirGuardian" then
+            EnableHeroAI(guardian, nil)
+            if guardian == "DarkGuardian" or guardian == "AirGuardian" or guardian == "WaterGuardian" then
                 local morale = GetHeroStat(guardian, STAT_MORALE)
                 ChangeHeroStat(guardian, STAT_MORALE, 10 - morale)
-            elseif guardian == "Fire" then
+            end
+            if guardian == "AirGuardian" or guardian == "WaterGuardian" or guardian == "ChaosGuardian" then
                 local luck = GetHeroStat(guardian, STAT_LUCK)
-                ChangeHeroStat(guardian, STAT_LUCK, 0 - luck)
+                ChangeHeroStat(guardian, STAT_LUCK, 10 - luck)
             end
             SetGameVar("SarElamTrial"..guardian.."Fought", "false")
         end
@@ -3175,7 +3215,6 @@ function SetupQuestObjects()
         SetObjectEnabled("BlockingAura"..i, nil)
         Trigger(OBJECT_TOUCH_TRIGGER, "BlockingAura"..i, "BlockingAuraTrigger")
     end
-    Trigger(OBJECTIVE_STATE_CHANGE_TRIGGER, "CompleteSarFamily", "SarFamilyObjectiveCompleteTrigger")
 
     -- Setup auto-raze town
     DisableAutoEnterTown("PanickyInferno", true)
@@ -3217,9 +3256,9 @@ end
 function OpeningScene()
     BlockGame()
     MoveCamera(18, 115, 0, 40, 0.99, 0)
-    sleep(5)
+    sleep(13)
     OpenCircleFog(25, 117, 0, 30, 1)
-    sleep(35)
+    sleep(7)
     UnblockGame()
     MessageBox(g_sPath.."ScenarioStart.txt")
     SetObjectiveState("RescueLaszlo", OBJECTIVE_ACTIVE)

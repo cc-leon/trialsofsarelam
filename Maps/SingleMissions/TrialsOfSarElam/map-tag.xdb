@@ -8,7 +8,8 @@
 	<MapGoal href="MapGoalText.1.txt"/>
 	<CustomMapGoal>false</CustomMapGoal>
 	<teams>
-		<Item>2</Item>
+		<Item>1</Item>
+		<Item>1</Item>
 		<Item>1</Item>
 		<Item>1</Item>
 	</teams>
