@@ -10884,7 +10884,7 @@
 				<Amount2>200</Amount2>
 				<AttackType>ATTACK_ANY</AttackType>
 				<MoveType>MOVE_ANY</MoveType>
-				<DoesNotGrow>false</DoesNotGrow>
+				<DoesNotGrow>true</DoesNotGrow>
 				<MessageFileRef href=""/>
 				<Script/>
 				<Resources>
@@ -10998,7 +10998,7 @@
 				<Amount2>10000</Amount2>
 				<AttackType>ATTACK_ANY</AttackType>
 				<MoveType>MOVE_ANY</MoveType>
-				<DoesNotGrow>false</DoesNotGrow>
+				<DoesNotGrow>true</DoesNotGrow>
 				<MessageFileRef href=""/>
 				<Script/>
 				<Resources>
@@ -11040,7 +11040,7 @@
 				<Amount2>20000</Amount2>
 				<AttackType>ATTACK_ANY</AttackType>
 				<MoveType>MOVE_ANY</MoveType>
-				<DoesNotGrow>false</DoesNotGrow>
+				<DoesNotGrow>true</DoesNotGrow>
 				<MessageFileRef href=""/>
 				<Script/>
 				<Resources>
@@ -12516,7 +12516,7 @@
 				<Amount2>200</Amount2>
 				<AttackType>ATTACK_ANY</AttackType>
 				<MoveType>MOVE_ANY</MoveType>
-				<DoesNotGrow>false</DoesNotGrow>
+				<DoesNotGrow>true</DoesNotGrow>
 				<MessageFileRef href=""/>
 				<Script/>
 				<Resources>
@@ -12558,7 +12558,7 @@
 				<Amount2>200</Amount2>
 				<AttackType>ATTACK_ANY</AttackType>
 				<MoveType>MOVE_ANY</MoveType>
-				<DoesNotGrow>false</DoesNotGrow>
+				<DoesNotGrow>true</DoesNotGrow>
 				<MessageFileRef href=""/>
 				<Script/>
 				<Resources>
@@ -12600,7 +12600,7 @@
 				<Amount2>200</Amount2>
 				<AttackType>ATTACK_ANY</AttackType>
 				<MoveType>MOVE_ANY</MoveType>
-				<DoesNotGrow>false</DoesNotGrow>
+				<DoesNotGrow>true</DoesNotGrow>
 				<MessageFileRef href=""/>
 				<Script/>
 				<Resources>
@@ -12642,7 +12642,7 @@
 				<Amount2>200</Amount2>
 				<AttackType>ATTACK_ANY</AttackType>
 				<MoveType>MOVE_ANY</MoveType>
-				<DoesNotGrow>false</DoesNotGrow>
+				<DoesNotGrow>true</DoesNotGrow>
 				<MessageFileRef href=""/>
 				<Script/>
 				<Resources>
@@ -50024,36 +50024,6 @@
 		<Item>
 			<Floor>0</Floor>
 			<Rect>
-				<x1>101</x1>
-				<y1>74</y1>
-				<x2>105</x2>
-				<y2>76</y2>
-			</Rect>
-			<Name>BlockAI1</Name>
-			<Color>
-				<x>1</x>
-				<y>1</y>
-				<z>1</z>
-			</Color>
-			<EnterAndStopTrigger>
-				<Action>
-					<FunctionName/>
-				</Action>
-			</EnterAndStopTrigger>
-			<EnterWithoutStopTrigger>
-				<Action>
-					<FunctionName/>
-				</Action>
-			</EnterWithoutStopTrigger>
-			<ExitTrigger>
-				<Action>
-					<FunctionName/>
-				</Action>
-			</ExitTrigger>
-		</Item>
-		<Item>
-			<Floor>0</Floor>
-			<Rect>
 				<x1>31</x1>
 				<y1>28</y1>
 				<x2>32</x2>
@@ -50180,6 +50150,36 @@
 				<y2>121</y2>
 			</Rect>
 			<Name>WinRegion</Name>
+			<Color>
+				<x>1</x>
+				<y>1</y>
+				<z>1</z>
+			</Color>
+			<EnterAndStopTrigger>
+				<Action>
+					<FunctionName/>
+				</Action>
+			</EnterAndStopTrigger>
+			<EnterWithoutStopTrigger>
+				<Action>
+					<FunctionName/>
+				</Action>
+			</EnterWithoutStopTrigger>
+			<ExitTrigger>
+				<Action>
+					<FunctionName/>
+				</Action>
+			</ExitTrigger>
+		</Item>
+		<Item>
+			<Floor>0</Floor>
+			<Rect>
+				<x1>99</x1>
+				<y1>71</y1>
+				<x2>108</x2>
+				<y2>76</y2>
+			</Rect>
+			<Name>BlockAI1</Name>
 			<Color>
 				<x>1</x>
 				<y>1</y>

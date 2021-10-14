@@ -936,7 +936,10 @@ function NPCMapMakerSarFamilyCallback()
                 AddObjectCreatures(RACE2TOWN[i], CREATURE_IDS_BY_RACE[i][j], INIT_CREATURE_COUNT[i][j])
             end
         end
-        if not IsObjectEnabled(RACE2GARRISON[i]) then SetObjectEnabled(RACE2GARRISON[i], true) end
+        if not IsObjectEnabled(RACE2GARRISON[i]) then
+            Trigger(OBJECT_TOUCH_TRIGGER, RACE2GARRISON[i], nil)
+            SetObjectEnabled(RACE2GARRISON[i], true)
+        end
         if GetObjectOwner(RACE2GARRISON[i]) ~= 1 then SetObjectOwner(RACE2GARRISON[i], true) end
     end
 
@@ -1150,7 +1153,7 @@ function NPCWindBellKLCallback(pNum, cNum)
             elseif creatureID >= CREATURE_LANDLORD and creatureID <= CREATURE_SERAPH then
                 temp[i][1] = CREATURE_PEASANT + ((creatureID - CREATURE_LANDLORD) * 2)
             elseif creatureID >= CREATURE_QUASIT and creatureID <= CREATURE_ARCH_DEMON then
-                temp[i][1] = CREATURE_IMP + ((creatureID - CREATURE_QUASIT) * 2)
+                temp[i][1] = CREATURE_FAMILIAR + ((creatureID - CREATURE_QUASIT) * 2)
             elseif creatureID >= CREATURE_STALKER and creatureID <= CREATURE_RED_DRAGON then
                 temp[i][1] = CREATURE_SCOUT + ((creatureID - CREATURE_STALKER) * 2)
             elseif creatureID >= CREATURE_DRYAD and creatureID <= CREATURE_RAINBOW_DRAGON then
@@ -1875,6 +1878,7 @@ function NPCVisitsTrigger(heroName, npcName)
             if polAmt < 800 then
                 MessageBox({g_sPath.."DubiousMage1NotEnough.txt"; n_creature = polAmt})
             else
+                polAmt = 800
                 MessageBox(g_sPath.."DubiousMage1Enough.txt")
                 BlockGame()
                 _ConfiscateCreatures(heroName, CREATURE_POLTERGEIST, polAmt)
