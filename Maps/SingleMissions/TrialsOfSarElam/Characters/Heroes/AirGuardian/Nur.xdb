@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Model ObjectRecordID="1000860">
+	<Materials>
+		<Item href="Materials/Nur-t6_priestess_texturing_weld_lambert2.(Material).xdb#xpointer(/Material)"/>
+		<Item href="Materials/Nur-add.(Material).xdb#xpointer(/Material)"/>
+		<Item href="Materials/Nur-t6_priestess_texturing_weld_lambert2.(Material).xdb#xpointer(/Material)"/>
+	</Materials>
+	<Skeleton href="Nur-skel.xdb#xpointer(/Skeleton)"/>
+	<Geometry href="Nur-geom.xdb#xpointer(/Geometry)"/>
+	<Animations/>
+	<WindPower>1</WindPower>
+</Model>

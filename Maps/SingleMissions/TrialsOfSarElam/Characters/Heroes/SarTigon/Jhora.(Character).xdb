@@ -3,15 +3,5 @@
 	<Model href="Jhora.xdb#xpointer(/Model)"/>
 	<ArenaAnimSet href="Jhora-arena.xdb#xpointer(/AnimSet)"/>
 	<AdvMapAnimSet href="Jhora-arena.xdb#xpointer(/AdvMapAnimSet)"/>
-	<ColourModels>
-		<Item href="Jhora_White.xdb#xpointer(/Model)"/>
-		<Item href="Jhora.xdb#xpointer(/Model)"/>
-		<Item href="Jhora_Blue.xdb#xpointer(/Model)"/>
-		<Item href="Jhora_Green.xdb#xpointer(/Model)"/>
-		<Item href="Jhora_Yellow.xdb#xpointer(/Model)"/>
-		<Item href="Jhora_Orange.xdb#xpointer(/Model)"/>
-		<Item href="Jhora_Teal.xdb#xpointer(/Model)"/>
-		<Item href="Jhora_Purple.xdb#xpointer(/Model)"/>
-		<Item href="Jhora_Tan.xdb#xpointer(/Model)"/>
-	</ColourModels>
+	<ColourModels/>
 </Character>

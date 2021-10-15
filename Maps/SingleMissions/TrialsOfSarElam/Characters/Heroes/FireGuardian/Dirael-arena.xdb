@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AnimSet ObjectRecordID="1000025">
+	<animations>
+		<Item>
+			<Kind>cast</Kind>
+			<Anim href="Priestess-arena-cast.xdb#xpointer(/BasicSkelAnim)"/>
+		</Item>
+		<Item>
+			<Kind>death</Kind>
+			<Anim href="/Characters/Creatures/Dungeon/Priestess-arena-death.xdb#xpointer(/BasicSkelAnim)"/>
+		</Item>
+		<Item>
+			<Kind>hit</Kind>
+			<Anim href="/Characters/Creatures/Dungeon/Priestess-arena-hit.xdb#xpointer(/BasicSkelAnim)"/>
+		</Item>
+		<Item>
+			<Kind>idle00</Kind>
+			<Anim href="/Characters/Creatures/Dungeon/Priestess-arena-idle00.xdb#xpointer(/BasicSkelAnim)"/>
+		</Item>
+		<Item>
+			<Kind>move</Kind>
+			<Anim href="Priestess-arena-move.xdb#xpointer(/BasicSkelAnim)"/>
+		</Item>
+		<Item>
+			<Kind>rangeattack</Kind>
+			<Anim href="Priestess-arena-rangeattack.xdb#xpointer(/BasicSkelAnim)"/>
+		</Item>
+		<Item>
+			<Kind>attack00</Kind>
+			<Anim href="/Characters/Creatures/Dungeon/Priestess.attack.xdb#xpointer(/BasicSkelAnim)"/>
+		</Item>
+		<Item>
+			<Kind>stir00</Kind>
+			<Anim href="/Characters/Creatures/Dungeon/Priestess-arena-stir00.xdb#xpointer(/BasicSkelAnim)"/>
+		</Item>
+		<Item>
+			<Kind>specability</Kind>
+			<Anim href="Priestess-arena-rangeattack.xdb#xpointer(/BasicSkelAnim)"/>
+		</Item>
+	</animations>
+	<ExpSrcScene href="/models/Creatures/Dungeon/Priestess.mb"/>
+	<ExpSrcClipFolder href="/Animations/Creatures/DUNGEON/Priestess/Clip/"/>
+	<ExpRootTransform>Global</ExpRootTransform>
+</AnimSet>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <AdvMapHeroShared>
-	<Model href="/Characters/Heroes/Raelag_LOD.xdb#xpointer(/Model)"/>
-	<AnimSet href="/Characters/Heroes/Raelag_LOD-adv.xdb#xpointer(/AnimSet)"/>
+	<Model href="/Maps/SingleMissions/TrialsOfSarElam/Characters/Heroes/DarkGuardian/Deirdre_DS.xdb#xpointer(/Model)"/>
+	<AnimSet href="/Maps/SingleMissions/TrialsOfSarElam/Characters/Heroes/DarkGuardian/Deirdre-arena.xdb#xpointer(/AnimSet)"/>
 	<blockedTiles/>
 	<holeTiles/>
 	<activeTiles>
@@ -40,17 +40,17 @@
 	<SpecializationNameFileRef href="/Text/Game/Heroes/Specializations/Dungeon/MasterOfInitiative/Name.txt"/>
 	<SpecializationDescFileRef href="/Text/Game/Heroes/Specializations/Dungeon/MasterOfInitiative/Description.txt"/>
 	<SpecializationIcon href="/Textures/HeroScreen/Specializations/Dungeon/Prudent.xdb#xpointer(/Texture)"/>
-	<FaceTexture href="/Textures/Icons/Heroes/Dungeon/Dungeon_Raelag_128x128.(Texture).xdb#xpointer(/Texture)"/>
-	<FaceTextureSmall href="/Textures/Icons/Heroes/Dungeon/Dungeon_Raelag_128x128_64.(Texture).xdb#xpointer(/Texture)"/>
-	<HeroCharacterArena href="/Characters/Heroes/Raelag.(Character).xdb#xpointer(/Character)"/>
+	<FaceTexture href="/GameMechanics/RefTables/GhostMode/face_Banshee.(Texture).xdb#xpointer(/Texture)"/>
+	<FaceTextureSmall href="/GameMechanics/RefTables/GhostMode/ico_Banshee.(Texture).xdb#xpointer(/Texture)"/>
+	<HeroCharacterArena href="/Maps/SingleMissions/TrialsOfSarElam/Characters/Heroes/DarkGuardian/Deirdre.(Character).xdb#xpointer(/Character)"/>
 	<HeroCharacterArenaMelee/>
-	<HeroCharacterAdventure href="/Characters/Heroes/Raelag_LOD.(Character).xdb#xpointer(/Character)"/>
+	<HeroCharacterAdventure href="/Maps/SingleMissions/TrialsOfSarElam/Characters/Heroes/DarkGuardian/Deirdre.(Character).xdb#xpointer(/Character)"/>
 	<HeroIndividualCamera/>
-	<CombatVisual href="/GameMechanics/CreatureVisual/Heroes/Warlock.xdb#xpointer(/CreatureVisual)"/>
+	<CombatVisual href="/GameMechanics/CreatureVisual/Heroes/Necromancer.xdb#xpointer(/CreatureVisual)"/>
 	<TownType>TOWN_DUNGEON</TownType>
 	<Editable>
-		<NameFileRef href="/Text/Game/Heroes/Persons/Dungeon/Raelag_A1/Name.txt"/>
-		<BiographyFileRef href="/Text/Game/Heroes/Persons/Dungeon/Raelag_A1/Bio.txt"/>
+		<NameFileRef href="/Maps/SingleMissions/TrialsOfSarElam/NameDarkGuardian.txt"/>
+		<BiographyFileRef href="/Maps/SingleMissions/TrialsOfSarElam/NameDarkGuardian.txt"/>
 		<Offence>1</Offence>
 		<Defence>0</Defence>
 		<Spellpower>3</Spellpower>
@@ -73,7 +73,7 @@
 	<RaceTraitIcon/>
 	<RaceTraitDescFileRef href=""/>
 	<ScenarioHero>true</ScenarioHero>
-	<AdventureMusic href="/Sounds/_(Music)/AdvMap-Heroes/Raelag.xdb#xpointer(/Music)"/>
+	<AdventureMusic/>
 	<HideInEditor>false</HideInEditor>
 	<PresetMinimalAttributes>
 		<Offence>2</Offence>

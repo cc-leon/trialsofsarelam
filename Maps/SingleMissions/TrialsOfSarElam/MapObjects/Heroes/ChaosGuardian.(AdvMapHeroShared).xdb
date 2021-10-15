@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <AdvMapHeroShared ObjectRecordID="60">
-	<Model/>
-	<AnimSet href="/_(AnimSet)/Heroes/Necromancer-arena.(AnimSet).xdb#xpointer(/AnimSet)"/>
+	<Model href="/Maps/SingleMissions/TrialsOfSarElam/Characters/Heroes/ChaosGuardian/JezebethSuccubus.(Model).xdb#xpointer(/Model)"/>
+	<AnimSet href="/Maps/SingleMissions/TrialsOfSarElam/Characters/Heroes/ChaosGuardian/Oddrema-arena.(AnimSet).xdb#xpointer(/AnimSet)"/>
 	<blockedTiles/>
 	<holeTiles/>
 	<activeTiles>
@@ -38,17 +38,17 @@
 	<SpecializationNameFileRef href="/Text/Game/Heroes/Specializations/Necropolis/Mind_Cleaner/Name.txt"/>
 	<SpecializationDescFileRef href="/Text/Game/Heroes/Specializations/Necropolis/Mind_Cleaner/Description.txt"/>
 	<SpecializationIcon href="/Textures/HeroScreen/Specializations/Necropolis/Mind_Cleaner.xdb#xpointer(/Texture)"/>
-	<FaceTexture href="/Textures/Icons/Heroes/Necropolis/Necropolis_Zoltan_128x128.(Texture).xdb#xpointer(/Texture)"/>
-	<FaceTextureSmall href="/Textures/Icons/Heroes/Necropolis/Necropolis_Zoltan_128x128_64.(Texture).xdb#xpointer(/Texture)"/>
-	<HeroCharacterArena href="/Characters/Heroes/Necromancer.(Character).xdb#xpointer(/Character)"/>
+	<FaceTexture href="/GameMechanics/RefTables/GhostMode/face_Banshee.(Texture).xdb#xpointer(/Texture)"/>
+	<FaceTextureSmall href="/GameMechanics/RefTables/GhostMode/ico_Banshee.(Texture).xdb#xpointer(/Texture)"/>
+	<HeroCharacterArena href="/Maps/SingleMissions/TrialsOfSarElam/Characters/Heroes/ChaosGuardian/Oddrema.(Character).xdb#xpointer(/Character)"/>
 	<HeroCharacterArenaMelee/>
-	<HeroCharacterAdventure href="/Characters/Heroes/Necromancer_LOD.(Character).xdb#xpointer(/Character)"/>
+	<HeroCharacterAdventure href="/Maps/SingleMissions/TrialsOfSarElam/Characters/Heroes/ChaosGuardian/Oddrema.(Character).xdb#xpointer(/Character)"/>
 	<HeroIndividualCamera/>
-	<CombatVisual href="/GameMechanics/CreatureVisual/Heroes/Necromancer.xdb#xpointer(/CreatureVisual)"/>
-	<TownType>TOWN_NECROMANCY</TownType>
+	<CombatVisual href="/GameMechanics/CreatureVisual/Creatures/Inferno/InfernalSuccubus.xdb#xpointer(/CreatureVisual)"/>
+	<TownType>TOWN_DUNGEON</TownType>
 	<Editable>
-		<NameFileRef href="/Text/Game/Heroes/Persons/Necropolis/Aberrar/Name.txt"/>
-		<BiographyFileRef href="/Text/Game/Heroes/Persons/Necropolis/Aberrar/Bio.txt"/>
+		<NameFileRef href="/Maps/SingleMissions/TrialsOfSarElam/NameChaosGuardian.txt"/>
+		<BiographyFileRef href="/Maps/SingleMissions/TrialsOfSarElam/NameChaosGuardian.txt"/>
 		<Offence>0</Offence>
 		<Defence>1</Defence>
 		<Spellpower>3</Spellpower>

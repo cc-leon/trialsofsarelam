@@ -5,15 +5,20 @@
 	<DescriptionFileRef href="description.txt"/>
 	<TileX>136</TileX>
 	<TileY>136</TileY>
-	<MapGoal href="MapGoalText.1.txt"/>
-	<CustomMapGoal>false</CustomMapGoal>
+	<MapGoal href="CustomGoal.txt"/>
+	<CustomMapGoal>true</CustomMapGoal>
 	<teams>
 		<Item>1</Item>
 		<Item>1</Item>
 		<Item>1</Item>
 		<Item>1</Item>
 	</teams>
-	<thumbnailImages/>
+	<thumbnailImages>
+		<Item href="Thumb1.(Texture).xdb#xpointer(/Texture)"/>
+		<Item href="Thumb2.(Texture).xdb#xpointer(/Texture)"/>
+		<Item href="Thumb3.(Texture).xdb#xpointer(/Texture)"/>
+		<Item href="Thumb4.(Texture).xdb#xpointer(/Texture)"/>
+	</thumbnailImages>
 	<HasUnderground>true</HasUnderground>
 	<RandomMap>false</RandomMap>
 	<CustomGameMap>true</CustomGameMap>

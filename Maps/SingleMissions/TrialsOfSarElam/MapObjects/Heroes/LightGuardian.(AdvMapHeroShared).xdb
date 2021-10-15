@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <AdvMapHeroShared ObjectRecordID="29">
-	<Model href="/Characters/Heroes/Wizard_LOD.xdb#xpointer(/Model)"/>
-	<AnimSet href="/Characters/Heroes/Wizard_LOD-adv.xdb#xpointer(/AnimSet)"/>
+	<Model href="/Maps/SingleMissions/TrialsOfSarElam/Characters/Heroes/LightGuardian/Dirael.xdb#xpointer(/Model)"/>
+	<AnimSet href="/Maps/SingleMissions/TrialsOfSarElam/Characters/Heroes/LightGuardian/Dirael-arena.xdb#xpointer(/AnimSet)"/>
 	<blockedTiles/>
 	<holeTiles/>
 	<activeTiles>
@@ -38,17 +38,17 @@
 	<SpecializationNameFileRef href="/Text/Game/Heroes/Specializations/Academy/Radiant/Name.txt"/>
 	<SpecializationDescFileRef href="/Text/Game/Heroes/Specializations/Academy/Radiant/Description.txt"/>
 	<SpecializationIcon href="/Textures/HeroScreen/Specializations/Academy/Radiant.xdb#xpointer(/Texture)"/>
-	<FaceTexture href="/Textures/Icons/Heroes/Academy/Academy_Galib_128x128.(Texture).xdb#xpointer(/Texture)"/>
-	<FaceTextureSmall href="/Textures/Icons/Heroes/Academy/Academy_Galib_128x128_64.(Texture).xdb#xpointer(/Texture)"/>
-	<HeroCharacterArena href="/Characters/Heroes/Wizard.(Character).xdb#xpointer(/Character)"/>
+	<FaceTexture href="/GameMechanics/RefTables/GhostMode/face_Banshee.(Texture).xdb#xpointer(/Texture)"/>
+	<FaceTextureSmall href="/GameMechanics/RefTables/GhostMode/ico_Banshee.(Texture).xdb#xpointer(/Texture)"/>
+	<HeroCharacterArena href="/Maps/SingleMissions/TrialsOfSarElam/Characters/Heroes/LightGuardian/Dirael.(Character).xdb#xpointer(/Character)"/>
 	<HeroCharacterArenaMelee/>
-	<HeroCharacterAdventure href="/Characters/Heroes/Wizard_LOD.(Character).xdb#xpointer(/Character)"/>
-	<HeroIndividualCamera/>
-	<CombatVisual href="/GameMechanics/CreatureVisual/Heroes/Wizard.xdb#xpointer(/CreatureVisual)"/>
-	<TownType>TOWN_ACADEMY</TownType>
+	<HeroCharacterAdventure href="/Maps/SingleMissions/TrialsOfSarElam/Characters/Heroes/LightGuardian/Dirael.(Character).xdb#xpointer(/Character)"/>
+	<HeroIndividualCamera href="/Cameras/Interface/HireCreatures/Pixie.xdb#xpointer(/Camera)"/>
+	<CombatVisual href="/GameMechanics/CreatureVisual/Heroes/Ranger.xdb#xpointer(/CreatureVisual)"/>
+	<TownType>TOWN_DUNGEON</TownType>
 	<Editable>
-		<NameFileRef href="/Text/Game/Heroes/Persons/Academy/Tan/Name.txt"/>
-		<BiographyFileRef href="/Text/Game/Heroes/Persons/Academy/Tan/Bio.txt"/>
+		<NameFileRef href="/Maps/SingleMissions/TrialsOfSarElam/NameLightGuardian.txt"/>
+		<BiographyFileRef href="/Maps/SingleMissions/TrialsOfSarElam/NameLightGuardian.txt"/>
 		<Offence>0</Offence>
 		<Defence>0</Defence>
 		<Spellpower>2</Spellpower>

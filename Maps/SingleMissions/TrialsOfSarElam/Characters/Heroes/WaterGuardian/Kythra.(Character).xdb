@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Character ObjectRecordID="1000027">
+	<Model href="Kythra.xdb#xpointer(/Model)"/>
+	<ArenaAnimSet href="Kythra-arena.xdb#xpointer(/AnimSet)"/>
+	<AdvMapAnimSet href="Kythra-arena.xdb#xpointer(/AnimSet)"/>
+	<ColourModels/>
+</Character>

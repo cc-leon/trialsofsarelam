@@ -3,15 +3,5 @@
 	<Model href="Havez.xdb#xpointer(/Model)"/>
 	<ArenaAnimSet href="Havez-arena.xdb#xpointer(/AnimSet)"/>
 	<AdvMapAnimSet href="Havez-arena.xdb#xpointer(/AdvMapAnimSet)"/>
-	<ColourModels>
-		<Item href="Havez_White.xdb#xpointer(/Model)"/>
-		<Item href="Havez.xdb#xpointer(/Model)"/>
-		<Item href="Havez_Blue.xdb#xpointer(/Model)"/>
-		<Item href="Havez_Green.xdb#xpointer(/Model)"/>
-		<Item href="Havez_Yellow.xdb#xpointer(/Model)"/>
-		<Item href="Havez_Orange.xdb#xpointer(/Model)"/>
-		<Item href="Havez_Teal.xdb#xpointer(/Model)"/>
-		<Item href="Havez_Purple.xdb#xpointer(/Model)"/>
-		<Item href="Havez_Tan.xdb#xpointer(/Model)"/>
-	</ColourModels>
+	<ColourModels/>
 </Character>

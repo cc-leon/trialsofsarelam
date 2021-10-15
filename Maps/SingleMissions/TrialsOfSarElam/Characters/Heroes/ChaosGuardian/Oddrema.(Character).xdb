@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Character ObjectRecordID="118">
+	<Model href="JezebethSuccubus.(Model).xdb#xpointer(/Model)"/>
+	<ArenaAnimSet href="Oddrema-arena.(AnimSet).xdb#xpointer(/AnimSet)"/>
+	<AdvMapAnimSet href="Oddrema-arena.(AnimSet).xdb#xpointer(/AnimSet)"/>
+	<ColourModels/>
+</Character>

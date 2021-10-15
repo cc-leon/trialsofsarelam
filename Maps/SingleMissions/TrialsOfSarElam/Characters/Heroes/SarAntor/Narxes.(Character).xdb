@@ -3,15 +3,5 @@
 	<Model href="Narxes.xdb#xpointer(/Model)"/>
 	<ArenaAnimSet href="Narxes-arena.xdb#xpointer(/AnimSet)"/>
 	<AdvMapAnimSet href="Narxes-arena.xdb#xpointer(/AnimSet)"/>
-	<ColourModels>
-		<Item href="Narxes_White.xdb#xpointer(/Model)"/>
-		<Item href="Narxes.xdb#xpointer(/Model)"/>
-		<Item href="Narxes_Blue.xdb#xpointer(/Model)"/>
-		<Item href="Narxes_Green.xdb#xpointer(/Model)"/>
-		<Item href="Narxes_Yellow.xdb#xpointer(/Model)"/>
-		<Item href="Narxes_Orange.xdb#xpointer(/Model)"/>
-		<Item href="Narxes_Teal.xdb#xpointer(/Model)"/>
-		<Item href="Narxes_Purple.xdb#xpointer(/Model)"/>
-		<Item href="Narxes_Tan.xdb#xpointer(/Model)"/>
-	</ColourModels>
+	<ColourModels/>
 </Character>

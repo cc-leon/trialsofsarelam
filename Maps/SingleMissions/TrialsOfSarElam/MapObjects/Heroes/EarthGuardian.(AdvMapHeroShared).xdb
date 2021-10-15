@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <AdvMapHeroShared ObjectRecordID="37">
-	<Model href="/Characters/Heroes/Agrael_mounted_LOD.xdb#xpointer(/Model)"/>
-	<AnimSet href="/Characters/Heroes/Agrael_mounted_LOD-adv.xdb#xpointer(/AnimSet)"/>
+	<Model href="/Maps/SingleMissions/TrialsOfSarElam/Characters/Heroes/EarthGuardian/T4a_Shaman.xdb#xpointer(/Model)"/>
+	<AnimSet href="/Maps/SingleMissions/TrialsOfSarElam/Characters/Heroes/EarthGuardian/T4a_Shaman-arena.xdb#xpointer(/AnimSet)"/>
 	<blockedTiles/>
 	<holeTiles/>
 	<activeTiles>
@@ -38,17 +38,17 @@
 	<SpecializationNameFileRef href="/Text/Game/Heroes/Specializations/Inferno/Furious/Name.txt"/>
 	<SpecializationDescFileRef href="/Text/Game/Heroes/Specializations/Inferno/Furious/Description.txt"/>
 	<SpecializationIcon href="/Textures/HeroScreen/Specializations/Inferno/Furious.xdb#xpointer(/Texture)"/>
-	<FaceTexture href="/Textures/Icons/Heroes/Inferno/Inferno_Agrael_128x128.(Texture).xdb#xpointer(/Texture)"/>
-	<FaceTextureSmall href="/Textures/Icons/Heroes/Inferno/Inferno_Agrael_128x128_64.(Texture).xdb#xpointer(/Texture)"/>
-	<HeroCharacterArena href="/Characters/Heroes/Agrael_mounted.(Character).xdb#xpointer(/Character)"/>
+	<FaceTexture href="/GameMechanics/RefTables/GhostMode/face_Chimera.(Texture).xdb#xpointer(/Texture)"/>
+	<FaceTextureSmall href="/GameMechanics/RefTables/GhostMode/ico_Chimera.(Texture).xdb#xpointer(/Texture)"/>
+	<HeroCharacterArena href="/Maps/SingleMissions/TrialsOfSarElam/Characters/Heroes/EarthGuardian/T4a_Shaman.(Character).xdb#xpointer(/Character)"/>
 	<HeroCharacterArenaMelee/>
-	<HeroCharacterAdventure href="/Characters/Heroes/Agrael_mounted_LOD.(Character).xdb#xpointer(/Character)"/>
-	<HeroIndividualCamera href="/Cameras/Interface/HeroScreen/Agrael.xdb#xpointer(/Camera)"/>
-	<CombatVisual href="/GameMechanics/CreatureVisual/Heroes/Agrael.xdb#xpointer(/CreatureVisual)"/>
+	<HeroCharacterAdventure href="/Maps/SingleMissions/TrialsOfSarElam/Characters/Heroes/EarthGuardian/T4a_Shaman.(Character).xdb#xpointer(/Character)"/>
+	<HeroIndividualCamera href="/Cameras/Interface/HireCreatures/Orcs/T4_Shaman.(Camera).xdb#xpointer(/Camera)"/>
+	<CombatVisual href="/GameMechanics/CreatureVisual/Creatures/Dwarf/Rune_Mage.xdb#xpointer(/CreatureVisual)"/>
 	<TownType>TOWN_INFERNO</TownType>
 	<Editable>
-		<NameFileRef href="/Text/Game/Heroes/Persons/Inferno/Agrael/Name.txt"/>
-		<BiographyFileRef href="/Text/Game/Heroes/Persons/Inferno/Agrael/Bio.txt"/>
+		<NameFileRef href="/Maps/SingleMissions/TrialsOfSarElam/NameEarthGuardian.txt"/>
+		<BiographyFileRef href="/Maps/SingleMissions/TrialsOfSarElam/NameEarthGuardian.txt"/>
 		<Offence>2</Offence>
 		<Defence>0</Defence>
 		<Spellpower>1</Spellpower>
@@ -78,7 +78,7 @@
 	<RaceTraitIcon/>
 	<RaceTraitDescFileRef href=""/>
 	<ScenarioHero>true</ScenarioHero>
-	<AdventureMusic href="/Sounds/_(Music)/AdvMap-Heroes/Agrael.xdb#xpointer(/Music)"/>
+	<AdventureMusic/>
 	<HideInEditor>false</HideInEditor>
 	<PresetMinimalAttributes>
 		<Offence>2</Offence>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AnimSet ObjectRecordID="1000029">
+	<animations>
+		<Item>
+			<Kind>move</Kind>
+			<Anim href="Kythra-arena-move.xdb#xpointer(/BasicSkelAnim)"/>
+		</Item>
+		<Item>
+			<Kind>buff</Kind>
+			<Anim href="/Characters/Creatures/Dungeon/AlternativeUpgrade/T6_ShadowMistress/T6_ShadowMistress-arena-Specability.(BasicSkelAnim).xdb#xpointer(/BasicSkelAnim)"/>
+		</Item>
+		<Item>
+			<Kind>cast</Kind>
+			<Anim href="/Characters/Creatures/Dungeon/Matron-arena-cast.xdb#xpointer(/BasicSkelAnim)"/>
+		</Item>
+		<Item>
+			<Kind>idle00</Kind>
+			<Anim href="/Characters/Creatures/Dungeon/Matron-arena-idle00.xdb#xpointer(/BasicSkelAnim)"/>
+		</Item>
+		<Item>
+			<Kind>happy</Kind>
+			<Anim href="/Characters/Creatures/Dungeon/Priestess-arena-happy.xdb#xpointer(/BasicSkelAnim)"/>
+		</Item>
+		<Item>
+			<Kind>rangeattack</Kind>
+			<Anim href="/Characters/Creatures/Dungeon/Matron-arena-rangeattack.xdb#xpointer(/BasicSkelAnim)"/>
+		</Item>
+		<Item>
+			<Kind>attack00</Kind>
+			<Anim href="/Characters/Creatures/Dungeon/Matron-arena-attack00.xdb#xpointer(/BasicSkelAnim)"/>
+		</Item>
+		<Item>
+			<Kind>stir00</Kind>
+			<Anim href="/Characters/Creatures/Dungeon/Matron-arena-stir00.xdb#xpointer(/BasicSkelAnim)"/>
+		</Item>
+	</animations>
+	<ExpSrcScene href="/models/Creatures/Dungeon/Matron.mb"/>
+	<ExpSrcClipFolder href="/Animations/Creatures/Dungeon/Matron/Clip/"/>
+	<ExpRootTransform>Global</ExpRootTransform>
+</AnimSet>

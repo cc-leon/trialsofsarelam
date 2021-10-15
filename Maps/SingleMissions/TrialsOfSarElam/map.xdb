@@ -41907,8 +41907,8 @@
 				<pointLights/>
 				<Shared href="/MapObjects/Neutral/Phoenix.(AdvMapMonsterShared).xdb#xpointer(/AdvMapMonsterShared)"/>
 				<Custom>true</Custom>
-				<Amount>1</Amount>
-				<Amount2>20</Amount2>
+				<Amount>10</Amount>
+				<Amount2>50</Amount2>
 				<AttackType>ATTACK_ANY</AttackType>
 				<MoveType>MOVE_ANY</MoveType>
 				<DoesNotGrow>true</DoesNotGrow>
@@ -44239,7 +44239,7 @@
 					<y>127</y>
 					<z>0</z>
 				</Pos>
-				<Rot>0</Rot>
+				<Rot>0.791571</Rot>
 				<Floor>0</Floor>
 				<Name/>
 				<CombatScript href="CombatDragonGuardians.(Script).xdb#xpointer(/Script)"/>
@@ -44403,7 +44403,7 @@
 					<y>105</y>
 					<z>0</z>
 				</Pos>
-				<Rot>0</Rot>
+				<Rot>3.93316</Rot>
 				<Floor>0</Floor>
 				<Name/>
 				<CombatScript href="CombatDragonGuardians.(Script).xdb#xpointer(/Script)"/>
@@ -44640,7 +44640,7 @@
 					<y>127</y>
 					<z>0</z>
 				</Pos>
-				<Rot>0</Rot>
+				<Rot>5.49161</Rot>
 				<Floor>0</Floor>
 				<Name/>
 				<CombatScript href="CombatDragonGuardians.(Script).xdb#xpointer(/Script)"/>
@@ -44756,7 +44756,7 @@
 					<y>100</y>
 					<z>0</z>
 				</Pos>
-				<Rot>0</Rot>
+				<Rot>3.29841</Rot>
 				<Floor>0</Floor>
 				<Name/>
 				<CombatScript href="CombatDragonGuardians.(Script).xdb#xpointer(/Script)"/>
@@ -45200,7 +45200,7 @@
 					<y>116</y>
 					<z>0</z>
 				</Pos>
-				<Rot>0</Rot>
+				<Rot>1.5708</Rot>
 				<Floor>0</Floor>
 				<Name/>
 				<CombatScript href="CombatDragonGuardians.(Script).xdb#xpointer(/Script)"/>
@@ -45315,7 +45315,7 @@
 					<y>116</y>
 					<z>0</z>
 				</Pos>
-				<Rot>0</Rot>
+				<Rot>4.71239</Rot>
 				<Floor>0</Floor>
 				<Name/>
 				<CombatScript href="CombatDragonGuardians.(Script).xdb#xpointer(/Script)"/>
@@ -48525,8 +48525,8 @@
 		<Item href="#n:inline(AdvMapTreasure)" id="item_CDF053EE-8917-4BA1-92FF-0B11B7D477C2">
 			<AdvMapTreasure>
 				<Pos>
-					<x>33</x>
-					<y>28</y>
+					<x>39</x>
+					<y>29</y>
 					<z>0</z>
 				</Pos>
 				<Rot>0</Rot>
@@ -48815,88 +48815,6 @@
 				<showCameras/>
 			</AdvMapBuilding>
 		</Item>
-		<Item href="#n:inline(AdvMapHero)" id="item_B8CE8BA1-F130-4F36-99F2-86C7E6D98EFC">
-			<AdvMapHero>
-				<Pos>
-					<x>45</x>
-					<y>37</y>
-					<z>0</z>
-				</Pos>
-				<Rot>0</Rot>
-				<Floor>0</Floor>
-				<Name/>
-				<CombatScript/>
-				<pointLights/>
-				<Shared href="/MapObjects/Inferno/Jazaz.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
-				<PlayerID>PLAYER_1</PlayerID>
-				<Experience>0</Experience>
-				<armySlots>
-					<Item>
-						<Creature>CREATURE_PEASANT</Creature>
-						<Count>1</Count>
-					</Item>
-					<Item>
-						<Creature>CREATURE_MILITIAMAN</Creature>
-						<Count>1</Count>
-					</Item>
-					<Item>
-						<Creature>CREATURE_CLERIC</Creature>
-						<Count>1</Count>
-					</Item>
-					<Item>
-						<Creature>CREATURE_ARCHDEVIL</Creature>
-						<Count>1</Count>
-					</Item>
-					<Item>
-						<Creature>CREATURE_FAMILIAR</Creature>
-						<Count>1</Count>
-					</Item>
-					<Item>
-						<Creature>CREATURE_STOUT_DEFENDER</Creature>
-						<Count>1</Count>
-					</Item>
-					<Item>
-						<Creature>CREATURE_STONE_DEFENDER</Creature>
-						<Count>1</Count>
-					</Item>
-				</armySlots>
-				<artifactIDs/>
-				<isUntransferable/>
-				<Editable>
-					<NameFileRef href=""/>
-					<BiographyFileRef href=""/>
-					<Offence>0</Offence>
-					<Defence>0</Defence>
-					<Spellpower>0</Spellpower>
-					<Knowledge>0</Knowledge>
-					<skills/>
-					<perkIDs/>
-					<spellIDs/>
-					<Ballista>false</Ballista>
-					<FirstAidTent>false</FirstAidTent>
-					<AmmoCart>false</AmmoCart>
-					<FavoriteEnemies/>
-					<TalismanLevel>0</TalismanLevel>
-				</Editable>
-				<OverrideMask>0</OverrideMask>
-				<PrimarySkillMastery>MASTERY_NONE</PrimarySkillMastery>
-				<LossTrigger>
-					<Action>
-						<FunctionName/>
-					</Action>
-				</LossTrigger>
-				<AllowQuickCombat>true</AllowQuickCombat>
-				<Textures>
-					<Icon128x128/>
-					<Icon64x64/>
-					<RoundedFace/>
-					<LeftFace/>
-					<RightFace/>
-				</Textures>
-				<PresetPrice>0</PresetPrice>
-				<BannedRaces/>
-			</AdvMapHero>
-		</Item>
 	</objects>
 	<Resources>
 		<PointLights>
@@ -49003,12 +48921,20 @@
 				<SaveFilenameFileRef href="DescriptionSarIssus.txt"/>
 			</Item>
 			<Item>
+				<Name>HintSarIssus</Name>
+				<SaveFilenameFileRef href="HintSarIssus.txt"/>
+			</Item>
+			<Item>
 				<Name>NameSarAggreth</Name>
 				<SaveFilenameFileRef href="NameSarAggreth.txt"/>
 			</Item>
 			<Item>
 				<Name>DescriptionSarAggreth</Name>
 				<SaveFilenameFileRef href="DescriptionSarAggreth.txt"/>
+			</Item>
+			<Item>
+				<Name>HintSarAggreth</Name>
+				<SaveFilenameFileRef href="HintSarAggreth.txt"/>
 			</Item>
 			<Item>
 				<Name>NameSarTigon</Name>
@@ -49019,12 +48945,20 @@
 				<SaveFilenameFileRef href="DescriptionSarTigon.txt"/>
 			</Item>
 			<Item>
+				<Name>HintSarTigon</Name>
+				<SaveFilenameFileRef href="HintSarTigon.txt"/>
+			</Item>
+			<Item>
 				<Name>NameSarShazzar</Name>
 				<SaveFilenameFileRef href="NameSarShazzar.txt"/>
 			</Item>
 			<Item>
 				<Name>DescriptionSarShazzar</Name>
 				<SaveFilenameFileRef href="DescriptionSarShazzar.txt"/>
+			</Item>
+			<Item>
+				<Name>HintSarShazzar</Name>
+				<SaveFilenameFileRef href="HintSarShazzar.txt"/>
 			</Item>
 			<Item>
 				<Name>NameSarAntor</Name>
@@ -49035,6 +48969,10 @@
 				<SaveFilenameFileRef href="DescriptionSarAntor.txt"/>
 			</Item>
 			<Item>
+				<Name>HintSarAntor</Name>
+				<SaveFilenameFileRef href="HintSarAntor.txt"/>
+			</Item>
+			<Item>
 				<Name>NameSarBadon</Name>
 				<SaveFilenameFileRef href="NameSarBadon.txt"/>
 			</Item>
@@ -49043,12 +48981,20 @@
 				<SaveFilenameFileRef href="DescriptionSarBadon.txt"/>
 			</Item>
 			<Item>
+				<Name>HintSarBadon</Name>
+				<SaveFilenameFileRef href="HintSarBadon.txt"/>
+			</Item>
+			<Item>
 				<Name>NameSarBahir</Name>
 				<SaveFilenameFileRef href="NameSarBahir.txt"/>
 			</Item>
 			<Item>
 				<Name>DescriptionSarBahir</Name>
 				<SaveFilenameFileRef href="DescriptionSarBahir.txt"/>
+			</Item>
+			<Item>
+				<Name>HintSarBahir</Name>
+				<SaveFilenameFileRef href="HintSarBahir.txt"/>
 			</Item>
 			<Item>
 				<Name>NameMapMaker</Name>
@@ -49065,14 +49011,6 @@
 			<Item>
 				<Name>MapMakerIntro2</Name>
 				<SaveFilenameFileRef href="MapMakerIntro2.txt"/>
-			</Item>
-			<Item>
-				<Name>MapMakerOption2</Name>
-				<SaveFilenameFileRef href="MapMakerOption2.txt"/>
-			</Item>
-			<Item>
-				<Name>MapMakerOption2Description</Name>
-				<SaveFilenameFileRef href="MapMakerOption2Description.txt"/>
 			</Item>
 			<Item>
 				<Name>MapMakerOption3</Name>
@@ -49265,6 +49203,10 @@
 			<Item>
 				<Name>DescriptionAldens</Name>
 				<SaveFilenameFileRef href="DescriptionAldens.txt"/>
+			</Item>
+			<Item>
+				<Name>AldensNoQuests</Name>
+				<SaveFilenameFileRef href="AldensNoQuests.txt"/>
 			</Item>
 			<Item>
 				<Name>NameDubiousMage1</Name>
@@ -49759,12 +49701,20 @@
 				<SaveFilenameFileRef href="DescriptionDarkGuardian.txt"/>
 			</Item>
 			<Item>
+				<Name>HintDarkGuardian</Name>
+				<SaveFilenameFileRef href="HintDarkGuardian.txt"/>
+			</Item>
+			<Item>
 				<Name>NameFireGuardian</Name>
 				<SaveFilenameFileRef href="NameFireGuardian.txt"/>
 			</Item>
 			<Item>
 				<Name>DescriptionFireGuardian</Name>
 				<SaveFilenameFileRef href="DescriptionFireGuardian.txt"/>
+			</Item>
+			<Item>
+				<Name>HintFireGuardian</Name>
+				<SaveFilenameFileRef href="HintFireGuardian.txt"/>
 			</Item>
 			<Item>
 				<Name>NameAirGuardian</Name>
@@ -49775,12 +49725,20 @@
 				<SaveFilenameFileRef href="DescriptionAirGuardian.txt"/>
 			</Item>
 			<Item>
+				<Name>HintAirGuardian</Name>
+				<SaveFilenameFileRef href="HintAirGuardian.txt"/>
+			</Item>
+			<Item>
 				<Name>NameEarthGuardian</Name>
 				<SaveFilenameFileRef href="NameEarthGuardian.txt"/>
 			</Item>
 			<Item>
 				<Name>DescriptionEarthGuardian</Name>
 				<SaveFilenameFileRef href="DescriptionEarthGuardian.txt"/>
+			</Item>
+			<Item>
+				<Name>HintEarthGuardian</Name>
+				<SaveFilenameFileRef href="HintEarthGuardian.txt"/>
 			</Item>
 			<Item>
 				<Name>NameLightGuardian</Name>
@@ -49791,12 +49749,20 @@
 				<SaveFilenameFileRef href="DescriptionLightGuardian.txt"/>
 			</Item>
 			<Item>
+				<Name>HintLightGuardian</Name>
+				<SaveFilenameFileRef href="HintLightGuardian.txt"/>
+			</Item>
+			<Item>
 				<Name>NameWaterGuardian</Name>
 				<SaveFilenameFileRef href="NameWaterGuardian.txt"/>
 			</Item>
 			<Item>
 				<Name>DescriptionWaterGuardian</Name>
 				<SaveFilenameFileRef href="DescriptionWaterGuardian.txt"/>
+			</Item>
+			<Item>
+				<Name>HintWaterGuardian</Name>
+				<SaveFilenameFileRef href="HintWaterGuardian.txt"/>
 			</Item>
 			<Item>
 				<Name>NameSeventhGuardian</Name>
@@ -49807,12 +49773,20 @@
 				<SaveFilenameFileRef href="DescriptionSeventhGuardian.txt"/>
 			</Item>
 			<Item>
+				<Name>HintSeventhGuardian</Name>
+				<SaveFilenameFileRef href="HintSeventhGuardian.txt"/>
+			</Item>
+			<Item>
 				<Name>NameChaosGuardian</Name>
 				<SaveFilenameFileRef href="NameChaosGuardian.txt"/>
 			</Item>
 			<Item>
 				<Name>DescriptionChaosGuardian</Name>
 				<SaveFilenameFileRef href="DescriptionChaosGuardian.txt"/>
+			</Item>
+			<Item>
+				<Name>HintChaosGuardian</Name>
+				<SaveFilenameFileRef href="HintChaosGuardian.txt"/>
 			</Item>
 			<Item>
 				<Name>NameForgottenHero</Name>
@@ -49953,6 +49927,122 @@
 			<Item>
 				<Name>ScenarioWin2</Name>
 				<SaveFilenameFileRef href="ScenarioWin2.txt"/>
+			</Item>
+			<Item>
+				<Name>HintLearnAllSpells</Name>
+				<SaveFilenameFileRef href="HintLearnAllSpells.txt"/>
+			</Item>
+			<Item>
+				<Name>HintLearnAllRunes</Name>
+				<SaveFilenameFileRef href="HintLearnAllRunes.txt"/>
+			</Item>
+			<Item>
+				<Name>HintLearnAllWarCries</Name>
+				<SaveFilenameFileRef href="HintLearnAllWarCries.txt"/>
+			</Item>
+			<Item>
+				<Name>HintAssassinateValeria</Name>
+				<SaveFilenameFileRef href="HintAssassinateValeria.txt"/>
+			</Item>
+			<Item>
+				<Name>HintRecruiteWraiths</Name>
+				<SaveFilenameFileRef href="HintRecruiteWraiths.txt"/>
+			</Item>
+			<Item>
+				<Name>HintAssassinateAlien</Name>
+				<SaveFilenameFileRef href="HintAssassinateAlien.txt"/>
+			</Item>
+			<Item>
+				<Name>HintRuneProdigyQuest</Name>
+				<SaveFilenameFileRef href="HintRuneProdigyQuest.txt"/>
+			</Item>
+			<Item>
+				<Name>HintGetRidOfGottai</Name>
+				<SaveFilenameFileRef href="HintGetRidOfGottai.txt"/>
+			</Item>
+			<Item>
+				<Name>HintFindBeginnerWand</Name>
+				<SaveFilenameFileRef href="HintFindBeginnerWand.txt"/>
+			</Item>
+			<Item>
+				<Name>HintFindMarkalSkull</Name>
+				<SaveFilenameFileRef href="HintFindMarkalSkull.txt"/>
+			</Item>
+			<Item>
+				<Name>HintScareAwayWolves</Name>
+				<SaveFilenameFileRef href="HintScareAwayWolves.txt"/>
+			</Item>
+			<Item>
+				<Name>HintScareAwayLandlord</Name>
+				<SaveFilenameFileRef href="HintScareAwayLandlord.txt"/>
+			</Item>
+			<Item>
+				<Name>HintScareAwayVeyer</Name>
+				<SaveFilenameFileRef href="HintScareAwayVeyer.txt"/>
+			</Item>
+			<Item>
+				<Name>HintHarvestPoltergeists</Name>
+				<SaveFilenameFileRef href="HintHarvestPoltergeists.txt"/>
+			</Item>
+			<Item>
+				<Name>HintHelpingAThief</Name>
+				<SaveFilenameFileRef href="HintHelpingAThief.txt"/>
+			</Item>
+			<Item>
+				<Name>HintKillMagneticGolems</Name>
+				<SaveFilenameFileRef href="HintKillMagneticGolems.txt"/>
+			</Item>
+			<Item>
+				<Name>HintKillPhoenixes</Name>
+				<SaveFilenameFileRef href="HintKillPhoenixes.txt"/>
+			</Item>
+			<Item>
+				<Name>HintKillTitans</Name>
+				<SaveFilenameFileRef href="HintKillTitans.txt"/>
+			</Item>
+			<Item>
+				<Name>HintKillMagmas</Name>
+				<SaveFilenameFileRef href="HintKillMagmas.txt"/>
+			</Item>
+			<Item>
+				<Name>HintKillBlackDragons</Name>
+				<SaveFilenameFileRef href="HintKillBlackDragons.txt"/>
+			</Item>
+			<Item>
+				<Name>HintFindPrincesses</Name>
+				<SaveFilenameFileRef href="HintFindPrincesses.txt"/>
+			</Item>
+			<Item>
+				<Name>HintAnswerAllSphinxRiddles</Name>
+				<SaveFilenameFileRef href="HintAnswerAllSphinxRiddles.txt"/>
+			</Item>
+			<Item>
+				<Name>HintDestroyInfernoOutpost</Name>
+				<SaveFilenameFileRef href="HintDestroyInfernoOutpost.txt"/>
+			</Item>
+			<Item>
+				<Name>HintCountPhoenixes</Name>
+				<SaveFilenameFileRef href="HintCountPhoenixes.txt"/>
+			</Item>
+			<Item>
+				<Name>HintArkathPuzzle</Name>
+				<SaveFilenameFileRef href="HintArkathPuzzle.txt"/>
+			</Item>
+			<Item>
+				<Name>HintGetRidOfDevil</Name>
+				<SaveFilenameFileRef href="HintGetRidOfDevil.txt"/>
+			</Item>
+			<Item>
+				<Name>HintTeachElfLesson1</Name>
+				<SaveFilenameFileRef href="HintTeachElfLesson1.txt"/>
+			</Item>
+			<Item>
+				<Name>HintTeachElfLesson2</Name>
+				<SaveFilenameFileRef href="HintTeachElfLesson2.txt"/>
+			</Item>
+			<Item>
+				<Name>HintBreedWolves</Name>
+				<SaveFilenameFileRef href="HintBreedWolves.txt"/>
 			</Item>
 			<Item>
 				<Name/>
@@ -50523,525 +50613,14 @@
 			<DenyFogOfWarForAllies/>
 		</Item>
 	</players>
-	<CustomMapGoal>false</CustomMapGoal>
-	<CustomGoal href=""/>
+	<CustomMapGoal>true</CustomMapGoal>
+	<CustomGoal href="CustomGoal.txt"/>
 	<ScenarioInformation>
 		<Item>
 			<Name/>
-			<CaptionFileRef href="scenario-caption.txt"/>
+			<CaptionFileRef href="name.txt"/>
 			<ObscureCaptionFileRef href=""/>
-			<DescriptionFileRef href="scenario-description.txt"/>
-			<ProgressCommentsFileRef/>
-			<Kind>OBJECTIVE_KIND_SCENARIO_INFO</Kind>
-			<Parameters/>
-			<Timeout>-1</Timeout>
-			<Holdout>-1</Holdout>
-			<CheckDelay>-1</CheckDelay>
-			<Dependencies/>
-			<InstantVictory>false</InstantVictory>
-			<TargetGlance>
-				<Target>
-					<Type>ADV_TARGET_NONE</Type>
-					<Name/>
-					<Coords>
-						<FloorID>0</FloorID>
-						<cell>
-							<x>0</x>
-							<y>0</y>
-						</cell>
-					</Coords>
-				</Target>
-				<Radius>10</Radius>
-				<Duration>5000</Duration>
-			</TargetGlance>
-			<Award>
-				<Type>AWARD_NONE</Type>
-				<Experience>0</Experience>
-				<Resources>
-					<Wood>0</Wood>
-					<Ore>0</Ore>
-					<Mercury>0</Mercury>
-					<Crystal>0</Crystal>
-					<Sulfur>0</Sulfur>
-					<Gem>0</Gem>
-					<Gold>0</Gold>
-				</Resources>
-				<Attribute>HERO_ATTRIB_DEFENCE</Attribute>
-				<AttributeAmount>0</AttributeAmount>
-				<ArtifactID>ARTIFACT_NONE</ArtifactID>
-				<SpellID>SPELL_NONE</SpellID>
-				<ArmySlot>
-					<Creature>CREATURE_UNKNOWN</Creature>
-					<Count>0</Count>
-				</ArmySlot>
-				<SpellPoints>0</SpellPoints>
-				<Morale>0</Morale>
-				<Luck>0</Luck>
-				<SkillWithMastery>
-					<Mastery>MASTERY_NONE</Mastery>
-					<SkillID>HERO_SKILL_NONE</SkillID>
-				</SkillWithMastery>
-			</Award>
-			<TakeContribution>false</TakeContribution>
-			<CanUncomplete>false</CanUncomplete>
-			<IsInitialyActive>true</IsInitialyActive>
-			<IsInitialyVisible>true</IsInitialyVisible>
-			<IsHidden>false</IsHidden>
-			<Ignore>false</Ignore>
-			<ShowCompleted>true</ShowCompleted>
-			<NeedComplete>true</NeedComplete>
-			<StateChangeTrigger>
-				<Action>
-					<FunctionName/>
-				</Action>
-			</StateChangeTrigger>
-			<SoundActivated/>
-			<SoundComplete/>
-			<SoundFailed/>
-		</Item>
-		<Item>
-			<Name/>
-			<CaptionFileRef href="scenario-caption.1.txt"/>
-			<ObscureCaptionFileRef href=""/>
-			<DescriptionFileRef href="scenario-description.1.txt"/>
-			<ProgressCommentsFileRef/>
-			<Kind>OBJECTIVE_KIND_SCENARIO_INFO</Kind>
-			<Parameters/>
-			<Timeout>-1</Timeout>
-			<Holdout>-1</Holdout>
-			<CheckDelay>-1</CheckDelay>
-			<Dependencies/>
-			<InstantVictory>false</InstantVictory>
-			<TargetGlance>
-				<Target>
-					<Type>ADV_TARGET_NONE</Type>
-					<Name/>
-					<Coords>
-						<FloorID>0</FloorID>
-						<cell>
-							<x>0</x>
-							<y>0</y>
-						</cell>
-					</Coords>
-				</Target>
-				<Radius>10</Radius>
-				<Duration>5000</Duration>
-			</TargetGlance>
-			<Award>
-				<Type>AWARD_NONE</Type>
-				<Experience>0</Experience>
-				<Resources>
-					<Wood>0</Wood>
-					<Ore>0</Ore>
-					<Mercury>0</Mercury>
-					<Crystal>0</Crystal>
-					<Sulfur>0</Sulfur>
-					<Gem>0</Gem>
-					<Gold>0</Gold>
-				</Resources>
-				<Attribute>HERO_ATTRIB_DEFENCE</Attribute>
-				<AttributeAmount>0</AttributeAmount>
-				<ArtifactID>ARTIFACT_NONE</ArtifactID>
-				<SpellID>SPELL_NONE</SpellID>
-				<ArmySlot>
-					<Creature>CREATURE_UNKNOWN</Creature>
-					<Count>0</Count>
-				</ArmySlot>
-				<SpellPoints>0</SpellPoints>
-				<Morale>0</Morale>
-				<Luck>0</Luck>
-				<SkillWithMastery>
-					<Mastery>MASTERY_NONE</Mastery>
-					<SkillID>HERO_SKILL_NONE</SkillID>
-				</SkillWithMastery>
-			</Award>
-			<TakeContribution>false</TakeContribution>
-			<CanUncomplete>false</CanUncomplete>
-			<IsInitialyActive>true</IsInitialyActive>
-			<IsInitialyVisible>true</IsInitialyVisible>
-			<IsHidden>false</IsHidden>
-			<Ignore>false</Ignore>
-			<ShowCompleted>true</ShowCompleted>
-			<NeedComplete>true</NeedComplete>
-			<StateChangeTrigger>
-				<Action>
-					<FunctionName/>
-				</Action>
-			</StateChangeTrigger>
-			<SoundActivated/>
-			<SoundComplete/>
-			<SoundFailed/>
-		</Item>
-		<Item>
-			<Name/>
-			<CaptionFileRef href="scenario-caption.2.txt"/>
-			<ObscureCaptionFileRef href=""/>
-			<DescriptionFileRef href="scenario-description.2.txt"/>
-			<ProgressCommentsFileRef/>
-			<Kind>OBJECTIVE_KIND_SCENARIO_INFO</Kind>
-			<Parameters/>
-			<Timeout>-1</Timeout>
-			<Holdout>-1</Holdout>
-			<CheckDelay>-1</CheckDelay>
-			<Dependencies/>
-			<InstantVictory>false</InstantVictory>
-			<TargetGlance>
-				<Target>
-					<Type>ADV_TARGET_NONE</Type>
-					<Name/>
-					<Coords>
-						<FloorID>0</FloorID>
-						<cell>
-							<x>0</x>
-							<y>0</y>
-						</cell>
-					</Coords>
-				</Target>
-				<Radius>10</Radius>
-				<Duration>5000</Duration>
-			</TargetGlance>
-			<Award>
-				<Type>AWARD_NONE</Type>
-				<Experience>0</Experience>
-				<Resources>
-					<Wood>0</Wood>
-					<Ore>0</Ore>
-					<Mercury>0</Mercury>
-					<Crystal>0</Crystal>
-					<Sulfur>0</Sulfur>
-					<Gem>0</Gem>
-					<Gold>0</Gold>
-				</Resources>
-				<Attribute>HERO_ATTRIB_DEFENCE</Attribute>
-				<AttributeAmount>0</AttributeAmount>
-				<ArtifactID>ARTIFACT_NONE</ArtifactID>
-				<SpellID>SPELL_NONE</SpellID>
-				<ArmySlot>
-					<Creature>CREATURE_UNKNOWN</Creature>
-					<Count>0</Count>
-				</ArmySlot>
-				<SpellPoints>0</SpellPoints>
-				<Morale>0</Morale>
-				<Luck>0</Luck>
-				<SkillWithMastery>
-					<Mastery>MASTERY_NONE</Mastery>
-					<SkillID>HERO_SKILL_NONE</SkillID>
-				</SkillWithMastery>
-			</Award>
-			<TakeContribution>false</TakeContribution>
-			<CanUncomplete>false</CanUncomplete>
-			<IsInitialyActive>true</IsInitialyActive>
-			<IsInitialyVisible>true</IsInitialyVisible>
-			<IsHidden>false</IsHidden>
-			<Ignore>false</Ignore>
-			<ShowCompleted>true</ShowCompleted>
-			<NeedComplete>true</NeedComplete>
-			<StateChangeTrigger>
-				<Action>
-					<FunctionName/>
-				</Action>
-			</StateChangeTrigger>
-			<SoundActivated/>
-			<SoundComplete/>
-			<SoundFailed/>
-		</Item>
-		<Item>
-			<Name/>
-			<CaptionFileRef href="scenario-caption.3.txt"/>
-			<ObscureCaptionFileRef href=""/>
-			<DescriptionFileRef href="scenario-description.3.txt"/>
-			<ProgressCommentsFileRef/>
-			<Kind>OBJECTIVE_KIND_SCENARIO_INFO</Kind>
-			<Parameters/>
-			<Timeout>-1</Timeout>
-			<Holdout>-1</Holdout>
-			<CheckDelay>-1</CheckDelay>
-			<Dependencies/>
-			<InstantVictory>false</InstantVictory>
-			<TargetGlance>
-				<Target>
-					<Type>ADV_TARGET_NONE</Type>
-					<Name/>
-					<Coords>
-						<FloorID>0</FloorID>
-						<cell>
-							<x>0</x>
-							<y>0</y>
-						</cell>
-					</Coords>
-				</Target>
-				<Radius>10</Radius>
-				<Duration>5000</Duration>
-			</TargetGlance>
-			<Award>
-				<Type>AWARD_NONE</Type>
-				<Experience>0</Experience>
-				<Resources>
-					<Wood>0</Wood>
-					<Ore>0</Ore>
-					<Mercury>0</Mercury>
-					<Crystal>0</Crystal>
-					<Sulfur>0</Sulfur>
-					<Gem>0</Gem>
-					<Gold>0</Gold>
-				</Resources>
-				<Attribute>HERO_ATTRIB_DEFENCE</Attribute>
-				<AttributeAmount>0</AttributeAmount>
-				<ArtifactID>ARTIFACT_NONE</ArtifactID>
-				<SpellID>SPELL_NONE</SpellID>
-				<ArmySlot>
-					<Creature>CREATURE_UNKNOWN</Creature>
-					<Count>0</Count>
-				</ArmySlot>
-				<SpellPoints>0</SpellPoints>
-				<Morale>0</Morale>
-				<Luck>0</Luck>
-				<SkillWithMastery>
-					<Mastery>MASTERY_NONE</Mastery>
-					<SkillID>HERO_SKILL_NONE</SkillID>
-				</SkillWithMastery>
-			</Award>
-			<TakeContribution>false</TakeContribution>
-			<CanUncomplete>false</CanUncomplete>
-			<IsInitialyActive>true</IsInitialyActive>
-			<IsInitialyVisible>true</IsInitialyVisible>
-			<IsHidden>false</IsHidden>
-			<Ignore>false</Ignore>
-			<ShowCompleted>true</ShowCompleted>
-			<NeedComplete>true</NeedComplete>
-			<StateChangeTrigger>
-				<Action>
-					<FunctionName/>
-				</Action>
-			</StateChangeTrigger>
-			<SoundActivated/>
-			<SoundComplete/>
-			<SoundFailed/>
-		</Item>
-		<Item>
-			<Name/>
-			<CaptionFileRef href="scenario-caption.4.txt"/>
-			<ObscureCaptionFileRef href=""/>
-			<DescriptionFileRef href="scenario-description.4.txt"/>
-			<ProgressCommentsFileRef/>
-			<Kind>OBJECTIVE_KIND_SCENARIO_INFO</Kind>
-			<Parameters/>
-			<Timeout>-1</Timeout>
-			<Holdout>-1</Holdout>
-			<CheckDelay>-1</CheckDelay>
-			<Dependencies/>
-			<InstantVictory>false</InstantVictory>
-			<TargetGlance>
-				<Target>
-					<Type>ADV_TARGET_NONE</Type>
-					<Name/>
-					<Coords>
-						<FloorID>0</FloorID>
-						<cell>
-							<x>0</x>
-							<y>0</y>
-						</cell>
-					</Coords>
-				</Target>
-				<Radius>10</Radius>
-				<Duration>5000</Duration>
-			</TargetGlance>
-			<Award>
-				<Type>AWARD_NONE</Type>
-				<Experience>0</Experience>
-				<Resources>
-					<Wood>0</Wood>
-					<Ore>0</Ore>
-					<Mercury>0</Mercury>
-					<Crystal>0</Crystal>
-					<Sulfur>0</Sulfur>
-					<Gem>0</Gem>
-					<Gold>0</Gold>
-				</Resources>
-				<Attribute>HERO_ATTRIB_DEFENCE</Attribute>
-				<AttributeAmount>0</AttributeAmount>
-				<ArtifactID>ARTIFACT_NONE</ArtifactID>
-				<SpellID>SPELL_NONE</SpellID>
-				<ArmySlot>
-					<Creature>CREATURE_UNKNOWN</Creature>
-					<Count>0</Count>
-				</ArmySlot>
-				<SpellPoints>0</SpellPoints>
-				<Morale>0</Morale>
-				<Luck>0</Luck>
-				<SkillWithMastery>
-					<Mastery>MASTERY_NONE</Mastery>
-					<SkillID>HERO_SKILL_NONE</SkillID>
-				</SkillWithMastery>
-			</Award>
-			<TakeContribution>false</TakeContribution>
-			<CanUncomplete>false</CanUncomplete>
-			<IsInitialyActive>true</IsInitialyActive>
-			<IsInitialyVisible>true</IsInitialyVisible>
-			<IsHidden>false</IsHidden>
-			<Ignore>false</Ignore>
-			<ShowCompleted>true</ShowCompleted>
-			<NeedComplete>true</NeedComplete>
-			<StateChangeTrigger>
-				<Action>
-					<FunctionName/>
-				</Action>
-			</StateChangeTrigger>
-			<SoundActivated/>
-			<SoundComplete/>
-			<SoundFailed/>
-		</Item>
-		<Item>
-			<Name/>
-			<CaptionFileRef href="scenario-caption.5.txt"/>
-			<ObscureCaptionFileRef href=""/>
-			<DescriptionFileRef href="scenario-description.5.txt"/>
-			<ProgressCommentsFileRef/>
-			<Kind>OBJECTIVE_KIND_SCENARIO_INFO</Kind>
-			<Parameters/>
-			<Timeout>-1</Timeout>
-			<Holdout>-1</Holdout>
-			<CheckDelay>-1</CheckDelay>
-			<Dependencies/>
-			<InstantVictory>false</InstantVictory>
-			<TargetGlance>
-				<Target>
-					<Type>ADV_TARGET_NONE</Type>
-					<Name/>
-					<Coords>
-						<FloorID>0</FloorID>
-						<cell>
-							<x>0</x>
-							<y>0</y>
-						</cell>
-					</Coords>
-				</Target>
-				<Radius>10</Radius>
-				<Duration>5000</Duration>
-			</TargetGlance>
-			<Award>
-				<Type>AWARD_NONE</Type>
-				<Experience>0</Experience>
-				<Resources>
-					<Wood>0</Wood>
-					<Ore>0</Ore>
-					<Mercury>0</Mercury>
-					<Crystal>0</Crystal>
-					<Sulfur>0</Sulfur>
-					<Gem>0</Gem>
-					<Gold>0</Gold>
-				</Resources>
-				<Attribute>HERO_ATTRIB_DEFENCE</Attribute>
-				<AttributeAmount>0</AttributeAmount>
-				<ArtifactID>ARTIFACT_NONE</ArtifactID>
-				<SpellID>SPELL_NONE</SpellID>
-				<ArmySlot>
-					<Creature>CREATURE_UNKNOWN</Creature>
-					<Count>0</Count>
-				</ArmySlot>
-				<SpellPoints>0</SpellPoints>
-				<Morale>0</Morale>
-				<Luck>0</Luck>
-				<SkillWithMastery>
-					<Mastery>MASTERY_NONE</Mastery>
-					<SkillID>HERO_SKILL_NONE</SkillID>
-				</SkillWithMastery>
-			</Award>
-			<TakeContribution>false</TakeContribution>
-			<CanUncomplete>false</CanUncomplete>
-			<IsInitialyActive>true</IsInitialyActive>
-			<IsInitialyVisible>true</IsInitialyVisible>
-			<IsHidden>false</IsHidden>
-			<Ignore>false</Ignore>
-			<ShowCompleted>true</ShowCompleted>
-			<NeedComplete>true</NeedComplete>
-			<StateChangeTrigger>
-				<Action>
-					<FunctionName/>
-				</Action>
-			</StateChangeTrigger>
-			<SoundActivated/>
-			<SoundComplete/>
-			<SoundFailed/>
-		</Item>
-		<Item>
-			<Name/>
-			<CaptionFileRef href="scenario-caption.6.txt"/>
-			<ObscureCaptionFileRef href=""/>
-			<DescriptionFileRef href="scenario-description.6.txt"/>
-			<ProgressCommentsFileRef/>
-			<Kind>OBJECTIVE_KIND_SCENARIO_INFO</Kind>
-			<Parameters/>
-			<Timeout>-1</Timeout>
-			<Holdout>-1</Holdout>
-			<CheckDelay>-1</CheckDelay>
-			<Dependencies/>
-			<InstantVictory>false</InstantVictory>
-			<TargetGlance>
-				<Target>
-					<Type>ADV_TARGET_NONE</Type>
-					<Name/>
-					<Coords>
-						<FloorID>0</FloorID>
-						<cell>
-							<x>0</x>
-							<y>0</y>
-						</cell>
-					</Coords>
-				</Target>
-				<Radius>10</Radius>
-				<Duration>5000</Duration>
-			</TargetGlance>
-			<Award>
-				<Type>AWARD_NONE</Type>
-				<Experience>0</Experience>
-				<Resources>
-					<Wood>0</Wood>
-					<Ore>0</Ore>
-					<Mercury>0</Mercury>
-					<Crystal>0</Crystal>
-					<Sulfur>0</Sulfur>
-					<Gem>0</Gem>
-					<Gold>0</Gold>
-				</Resources>
-				<Attribute>HERO_ATTRIB_DEFENCE</Attribute>
-				<AttributeAmount>0</AttributeAmount>
-				<ArtifactID>ARTIFACT_NONE</ArtifactID>
-				<SpellID>SPELL_NONE</SpellID>
-				<ArmySlot>
-					<Creature>CREATURE_UNKNOWN</Creature>
-					<Count>0</Count>
-				</ArmySlot>
-				<SpellPoints>0</SpellPoints>
-				<Morale>0</Morale>
-				<Luck>0</Luck>
-				<SkillWithMastery>
-					<Mastery>MASTERY_NONE</Mastery>
-					<SkillID>HERO_SKILL_NONE</SkillID>
-				</SkillWithMastery>
-			</Award>
-			<TakeContribution>false</TakeContribution>
-			<CanUncomplete>false</CanUncomplete>
-			<IsInitialyActive>true</IsInitialyActive>
-			<IsInitialyVisible>true</IsInitialyVisible>
-			<IsHidden>false</IsHidden>
-			<Ignore>false</Ignore>
-			<ShowCompleted>true</ShowCompleted>
-			<NeedComplete>true</NeedComplete>
-			<StateChangeTrigger>
-				<Action>
-					<FunctionName/>
-				</Action>
-			</StateChangeTrigger>
-			<SoundActivated/>
-			<SoundComplete/>
-			<SoundFailed/>
-		</Item>
-		<Item>
-			<Name/>
-			<CaptionFileRef href="scenario-caption.7.txt"/>
-			<ObscureCaptionFileRef href=""/>
-			<DescriptionFileRef href="scenario-description.7.txt"/>
+			<DescriptionFileRef href="description.txt"/>
 			<ProgressCommentsFileRef/>
 			<Kind>OBJECTIVE_KIND_SCENARIO_INFO</Kind>
 			<Parameters/>
@@ -52210,7 +51789,7 @@
 						</Item>
 						<Item>
 							<Name>LearnAllSpells</Name>
-							<CaptionFileRef href="LearnAllSpellsCaptions.txt"/>
+							<CaptionFileRef href="LearnAllSpellsCaption.txt"/>
 							<ObscureCaptionFileRef href=""/>
 							<DescriptionFileRef href="LearnAllSpellsDescription.txt"/>
 							<ProgressCommentsFileRef>
@@ -54533,8 +54112,13 @@
 	<MoonCalendarModifications>
 		<BlockMonstersWeeks>true</BlockMonstersWeeks>
 	</MoonCalendarModifications>
-	<thumbnailImages/>
-	<PWLPicture/>
+	<thumbnailImages>
+		<Item href="Thumb1.(Texture).xdb#xpointer(/Texture)"/>
+		<Item href="Thumb2.(Texture).xdb#xpointer(/Texture)"/>
+		<Item href="Thumb3.(Texture).xdb#xpointer(/Texture)"/>
+		<Item href="Thumb4.(Texture).xdb#xpointer(/Texture)"/>
+	</thumbnailImages>
+	<PWLPicture href="PWL.(Texture).xdb#xpointer(/Texture)"/>
 	<BanTransparency>false</BanTransparency>
 	<MoonCalendar href="MapMoonWeeks.xdb#xpointer(/MoonCalendar)"/>
 	<StartScene/>

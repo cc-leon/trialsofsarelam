@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Character ObjectRecordID="1000145">
+	<Model href="Deirdre_DS.xdb#xpointer(/Model)"/>
+	<ArenaAnimSet href="Deirdre-arena.xdb#xpointer(/AnimSet)"/>
+	<AdvMapAnimSet href="Deirdre-arena.xdb#xpointer(/AnimSet)"/>
+	<ColourModels/>
+</Character>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Character ObjectRecordID="1000021">
+	<Model href="Dirael.xdb#xpointer(/Model)"/>
+	<ArenaAnimSet href="Dirael-arena.xdb#xpointer(/AnimSet)"/>
+	<AdvMapAnimSet href="Dirael-arena.xdb#xpointer(/AdvMapAnimSet)"/>
+	<ColourModels/>
+</Character>

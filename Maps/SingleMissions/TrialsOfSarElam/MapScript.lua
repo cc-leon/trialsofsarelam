@@ -567,6 +567,8 @@ function _PagedTalkBox(port, info, desc, capt, callback, options)
         if options[5] then args[5] = {g_sPath.."TalkBoxOption.txt"; texts = options[5]} end
     else
         local startI = (_pagedObj["page"] - 1) * 4
+        _pagedObj["next"] = nil
+        _pagedObj["back"] = nil
         for i = 1, 4 do
             if options[startI + i] then
                 args[i] = {g_sPath.."TalkBoxOption.txt"; texts = options[startI + i]}
@@ -581,7 +583,7 @@ function _PagedTalkBox(port, info, desc, capt, callback, options)
             args[5] = g_sPath.."TalkBoxNext.txt"
             _pagedObj["next"] = 5
             _pagedObj["back"] = nil
-        else
+        elseif not _pagedObj["back"] then
             args[5] = g_sPath.."TalkBoxBack.txt"
             _pagedObj["next"] = nil
             _pagedObj["back"] = 5
@@ -957,8 +959,6 @@ end
 
 function NPCMapMakerCallback(pNum, cNum)
     if cNum == 1 then
-        MessageBox(g_sPath.."MapMakerOption2Description.txt")
-    elseif cNum == 2 then
         local allDone = true
         local heroName = g_tabCallbackParams[1]
 
@@ -1021,13 +1021,21 @@ function NPCMapMakerCallback(pNum, cNum)
 
         if allDone then MessageBox(g_sPath.."MapMakerOption3AllDone.txt") end
 
-    elseif cNum == 3 then
+    elseif cNum == 2 then
         if g_bBypassedSarFamily == 1 then MessageBox(g_sPath.."MapMakerOption4Finished.txt")
         else QuestionBox(g_sPath.."MapMakerOption4Description.txt", "NPCMapMakerSarFamilyCallback", "")
         end
-    elseif cNum == 4 then
+    elseif cNum == 3 then
         MessageBox(g_sPath.."MapMakerOption5Description.txt")
     end
+end
+
+function NPCPiaoCallback(cNum)
+    if cNum >= 1 and cNum <= length(GUARDIAN2NAME) then MessageBox(g_sPath.."Hint"..GUARDIAN2NAME[cNum]..".txt") end
+end
+
+function NPCTangCallback(cNum)
+    if cNum >= 1 and cNum <= length(INDEX2SAR) then MessageBox(g_sPath.."Hint"..INDEX2SAR[cNum]..".txt") end
 end
 
 function NPCRoundSweetPieCallback()
@@ -1116,6 +1124,10 @@ function NPCAShaCallback()
     SetObjectiveState("CountPhoenixes", OBJECTIVE_ACTIVE)
 end
 
+function NPCAldensCallback(cNum)
+    if cNum >= 1 and cNum <= length(g_tabCallbackParams[1]) then MessageBox(g_tabCallbackParams[1][cNum]) end
+end
+
 function NPCDubiousMage1Callback()
     SetObjectiveState("HarvestPoltergeists", OBJECTIVE_ACTIVE)
     RemoveObject("DubiousMage1Aura")
@@ -1180,7 +1192,6 @@ function NPCWindBellKLCallback(pNum, cNum)
         QuestionBox(g_sPath.."WindBellKLOption2Confirm.txt", "NPCWindBellKLOption2Callback", "")
 
     elseif cNum == 3 then
-        print("Option3")
         SetPlayerResource(1, WOOD, 400, heroName)
         SetPlayerResource(1, ORE, 400, heroName)
         SetPlayerResource(1, MERCURY, 200, heroName)
@@ -1712,15 +1723,28 @@ function NPCVisitsTrigger(heroName, npcName)
             g_sPath.."NameMapMaker.txt",
             nil,
             0,
-            g_sPath.."MapMakerOption2.txt",
             g_sPath.."MapMakerOption3.txt",
             g_sPath.."MapMakerOption4.txt",
             g_sPath.."MapMakerOption5.txt")
 
     elseif npcName == "Piao" then
-        print("TODO")
+        local options = {}
+        for i, guardian in GUARDIAN2NAME do options[length(options) + 1] = g_sPath.."Name"..guardian..".txt" end
+        _PagedTalkBox(
+            PORT_HAVEN, nil,
+            g_sPath.."DescriptionPiao.txt",
+            g_sPath.."NamePiao.txt",
+            "NPCPiaoCallback", options)
+
     elseif npcName == "Tang" then
-        print("TODO")
+        local options = {}
+        for i, sarName in INDEX2SAR do options[length(options) + 1] = g_sPath.."Name"..sarName..".txt" end
+        _PagedTalkBox(
+            PORT_STRONGHOLD, nil,
+            g_sPath.."DescriptionTang.txt",
+            g_sPath.."NameTang.txt",
+            "NPCTangCallback", options)
+
     elseif npcName == "RoundSweetPie" then
         if GetObjectiveState("KillPhoenixes") < OBJECTIVE_ACTIVE then
             QuestionBox(g_sPath.."RoundSweetPieAskReady.txt", "NPCRoundSweetPieCallback", "")
@@ -1867,7 +1891,33 @@ function NPCVisitsTrigger(heroName, npcName)
         end
 
     elseif npcName == "Aldens" then
-        print("TODO")
+        local ALL_QUESTS = {
+            "LearnAllSpells", "LearnAllRunes", "LearnAllWarCries",
+            "AssassinateValeria", "RecruiteWraiths", "AssassinateAlien",
+            "RuneProdigyQuest", "GetRidOfGottai", "FindBeginnerWand", "FindMarkalSkull",
+            "ScareAwayWolves", "ScareAwayLandlord", "ScareAwayVeyer",
+            "HarvestPoltergeists", "HelpingAThief", "KillMagneticGolems",
+            "KillPhoenixes", "KillTitans", "KillMagmas", "KillBlackDragons",
+            "FindPrincesses", "AnswerAllSphinxRiddles", "DestroyInfernoOutpost", "CountPhoenixes",
+            "ArkathPuzzle", "GetRidOfDevil", "TeachElfLesson1", "TeachElfLesson2", "BreedWolves"}
+        local options = {}
+        g_tabCallbackParams = {{}}
+        for i, quest in ALL_QUESTS do
+            if GetObjectiveState(quest) == OBJECTIVE_ACTIVE then
+                g_tabCallbackParams[1][length(g_tabCallbackParams[1]) + 1] = g_sPath.."Hint"..quest..".txt"
+                options[length(options) + 1] = g_sPath..quest.."Caption.txt"
+            end
+        end
+        if length(options) == 0 then
+            MessageBox(g_sPath.."AldensNoQuests.txt")
+        else
+            _PagedTalkBox(
+                PORT_DUNGEON, nil,
+                g_sPath.."DescriptionAldens.txt",
+                g_sPath.."NameAldens.txt",
+                "NPCAldensCallback", options)
+        end
+
     elseif npcName == "DubiousMage1" then
         local objState = GetObjectiveState("HarvestPoltergeists")
         if objState < OBJECTIVE_ACTIVE then
