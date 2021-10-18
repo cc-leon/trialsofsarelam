@@ -4,6 +4,12 @@ g_iPlayerRace = GetPlayerRace(1)
 -- Constants
 INFINITY = 1e8
 
+LVL_MAP = {
+    0,       1000,    2000,    3200,    4600,     6200,     8000,     10000,     12200,     14700,
+    17500,   20600,   24320,   28784,   34140,    40567,    48279,    57533,     68637,     81961,
+    97949,   117134,  140156,  167782,  200933,   244029,   304363,   394864,    539655,    785926,
+    1228915, 2070784, 3754522, 7290371, 15069240, 32960630, 75899970, 183248314, 462353978, 1215939194}
+
 -- Arenas
 NOOB1_ARENA = "/Scenes/CombatArenas/Subterra_Dwarven_01.xdb#xpointer(/AdventureFlybyScene)"
 NOOB2_ARENA = "/Scenes/CombatArenas/Subterra_Dwarven_02.xdb#xpointer(/AdventureFlybyScene)"
@@ -463,20 +469,12 @@ function _CheckAllSpells(heroName)
 
     for i = 1, 43 do
         if not noSpell[i] then 
-            if KnowHeroSpell(heroName, i) then
-                result = result - 1
-            else
-                print("Hero does not know ", i)
-            end
+            if KnowHeroSpell(heroName, i) then result = result - 1 end
         end
     end
 
     for i, spellID in yesSpell do
-        if KnowHeroSpell(heroName, spellID) then
-            result = result - 1
-        else
-            print("Hero does not know ", i)
-        end
+        if KnowHeroSpell(heroName, spellID) then result = result - 1 end
     end
 
     return result
@@ -1045,7 +1043,7 @@ function NPCRoundSweetPieCallback()
         SetObjectiveState("Kill"..mob, OBJECTIVE_ACTIVE)
     end
     CreateStatic("RoundSweetPieAura",
-                 RACE2AURA[NAME2RACE["Academy"]],
+                 RACE2AURA[NAME2RACE["Dungeon"]],
                  26, 27, 0)
     SetObjectPos("RoundSweetPie", 26, 27, 0)
     SetObjectRotation("RoundSweetPie", -45)
@@ -1161,7 +1159,6 @@ function NPCWindBellKLCallback(pNum, cNum)
             local creatureID = temp[i][1]
             if creatureID == 0 or noUpgrades[creatureID] then
                 -- Do nothing
-                print("In the 1st if statement")
             elseif creatureID >= CREATURE_LANDLORD and creatureID <= CREATURE_SERAPH then
                 temp[i][1] = CREATURE_PEASANT + ((creatureID - CREATURE_LANDLORD) * 2)
             elseif creatureID >= CREATURE_QUASIT and creatureID <= CREATURE_ARCH_DEMON then
@@ -2731,23 +2728,42 @@ function RecruiteWraithsThread()
     while true do
         local objState = GetObjectiveState("RecruiteWraiths")
         if objState == OBJECTIVE_ACTIVE then
-            if GetObjectCreatures("Berein", CREATURE_WRAITH) >= 400 then
+            local expPoints = GetHeroStat("Berein", 0)
+            local theoreticalLvl = 0
+            for lvl, ex in LVL_MAP do
+                if ex > expPoints then
+                    theoreticalLvl = lvl - 1
+                    break
+                end
+            end
+
+            if GetHeroLevel("Berein") == theoreticalLvl and theoreticalLvl > 1 then
+                BlockGame()
+                sleep(1)
+                TakeAwayHeroExp("Berein", expPoints)
+                sleep(7)
+                UnblockGame()
+            end
+
+            if GetObjectCreatures("Berein", CREATURE_WRAITH) >= 400 and GetHeroLevel("Berein") == theoreticalLvl then
                 MessageBox(g_sPath.."MarkalNPCFinished.txt")
                 BlockGame()
                 local mx, my, ml = GetObjectPos("Berein")
                 MoveCamera(mx, my, ml, 20, 0.99, 0)
                 sleep(10)
-                SetObjectOwner("Berein", 8)
+                SetObjectEnabled("Berein", nil)
+                SetObjectOwner("Berein", 2)
                 sleep(2)
                 SetObjectPos("Berein", 23, 8, 1)
                 sleep(5)
-                RemoveObject("Berein")
                 CreateArtifact("", ARTIFACT_SHAWL_OF_GREAT_LICH, mx, my, ml)
+                sleep(5)
+                RemoveObject("Berein")
                 UnblockGame()
-                Trigger(HERO_LEVELUP_TRIGGER, "Berein", nil)
                 SetObjectiveState("RecruiteWraiths", OBJECTIVE_COMPLETED)
                 SetObjectiveVisible("RecruiteWraiths", nil)
             end
+
             sleep(10)
         else
             break
@@ -2761,7 +2777,6 @@ function RecruiteWraithsCallback()
     SetObjectEnabled("Berein", true)
     SetObjectOwner("Berein", 1)
     sleep(1)
-    Trigger(HERO_LEVELUP_TRIGGER, "Berein", "MarkalLevelUpTrigger")
     startThread(RecruiteWraithsThread)
 end
 
@@ -2888,11 +2903,6 @@ function NewDayTrigger()
         sleep(10)
         UnblockGame()
     end
-end
-
-function MarkalLevelUpTrigger()
-    local expPoints = GetHeroStat("Berein", 0) - 1
-    TakeAwayHeroExp("Berein", expPoints)
 end
 
 function PortalDenyTrigger(heroName, portalName)
@@ -3316,6 +3326,10 @@ function OpeningScene()
     UnblockGame()
     MessageBox(g_sPath.."ScenarioStart.txt")
     SetObjectiveState("RescueLaszlo", OBJECTIVE_ACTIVE)
+    if GetDifficulty() ~= DIFFICULTY_HEROIC then
+        MessageBox(g_sPath.."WarningToDifficulty.txt")
+        Loose()
+    end
 end
 
 function backgroundThread()
